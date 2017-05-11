@@ -1,0 +1,12 @@
+/* 字号 for循环 */
+@for $size from $fontMin to $fontMax by 2 {
+  .jc-font$size {
+    font-size: $(size)px
+  }
+}
+/* 颜色 each循环 */
+@each $color in $colorList {
+  .jc-$color {
+    color: $color !important;
+  }
+}

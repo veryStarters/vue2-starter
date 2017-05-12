@@ -8,10 +8,10 @@ import VueRouter from 'vue-router'
 import store from './store'
 import App from './App'
 import routes from './router'
-import * as components from './components/global'
+import components from './components/global'
 
 Vue.config.productionTip = false
-Object.values(components).forEach(function (component) {
+components.forEach(function (component) {
   Vue.component(component.name, component)
 })
 

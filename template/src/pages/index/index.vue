@@ -1,6 +1,6 @@
 <template>
   <div class="index-wrapper">
-    <div class="c b title number-font">hello,world!</div>
+    <div>hello,world!</div>
     <jc-hello></jc-hello>
   </div>
 </template>

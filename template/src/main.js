@@ -11,7 +11,6 @@ import routes from './router'
 import * as components from './components/global'
 
 Vue.config.productionTip = false
-
 Object.values(components).forEach(function (component) {
   Vue.component(component.name, component)
 })

@@ -5,7 +5,7 @@
 </template>
 <script>
   export default {
-    name: 'dialog',
+    name: 'jc-dialog',
     props: {},
     data() {
       return {}

@@ -171,6 +171,11 @@ var server = {
         fs.write(fd,
           templates[type]['tpl']
             .replace(/{{name}}/gi, name)
+            .replace(/{{humpName}}/gi, function () {
+              return name.replace(/-([a-z])/g, function (a, b) {
+                return b.toUpperCase()
+              })
+            })
             .replace(/\{\{wrapper\}\}/gi, `${name}-wrapper`),
           function (err) {
             if (err) throw err;

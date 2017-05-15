@@ -6,7 +6,5 @@
  * 未在此引入的组件，需要在使用位置手动导入并配置后方可使用
  */
 export default [
-  require('./dialog'),
-  require('./layout'),
-  require('./hello')
+  require('./hello/')
 ]

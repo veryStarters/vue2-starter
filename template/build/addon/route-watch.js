@@ -11,6 +11,12 @@ var mkdirp = require('mkdirp')
 var chokidar = require('chokidar')
 var pagesTemplate = require('./template/page-template')
 var componentsTemplate = require('./template/component-template')
+var componentsTestTemplate = require('./template/component-test-template')
+var templates = {
+  pages: pagesTemplate,
+  components: componentsTemplate,
+  test: componentsTestTemplate
+}
 var server = {
   start(){
     var startTime = Date.now();
@@ -23,8 +29,8 @@ var server = {
     routes2template(routesPath, pagesPath, 'pages');
     template2routes(pagesPath, routesPath, 'pages');
 
-    routes2template(componentsRoutePath, componentsPath, 'components');
-    template2routes(componentsPath, componentsRoutePath, 'components');
+    routes2template(componentsRoutePath, componentsPath, 'components', true);
+    template2routes(componentsPath, componentsRoutePath, 'components', true);
 
     /**
      * 通过路由文件生成文件模板
@@ -32,7 +38,7 @@ var server = {
      * @param pagesPath
      * @param type
      */
-    function routes2template(routesPath, pagesPath, type) {
+    function routes2template(routesPath, pagesPath, type, needTest) {
       fs.watchFile(routesPath, {
         persistent: true,
         interval: 2
@@ -55,17 +61,29 @@ var server = {
           if (matches && matches[1]) {
             name = matches[1]
           }
-          var indexFileName = path + 'index.vue';
+
+          var testFileName;
+          if (/\.vue$/.test(path)) {
+            testFileName = path;
+            path = path.substring(0, path.lastIndexOf('/') + 1)
+          }
+          var indexFileName = path + 'index.vue'
           if (checkExitsAndEmpty(path)) {
             if (!checkExitsAndEmpty(indexFileName)) {
               blocks[indexFileName] = true;
               mkfile(indexFileName, name, type)
+              if (needTest) {
+                mkfile(testFileName, name, 'test')
+              }
             }
           } else {
             mkdirp(path, function (err) {
               if (!err) {
                 blocks[indexFileName] = true;
                 mkfile(indexFileName, name, type)
+                if (needTest) {
+                  mkfile(testFileName, name, 'test')
+                }
               }
             })
           }
@@ -91,7 +109,7 @@ var server = {
      * @param routesPath
      * @param type
      */
-    function template2routes(pagesPath, routesPath, type) {
+    function template2routes(pagesPath, routesPath, type, needTest) {
       clearFileContent(routesPath);
       var watcher1 = chokidar.watch(pagesPath, {
         ignored: /(^|[\/\\])\../
@@ -104,6 +122,8 @@ var server = {
           }
           var path = formatPath(fileName, type);
           var name = path2name(path);
+          needTest && mkfile(fileName.replace('index.vue', '_test.vue'), name, 'test')
+          path = path + (needTest ? '_test.vue' : '')
           fs.appendFile(
             routesPath,
             `export const ${name} = r => require(['../${type}${path}'], r)\n`,
@@ -117,7 +137,7 @@ var server = {
 
     function formatPath(path, type) {
       var reg = new RegExp('^.*src\\/' + type, 'gi')
-      return path.replace(reg, '').replace('index.vue', '');
+      return path.replace(reg, '').replace('index.vue', '').replace('_test.vue', '');
     }
 
     function path2name(path) {
@@ -149,8 +169,8 @@ var server = {
           return;
         }
         fs.write(fd,
-          (type === 'pages' ? pagesTemplate : componentsTemplate)['tpl']
-            .replace('{{name}}', name)
+          templates[type]['tpl']
+            .replace(/{{name}}/gi, name)
             .replace(/\{\{wrapper\}\}/gi, `${name}-wrapper`),
           function (err) {
             if (err) throw err;

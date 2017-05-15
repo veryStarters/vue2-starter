@@ -3,6 +3,4 @@
  * 变量名代表route的name，变量名请按照驼峰格式书写，每个驼峰单词将被切分成route的path  userLogin => /user/login
  * 所有components的路由自动增加/components前缀
  **/
-export const dialog = r => require(['../components/dialog/'], r)
-export const layout = r => require(['../components/layout/'], r)
-export const hello = r => require(['../components/hello/'], r)
+export const hello = r => require(['../components/hello/_test.vue'], r)

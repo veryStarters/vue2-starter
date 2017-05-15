@@ -10,7 +10,7 @@ module.exports = {
       '  import { mapState, mapActions, mapMutations } from \'vuex\'',
       '  import api from \'api\'',
       '  export default {',
-      '    name: \'{{name}}\',',
+      '    name: \'page-{{name}}\',',
       '    components: {},',
       '    data() {',
       '      return {}',
@@ -25,9 +25,7 @@ module.exports = {
       '  }',
       '</script>',
       '<style lang="postcss" scoped>',
-      '  .{{wrapper}} {',
-      '    ',
-      '  }',
+      '  .{{wrapper}} {}',
       '</style>'
     ].join('\n')
   })()

@@ -3,6 +3,6 @@
  * 变量名代表route的name，变量名请按照驼峰格式书写，每个驼峰单词将被切分成route的path  userLogin => /user/login
  * 所有components的路由自动增加/components前缀
  **/
-export const index = r => require(['../pages/index/'], r)
 export const common = r => require(['../pages/common/'], r)
+export const index = r => require(['../pages/index/'], r)
 export const userLogin = r => require(['../pages/user/login/'], r)

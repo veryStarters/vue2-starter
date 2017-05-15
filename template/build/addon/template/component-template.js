@@ -2,27 +2,19 @@ module.exports = {
   tpl: (() => {
     return [
       '<template>',
-      '  <div class="{{wrapper}}">',
+      '  <div>',
       '    Hello, world!',
       '  </div>',
       '</template>',
       '<script>',
       '  export default {',
-      '    name: \'jc-{{name}}\',',
+      '    name: \'com-{{name}}\',',
       '    props: {},',
-      '    data() {',
-      '      return {}',
-      '    },',
-      '    computed: {',
-      '    },',
-      '    methods: {',
-      '    }',
+      '    computed: {},',
+      '    methods: {}',
       '  }',
       '</script>',
       '<style lang="postcss" scoped>',
-      '  .{{wrapper}} {',
-      '    ',
-      '  }',
       '</style>'
     ].join('\n')
   })()

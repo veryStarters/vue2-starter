@@ -72,7 +72,7 @@ var server = {
             if (!checkExitsAndEmpty(indexFileName)) {
               blocks[indexFileName] = true;
               mkfile(indexFileName, name, type)
-              if (needTest) {
+              if (needTest && !checkExitsAndEmpty(testFileName)) {
                 mkfile(testFileName, name, 'test')
               }
             }
@@ -81,7 +81,7 @@ var server = {
               if (!err) {
                 blocks[indexFileName] = true;
                 mkfile(indexFileName, name, type)
-                if (needTest) {
+                if (needTest && !checkExitsAndEmpty(testFileName)) {
                   mkfile(testFileName, name, 'test')
                 }
               }

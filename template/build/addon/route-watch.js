@@ -122,7 +122,10 @@ var server = {
           }
           var path = formatPath(fileName, type);
           var name = path2name(path);
-          needTest && mkfile(fileName.replace('index.vue', '_test.vue'), name, 'test')
+          var testFile = fileName.replace('index.vue', '_test.vue')
+          if (needTest && !checkExitsAndEmpty(testFile)) {
+            mkfile(testFile, name, 'test')
+          }
           path = path + (needTest ? '_test.vue' : '')
           fs.appendFile(
             routesPath,

@@ -8,7 +8,7 @@ module.exports = {
       '</template>',
       '<script>',
       '  export default {',
-      '    name: \'jc-{{__name}}\',',
+      '    name: \'jc-<%name%>\',',
       '    props: {},',
       '    computed: {},',
       '    methods: {}',

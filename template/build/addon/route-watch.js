@@ -173,13 +173,13 @@ var server = {
         }
         fs.write(fd,
           templates[type]['tpl']
-            .replace(/{{__name}}/gi, name)
-            .replace(/{{__humpName}}/gi, function () {
+            .replace(/<%name%>/gi, name)
+            .replace(/<%humpName%>/gi, function () {
               return name.replace(/-([a-z])/g, function (a, b) {
                 return b.toUpperCase()
               })
             })
-            .replace(/\{\{wrapper\}\}/gi, `${name}-wrapper`),
+            .replace(/<%wrapper%>/gi, `${name}-wrapper`),
           function (err) {
             if (err) throw err;
             fs.closeSync(fd);

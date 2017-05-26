@@ -2,7 +2,7 @@ module.exports = {
   tpl: (() => {
     return [
       '<template>',
-      '  <div class="{{wrapper}}">',
+      '  <div class="<%wrapper%>">',
       '    Hello, world!',
       '  </div>',
       '</template>',
@@ -10,7 +10,7 @@ module.exports = {
       '  import { mapState, mapActions, mapMutations } from \'vuex\'',
       '  import api from \'api\'',
       '  export default {',
-      '    name: \'page-{{__name}}\',',
+      '    name: \'page-<%name%>\',',
       '    components: {},',
       '    data() {',
       '      return {}',
@@ -25,7 +25,7 @@ module.exports = {
       '  }',
       '</script>',
       '<style lang="postcss" scoped>',
-      '  .{{wrapper}} {}',
+      '  .<%wrapper%> {}',
       '</style>'
     ].join('\n')
   })()

@@ -173,8 +173,8 @@ var server = {
         }
         fs.write(fd,
           templates[type]['tpl']
-            .replace(/{{name}}/gi, name)
-            .replace(/{{humpName}}/gi, function () {
+            .replace(/{{__name}}/gi, name)
+            .replace(/{{__humpName}}/gi, function () {
               return name.replace(/-([a-z])/g, function (a, b) {
                 return b.toUpperCase()
               })

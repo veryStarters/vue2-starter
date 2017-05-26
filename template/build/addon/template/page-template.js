@@ -10,7 +10,7 @@ module.exports = {
       '  import { mapState, mapActions, mapMutations } from \'vuex\'',
       '  import api from \'api\'',
       '  export default {',
-      '    name: \'page-{{name}}\',',
+      '    name: \'page-{{__name}}\',',
       '    components: {},',
       '    data() {',
       '      return {}',

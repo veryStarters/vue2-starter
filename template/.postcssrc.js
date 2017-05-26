@@ -32,9 +32,9 @@ module.exports = {
     //自动精灵
     'postcss-sprites': {
       stylesheetPath: './src/assets/styles',
-      spritePath:'./src/assets/images/sprites'
+      spritePath: './src/assets/images/sprites'
     },
     // 样式优化
-    'cssnano':{}
+    'cssnano': {}
   }
 }

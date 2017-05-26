@@ -34,9 +34,16 @@ npm run build --report
 
 
 
-### QA
-1、
+### Q | A
 
+Q: 编译过程中提示sass解析错误
+A: 一般情况下删除sass-loader并重装即可， 
+```
+  yarn remove sass-loader --dev
+  
+  yarn add sass-loader --dev
+
+```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 

@@ -12,34 +12,34 @@ BeforeBuildPlugin.prototype.apply = function (compiler) {
   var routePath = path.join(dirPath, 'routes.js');
   compiler.plugin("compile", function () {
     clearFileContent(routePath)
-    walk(dirPath, 'pages')
+    walk(dirPath)
     console.log('\nroute create done')
   });
 
-  function walk(filePath, type) {
-    var list = fs.readdirSync(filePath);
-    list.forEach(function (item) {
-      var fileName = path.join(filePath, item)
+  function walk(filePath) {
+    var fileList = fs.readdirSync(filePath);
+    fileList.forEach(function (file) {
+      var fileName = path.join(filePath, file)
       if (fs.statSync(fileName).isFile()) {
         if (/index\.vue$/.test(fileName)) {
-          var tmpPath = formatPath(fileName, type);
+          var tmpPath = formatPath(fileName);
           var name = path2name(tmpPath);
           fs.appendFile(
             routePath,
-            `export const ${name} = r => require(['../${type}${tmpPath}'], r)\n`,
+            `export const ${name} = r => require(['../pages${tmpPath}'], r)\n`,
             function (err) {
               if (err) throw err;
             }
           );
         }
       } else if (fs.statSync(fileName).isDirectory()) {
-        walk(fileName, type)
+        walk(fileName)
       }
     });
   }
 };
-function formatPath(path, type) {
-  var reg = new RegExp('^.*src\\/' + type, 'gi')
+function formatPath(path) {
+  var reg = new RegExp('^.*src\\/pages', 'gi')
   return path.replace(reg, '').replace('index.vue', '');
 }
 

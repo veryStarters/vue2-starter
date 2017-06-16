@@ -22,6 +22,11 @@ const router = new VueRouter({
   routes
 })
 
+let userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}')
+if (userInfo.name) {
+  store.commit('LOGIN', userInfo)
+}
+
 router.beforeEach(({meta}, from, next) => {
   let {auth = false} = meta
   if (auth && !localStorage.getItem('user')) {

@@ -1,15 +1,26 @@
 <template>
   <div class="common-wrapper">
-    common
+    Hello, common!
   </div>
 </template>
 <script>
+  import { mapState, mapActions, mapMutations } from 'vuex'
+  import api from 'api'
   export default {
-    name: 'common'
+    name: 'page-common',
+    components: {},
+    data() {
+      return {}
+    },
+    computed: {
+      ...mapState([])
+    },
+    methods: {
+      ...mapActions([]),
+      ...mapMutations([])
+    }
   }
 </script>
 <style lang="postcss" scoped>
-  .common-wrapper {
-
-  }
+  .common-wrapper {}
 </style>

@@ -1,37 +1,41 @@
 <template>
   <div class="user-login-wrapper">
-    login in
-    <ul>
-      <li v-for="item in list">
-        {{item}}
-      </li>
-    </ul>
-    <button @click="doLogin">登录</button>
+    <div v-show="isLogin">
+      欢迎你，{{userInfo.name}}
+    </div>
+    <button v-show="!isLogin" @click="doLogin">登录</button>
+    <button v-show="isLogin" @click="doLogout">退出</button>
   </div>
 </template>
 <script>
-  import {mapState, mapActions} from 'vuex'
+  import {mapState, mapActions, mapGetters} from 'vuex'
   import api from 'api'
   export default {
     name: 'userLogin',
     data(){
-      return {
-        list: []
-      }
+      return {}
     },
     computed: {
-      ...mapState(['user'])
+      ...mapState(['user']),
+      ...mapGetters(['isLogin', 'userInfo'])
     },
     methods: {
-      ...mapActions(['login']),
+      ...mapActions(['login', 'logout']),
       async doLogin (){
-        let ret = await api.login({
+        let res = await api.login({
           name: 'taoqili',
           password: '123456'
         })
-        if (ret.code === 0) {
-          this.login({name: 'taoqili'})
-          console.log(ret.msg)
+        if (res.code === 0) {
+          this.login(res.data)
+          console.log(res.msg)
+        }
+      },
+      async doLogout(){
+        let res = await api.logout()
+        if (res.code === 0) {
+          this.logout()
+          this.$router.push({path: '/user/login'})
         }
       }
     },

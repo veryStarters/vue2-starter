@@ -12,7 +12,7 @@ const LOGIN = 'LOGIN'
 const LOGOUT = 'LOGOUT'
 
 const state = {
-  isLogin: '',
+  isLogin: false,
   userInfo: {}
 }
 
@@ -29,9 +29,13 @@ const mutations = {
 
 const actions = {
   async login({commit}, userInfo) {
+    localStorage.setItem('userInfo', JSON.stringify(userInfo))
+    localStorage.setItem('isLogin', '1')
     commit('LOGIN', userInfo)
   },
   logout({commit}) {
+    localStorage.removeItem('userInfo')
+    localStorage.removeItem('isLogin')
     commit('LOGOUT')
   }
 

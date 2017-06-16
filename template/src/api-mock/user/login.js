@@ -4,7 +4,8 @@ module.exports = function (req, res, next) {
     code: 0,
     msg: '登录成功',
     data: {
-      
+      name: 'taoqili',
+      age: 19
     }
   }
 }

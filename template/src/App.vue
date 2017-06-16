@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <!--<div class="bubble" style="width: 256px;height: 256px; display: inline-block"></div>-->
-    <!--<div class="comment" style="width: 256px; height: 256px; display: inline-block"></div>-->
     <router-view></router-view>
   </div>
 </template>
@@ -20,6 +18,5 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px
   }
 </style>

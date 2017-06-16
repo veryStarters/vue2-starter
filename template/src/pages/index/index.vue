@@ -1,6 +1,5 @@
 <template>
   <div class="index-wrapper">
-    <div>hello,world!</div>
     <jc-hello></jc-hello>
   </div>
 </template>
@@ -26,6 +25,7 @@
   }
 </script>
 <style lang="postcss" scoped>
-  .index-wrapper {}
-
+  .index-wrapper {
+    padding-top: 60px;
+  }
 </style>

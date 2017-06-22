@@ -4,8 +4,6 @@
  * @date 2017/4/24
  */
 
-import api from 'api'
-
 //登录
 const LOGIN = 'LOGIN'
 //登出

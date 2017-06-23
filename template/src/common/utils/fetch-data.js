@@ -37,13 +37,14 @@ export default async (url, params = {}, type = 'GET') => {
   try {
     let res = await fetch(url, options)
     if (res.status !== 200) {
-      console.log(res)
       throw res
     }
     return res.json()
   } catch (error) {
     console.log(error)
-    return error
+    return new Promise(function (resolev, reject) {
+      reject(error)
+    })
   }
 }
 

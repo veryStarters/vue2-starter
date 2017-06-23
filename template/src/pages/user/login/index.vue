@@ -10,6 +10,7 @@
 <script>
   import {mapState, mapActions, mapGetters} from 'vuex'
   import api from 'api'
+  import utils from 'utils'
   export default {
     name: 'userLogin',
     data(){
@@ -21,22 +22,22 @@
     },
     methods: {
       ...mapActions(['login', 'logout']),
-      async doLogin (){
-        let res = await api.login({
+      doLogin (){
+        this.login({
           name: 'taoqili',
           password: '123456'
+        }).then(userInfo => {
+          utils.localStorage.setItem('userInfo', JSON.stringify(userInfo))
+          this.$router.push({path:'/'})
+          console.log(userInfo)
+        }).catch(errInfo => {
+          console.log(errInfo)
         })
-        if (res.code === 0) {
-          this.login(res.data)
-          console.log(res.msg)
-        }
       },
-      async doLogout(){
-        let res = await api.logout()
-        if (res.code === 0) {
-          this.logout()
+      doLogout(){
+        this.logout().then(() => {
           this.$router.push({path: '/user/login'})
-        }
+        });
       }
     },
     mounted: function () {

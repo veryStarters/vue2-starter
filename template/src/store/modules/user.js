@@ -4,10 +4,9 @@
  * @date 2017/4/24
  */
 
-//登录
-const LOGIN = 'LOGIN'
-//登出
-const LOGOUT = 'LOGOUT'
+import {LOGIN, LOGOUT} from '../mutation-types'
+import api from 'api'
+import doAction from '../do-action'
 
 const state = {
   isLogin: false,
@@ -16,25 +15,28 @@ const state = {
 
 const mutations = {
   [LOGIN](state, userInfo) {
-    state.userInfo = userInfo
     state.isLogin = true
+    state.userInfo = userInfo
   },
   [LOGOUT](state){
-    state.userInfo = {}
     state.isLogin = false
+    state.userInfo = {}
   }
 }
 
 const actions = {
-  async login({commit}, userInfo) {
-    localStorage.setItem('userInfo', JSON.stringify(userInfo))
-    localStorage.setItem('isLogin', '1')
-    commit('LOGIN', userInfo)
+  login({commit}, params) {
+    return doAction({
+      api: api.login,
+      params,
+      mutationName: LOGIN
+    })
   },
   logout({commit}) {
-    localStorage.removeItem('userInfo')
-    localStorage.removeItem('isLogin')
-    commit('LOGOUT')
+    return doAction({
+      api: api.logout,
+      mutationName: LOGOUT
+    })
   }
 
 }

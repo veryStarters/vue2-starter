@@ -5,7 +5,8 @@ module.exports = function (req, res, next) {
     msg: '登录成功',
     data: {
       name: 'taoqili',
-      age: 19
+      age: 19,
+      accessToken: 'aabbccddeeffgghhiijjkk'
     }
   }
 }

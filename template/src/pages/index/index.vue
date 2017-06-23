@@ -27,5 +27,6 @@
 <style lang="postcss" scoped>
   .index-wrapper {
     padding-top: 60px;
+    text-align: center;
   }
 </style>

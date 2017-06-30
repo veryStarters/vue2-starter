@@ -10,9 +10,9 @@ export default {
     return await fetchData('/api/user/login', params, 'POST')
   },
   async logout(params) {
-    return await fetchData('/api/user/logout', params)
+    return await fetchData('/api/user/logout', params, 'POST')
   },
-  async test(params) {
-    return await fetchData('/api/user/test', params)
+  async getUserInfo(params) {
+    return await fetchData('/api/user/info', params, 'POST')
   }
 }

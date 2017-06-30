@@ -1,10 +1,6 @@
 <template>
   <div class="user-login-wrapper">
-    <div v-show="isLogin">
-      欢迎你，{{userInfo.name}}
-    </div>
     <button v-show="!isLogin" @click="doLogin">登录</button>
-    <button v-show="isLogin" @click="doLogout">退出</button>
   </div>
 </template>
 <script>
@@ -17,27 +13,26 @@
       return {}
     },
     computed: {
-      ...mapState(['user']),
       ...mapGetters(['isLogin', 'userInfo'])
     },
     methods: {
-      ...mapActions(['login', 'logout']),
+      ...mapActions(['login']),
       doLogin (){
         this.login({
           name: 'taoqili',
           password: '123456'
         }).then(userInfo => {
+          if(!userInfo || utils.isEmpty(userInfo)){
+            console.log('登录成功，但用户信息错误或者为空')
+            return
+          }
           utils.localStorage.setItem('userInfo', JSON.stringify(userInfo))
-          this.$router.push({path:'/'})
+          utils.localStorage.setItem('userLoginTime', Date.now())
+          this.$router.push({path: '/'})
           console.log(userInfo)
         }).catch(errInfo => {
           console.log(errInfo)
         })
-      },
-      doLogout(){
-        this.logout().then(() => {
-          this.$router.push({path: '/user/login'})
-        });
       }
     },
     mounted: function () {
@@ -46,6 +41,7 @@
 </script>
 <style lang="postcss" scoped>
   .user-login-wrapper {
-
+    margin-top: 20px;
+    text-align: center;
   }
 </style>

@@ -5,9 +5,13 @@
  * @date 2017/4/24
  */
 export default {
+  index: {
+    meta: {
+      auth: true
+    }
+  },
   userLogin: {
     meta: {
-      auth: false,
       title: '用户登录'
     }
   }

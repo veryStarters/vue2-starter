@@ -7,7 +7,7 @@ var path = require('path')
 var express = require('express')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
-var config = require('../../config').mock
+var config = require('../../config').dev
 var loadModule = require('./load-module')
 
 module.exports = function () {
@@ -34,7 +34,7 @@ module.exports = function () {
     }
   })
   app.use('/', router)
-  app.listen(config.port, function () {
+  app.listen(config.mockPort, function () {
     console.log('Mock服务器已启动...')
   })
 }

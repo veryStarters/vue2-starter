@@ -8,6 +8,12 @@ import cookie from './cookie'
 export default (() => {
   return {
     localStorage: localStorage,
-    cookie: cookie
+    cookie: cookie,
+    isEmpty: function (obj) {
+      for (var key in obj) {
+        return false
+      }
+      return true
+    }
   }
 })()

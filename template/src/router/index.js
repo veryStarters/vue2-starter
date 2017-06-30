@@ -26,9 +26,17 @@ Object.keys(routes).forEach((name) => {
 Object.keys(comRoutes).forEach((name) => {
   routers.push({
     name: 'com_' + name,
-    path:'/components/' + name.replace(/([A-Z])/g, "/$1").toLowerCase(),
+    path: '/components/' + name.replace(/([A-Z])/g, "/$1").toLowerCase(),
     component: comRoutes[name]
   })
+})
+routers.push({
+  name:'401',
+  path: '/401',
+  meta: {
+    auth: false
+  },
+  component: r => require(['../pages/index/401.vue'], r)
 })
 routers.push({
   path: '*',

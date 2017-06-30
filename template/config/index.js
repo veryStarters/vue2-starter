@@ -1,13 +1,16 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-
+var envConfigs = require('./env.config')
+var envConfig = envConfigs[process.env.NODE_ENV || 'dev']
 module.exports = {
   build: {
-    env: require('./prod.env'),
+    env: envConfig.env,
     index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: function () {
+      return envConfig.publicPath
+    }(),
     productionSourceMap: true,
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
@@ -22,14 +25,15 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report
   },
   dev: {
-    env: require('./dev.env'),
-    port: 8080,
+    env: envConfig.env,
+    port: envConfig.port,
+    mockPort: envConfig.mockPort,
     autoOpenBrowser: false,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://localhost:10081',
+        target: 'http://localhost:' + envConfig.mockPort,
         changeOrigin: true,
         pathRewrite: {
           // '^/api': '/api'
@@ -42,9 +46,5 @@ module.exports = {
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
     cssSourceMap: false
-  },
-  mock: {
-    env: require('./mock.env'),
-    port: 10081
   }
 }

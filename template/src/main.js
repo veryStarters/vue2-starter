@@ -10,6 +10,10 @@ import App from './App'
 import routes from './router'
 import utils from 'utils'
 import components from './components/global'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
+
 
 Vue.config.productionTip = false
 components.forEach(function (component) {
@@ -47,9 +51,8 @@ if (!utils.isEmpty(userInfo)) {
   store.commit('LOGOUT')
 }
 
-
-
 router.beforeEach((to, from, next) => {
+  NProgress.start()
   let {auth = false} = to.meta
   let indexPath = '/'
   let loginPath = '/user/login'
@@ -105,6 +108,10 @@ router.beforeEach((to, from, next) => {
     }
   }
 })
+
+router.afterEach(() => {
+  NProgress.done();
+});
 
 new Vue({
   el: '#app',

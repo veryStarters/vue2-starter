@@ -1,16 +1,13 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-var envConfigs = require('./env.config')
-var envConfig = envConfigs[process.env.NODE_ENV || 'dev']
+var config = require('./env.config')
 module.exports = {
   build: {
-    env: envConfig.env,
+    env: config.env,
     index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: function () {
-      return envConfig.publicPath
-    }(),
+    assetsPublicPath: config.assetsPublicPath,
     productionSourceMap: true,
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
@@ -25,19 +22,17 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report
   },
   dev: {
-    env: envConfig.env,
-    port: envConfig.port,
-    mockPort: envConfig.mockPort,
+    env: config.env,
+    port: config.port,
+    mockPort: config.mockPort,
     autoOpenBrowser: false,
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: config.assetsPublicPath,
     proxyTable: {
       '/api': {
-        target: 'http://localhost:' + envConfig.mockPort,
+        target: (config.mockHost.indexOf('http') !== -1 ? config.mockHost : ('http://' + config.mockHost)) + ':' + config.mockPort,
         changeOrigin: true,
-        pathRewrite: {
-          // '^/api': '/api'
-        }
+        pathRewrite: config.pathRewrite
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

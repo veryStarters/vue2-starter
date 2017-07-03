@@ -1,26 +1,33 @@
-module.exports = {
-  dev: {
-    autoApiMock: true,
+/**
+ * Created by Webstorm.
+ * @author taoqili
+ * @date 2017/7/3
+ */
+var configs = {
+  development: {
     port: 8080,
+    mockRunning: true,
+    mockHost: 'http://localhost',
     mockPort: 10082,
+    pathRewrite: {
+      // '^/api': '/'
+    },
     env: {
       NODE_ENV: '"development"',
     },
-    apiPath: 'http://dev.api.com/api/',
-    assetsPublicPath: 'http://dev.static.com/'
+    assetsPublicPath: '/'
   },
-  beta: {
+  testing: {
     env: {
-      NODE_ENV: '"beta"',
+      NODE_ENV: '"testing"',
     },
-    apiPath: 'http://beta.api.com/api/',
     assetsPublicPath: 'http://beta.static.com/'
   },
-  prod: {
+  production: {
     env: {
       NODE_ENV: '"production"',
     },
-    apiPath: 'http://prod.api.com/api/',
-    assetsPublicPath: '/'
+    assetsPublicPath: 'http://prod.static.com/'
   }
 }
+module.exports = configs[process.env.NODE_ENV || 'development']

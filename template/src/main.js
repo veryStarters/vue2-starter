@@ -6,6 +6,7 @@ import 'babel-polyfill'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from './store'
+import config from './app.config'
 import App from './App'
 import routes from './router'
 import utils from 'utils'
@@ -13,14 +14,14 @@ import components from './components/global'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
-
-
 Vue.config.productionTip = false
+
 components.forEach(function (component) {
   Vue.component(component.name, component)
 })
 
 Vue.use(VueRouter)
+
 const router = new VueRouter({
   mode: 'history',
   linkActiveClass: 'is-active',
@@ -31,7 +32,7 @@ const router = new VueRouter({
 const loginTimeout = function () {
   let time = Date.now()
   let loginTime = +(utils.localStorage.getItem('userLoginTime') || '')
-  return (time - loginTime) > (30 * 60 * 1000)
+  return (time - loginTime) > (config.sessionDuration)
 }
 
 //路由权限判断
@@ -51,11 +52,15 @@ if (!utils.isEmpty(userInfo)) {
   store.commit('LOGOUT')
 }
 
+let indexPath = '/'
+let loginPath = '/user/login'
+NProgress.configure({
+  showSpinner: false
+});
+
 router.beforeEach((to, from, next) => {
   NProgress.start()
   let {auth = false} = to.meta
-  let indexPath = '/'
-  let loginPath = '/user/login'
   if (auth) {
     //1.需要登录
     let userInfo = JSON.parse(utils.localStorage.getItem('userInfo') || '{}')

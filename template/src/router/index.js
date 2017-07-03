@@ -19,7 +19,11 @@ Object.keys(routes).forEach((name) => {
     name: name,
     path: custom.path || path,
     meta: custom.meta || {},
-    component: routes[name]
+    component: routes[name],
+    beforeEnter: custom.beforeEnter ||
+    function (to, from, next) {
+      next()
+    }
   })
 })
 //组件路由注册
@@ -31,7 +35,7 @@ Object.keys(comRoutes).forEach((name) => {
   })
 })
 routers.push({
-  name:'401',
+  name: '401',
   path: '/401',
   meta: {
     auth: false

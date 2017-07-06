@@ -1,6 +1,6 @@
 <template>
   <div class="user-login-wrapper">
-    <button v-show="!isLogin" @click="doLogin">登录</button>
+    <button @click="doLogin">登录</button>
   </div>
 </template>
 <script>
@@ -13,7 +13,6 @@
       return {}
     },
     computed: {
-      ...mapGetters(['isLogin', 'userInfo'])
     },
     methods: {
       ...mapActions(['login']),
@@ -26,10 +25,8 @@
             console.log('登录成功，但用户信息错误或者为空')
             return
           }
-          utils.localStorage.setItem('userInfo', JSON.stringify(userInfo))
-          utils.localStorage.setItem('userLoginTime', Date.now())
+          utils.setUserInfoToCache(userInfo)
           this.$router.push({path: '/'})
-          console.log(userInfo)
         }).catch(errInfo => {
           console.log(errInfo)
         })

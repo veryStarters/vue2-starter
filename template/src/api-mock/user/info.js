@@ -7,8 +7,14 @@ module.exports = function (req, res, next) {
       name: req.body.name || '客人',
       accessToken: 'aabbccddeeffgghhiijjkk',
       menus: [],
-      roles: [],
-      permissions: []
+      roles: [
+        'role1',
+        'role2'
+      ],
+      permissions: [
+        '/',
+        '/test1'
+      ]
     }
   }
 }

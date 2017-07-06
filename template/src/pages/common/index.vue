@@ -1,26 +1,18 @@
-<template>
-  <div class="common-wrapper">
-    Hello, common!
-  </div>
-</template>
 <script>
-  import { mapState, mapActions, mapMutations } from 'vuex'
-  import api from 'api'
+  import utils from 'utils'
+  // jsx 写法
   export default {
     name: 'page-common',
-    components: {},
-    data() {
-      return {}
+    render(h){
+      return (
+        <div class='common-wrapper'>
+          Hello, common!
+        </div>
+      )
     },
-    computed: {
-      ...mapState([])
-    },
-    methods: {
-      ...mapActions([]),
-      ...mapMutations([])
+    mounted(){
+      let cookie = utils.cookie
+      console.log(cookie.get('Admin-Name'))
     }
   }
 </script>
-<style lang="postcss" scoped>
-  .common-wrapper {}
-</style>

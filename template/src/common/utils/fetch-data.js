@@ -3,6 +3,7 @@
  * @author taoqili
  * @date 2017/4/25
  */
+import utils from './index'
 export default async (url, params = {}, type = 'GET') => {
   if (!url) return
   if (params.ORIGIN) {
@@ -16,12 +17,12 @@ export default async (url, params = {}, type = 'GET') => {
     headers: {
       'Content-Type': 'application/json',
       'Accept': '*/*',
-      // 'X-CSRFToken': cookie('csrftoken')
+      'X-CSRFToken': utils.cookie.get('csrftoken') || ''
     },
   })
   switch (type) {
     case 'GET':
-      let query = params2query(params)
+      let query = utils.params2query(params)
       if (query) {
         url += (url.indexOf('?') === -1 ? '?' : '&') + query
       }
@@ -33,7 +34,6 @@ export default async (url, params = {}, type = 'GET') => {
     default:
       break
   }
-
   try {
     let res = await fetch(url, options)
     if (res.status !== 200) {
@@ -48,31 +48,3 @@ export default async (url, params = {}, type = 'GET') => {
   }
 }
 
-function params2query(params) {
-  if (typeof params !== 'object') return '';
-  var queries = [];
-  for (var i in params) {
-    if (params.hasOwnProperty(i)) {
-      params[i] && queries.push(i + '=' + params[i])
-    }
-  }
-  return queries.join('&');
-}
-
-function cookie(key, value, path, expires) {
-  var cookie = document.cookie
-  var start = cookie.indexOf(key + "=")
-  var end
-  if (value) {
-    document.cookie = encodeURIComponent(key) + '=' + encodeURIComponent(value) + ((expires == null) ? '' : ';expires=' + expires.toGMTString()) + ((path == null) ? '' : ';path=' + path);
-    return;
-  }
-  if (start !== -1) {
-    start = start + key.length + 1;
-    end = cookie.indexOf(";", start);
-    if (end === -1) {
-      end = cookie.length;
-    }
-    return decodeURIComponent(cookie.substring(start, end))
-  }
-}

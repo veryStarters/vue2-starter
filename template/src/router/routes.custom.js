@@ -4,11 +4,45 @@
  * @author taoqili
  * @date 2017/4/24
  */
+const home = r => require(['../pages/index/children/home'], r)
+const test1 = r => require(['../pages/index/children/test1'], r)
+const test2 = r => require(['../pages/index/children/test2'], r)
 export default {
-  index: {
+  common: {
     meta: {
       auth: true
     }
+  },
+  index: {
+    meta: {
+      auth: true
+    },
+    children: [
+      {
+        name: 'home',
+        path: '',
+        component: home,
+        meta: {
+          auth: true
+        }
+      },
+      {
+        name: 'test1',
+        path: 'test1',
+        meta: {
+          auth: true
+        },
+        component: test1
+      },
+      {
+        name: 'test2',
+        path: 'test2',
+        meta: {
+          auth: true
+        },
+        component: test2
+      }
+    ]
   },
   userLogin: {
     meta: {

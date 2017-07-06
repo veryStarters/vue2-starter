@@ -16,10 +16,11 @@ Object.keys(routes).forEach((name) => {
   }
   const custom = customs[name] || {}
   routers.push({
-    name: name,
+    name: (name === 'index' && custom.children && custom.children.length) ? '' : name,
     path: custom.path || path,
     meta: custom.meta || {},
-    component: routes[name],
+    component: custom.component || routes[name],
+    children: custom.children || [],
     beforeEnter: custom.beforeEnter ||
     function (to, from, next) {
       next()

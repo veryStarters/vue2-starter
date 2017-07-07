@@ -3,6 +3,7 @@
  * @author taoqili
  * @date 2017/4/25
  */
+import config from 'config'
 import utils from './index'
 export default async (url, params = {}, type = 'GET') => {
   if (!url) return
@@ -10,15 +11,18 @@ export default async (url, params = {}, type = 'GET') => {
     url = params.ORIGIN + url
   }
   type = type.toUpperCase()
+  let headers = {
+    'Content-Type': 'application/json',
+    'Accept': '*/*',
+    // 'X-CSRF-Token': utils.localStorage.getItem('XCSRFToken') || ''
+  }
+  let tokenName = config.tokenName || 'AccessToken'
+  headers[tokenName] = utils.localStorage.getItem(tokenName)
   const options = Object.assign({}, {
     method: type,
     mode: 'cors',
     credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': '*/*',
-      'X-CSRFToken': utils.cookie.get('csrftoken') || ''
-    },
+    headers: headers
   })
   switch (type) {
     case 'GET':

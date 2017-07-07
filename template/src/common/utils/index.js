@@ -40,6 +40,7 @@ export default (() => {
     setUserInfoToCache(userInfo){
       localStorage.setItem('userInfo', JSON.stringify(userInfo))
       localStorage.setItem('userLoginTime', Date.now())
+      localStorage.setItem(config.tokenName || 'AccessToken', userInfo.accessToken)
     },
     /**
      * 移除缓存中的用户信息
@@ -47,6 +48,7 @@ export default (() => {
     removeUserInfoFromCache(){
       localStorage.removeItem('userInfo')
       localStorage.removeItem('userLoginTime')
+      localStorage.removeItem(config.tokenName || 'AccessToken')
     },
     /**
      * 参数对象转换成请求参数字符串

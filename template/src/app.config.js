@@ -15,6 +15,8 @@ export default {
   },
   // session有效时间 ms
   sessionDuration: 30 * 60 * 1000,
+  // 采用token鉴权时的token名称
+  tokenName: 'AccessToken',
   // 首页地址
   indexPath: '/',
   // 登录页地址

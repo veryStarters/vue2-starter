@@ -28,7 +28,7 @@ module.exports = {
     autoOpenBrowser: false,
     assetsSubDirectory: 'static',
     assetsPublicPath: config.assetsPublicPath,
-    httpsEnable: true,
+    httpsEnable: false,
     httpsPort: 8443,
     proxyTable: {
       '/api': {

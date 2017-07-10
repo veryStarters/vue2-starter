@@ -12,7 +12,6 @@
 </template>
 <script>
   import {mapState, mapActions, mapGetters} from 'vuex'
-  import api from 'api'
   import utils from 'utils'
   export default {
     name: 'userLogin',

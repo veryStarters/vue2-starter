@@ -5,7 +5,6 @@
 </template>
 <script>
   import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
-  import api from 'api'
   import utils from 'utils'
   import Layout from '../common/layout/index.vue'
   export default {

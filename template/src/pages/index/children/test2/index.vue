@@ -1,6 +1,6 @@
 <template>
   <div class="index-children-test2-wrapper">
-    Hello, world!
+    Hello, world! test2
   </div>
 </template>
 <script>
@@ -22,5 +22,7 @@
   }
 </script>
 <style lang="postcss" scoped>
-  .index-children-test2-wrapper {}
+  .index-children-test2-wrapper {
+    text-align: center;
+  }
 </style>

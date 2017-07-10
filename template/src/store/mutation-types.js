@@ -3,6 +3,8 @@
  * @author taoqili
  * @date 2017/4/24
  */
+//测试,全局mutation
+export const TEST = 'TEST'
 //登录
 export const LOGIN = 'LOGIN'
 //登出

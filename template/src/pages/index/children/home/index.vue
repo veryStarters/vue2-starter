@@ -41,8 +41,7 @@
   }
 
   .info {
-    position: absolute;
-    top: 100px;
-    right: 10px;
+    text-align: center;
+    margin: 50px 0;
   }
 </style>

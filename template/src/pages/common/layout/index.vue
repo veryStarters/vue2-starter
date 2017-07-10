@@ -25,7 +25,7 @@
     data(){
       let layout = config.layout
       return {
-        topbar: layout.topbar || 2,
+        topbar: layout.topbar || 0,
         sidebar: layout.sidebar || 0
       }
     },

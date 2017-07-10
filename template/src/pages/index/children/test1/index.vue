@@ -1,24 +1,31 @@
 <template>
   <div class="index-children-test1-wrapper">
-    test1
+    <p>test1</p>
+    <p>{{time}}s后自动跳转到test2</p>
   </div>
 </template>
 <script>
-  import { mapState, mapActions, mapMutations } from 'vuex'
+  import {mapState, mapActions, mapMutations} from 'vuex'
   import api from 'api'
   export default {
     name: 'page-index-children-test1',
     components: {},
     data() {
-      return {}
+      return {
+        time: 5
+      }
     },
     computed: {
       ...mapState([])
     },
     mounted(){
-      setTimeout(() => {
-        this.$router.push({path:'/test2'})
-      }, 5000)
+      let timer = setInterval(() => {
+        if (this.time <= 1) {
+          this.$router.push({path: '/test2'})
+          clearInterval(timer)
+        }
+        this.time = this.time - 1
+      }, 1000)
     },
     methods: {
       ...mapActions([]),
@@ -27,5 +34,7 @@
   }
 </script>
 <style lang="postcss" scoped>
-  .index-children-test1-wrapper {}
+  .index-children-test1-wrapper {
+    text-align: center;
+  }
 </style>

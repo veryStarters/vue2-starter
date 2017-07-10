@@ -12,6 +12,7 @@ var fs = require('fs')
 var Path = require('path')
 var readLine = require('readline')
 var mkdirp = require('mkdirp')
+var shell = require('shelljs')
 var chokidar = require('chokidar')
 var apiTemplate = require('./template/api-template')
 module.exports = function () {
@@ -51,6 +52,7 @@ module.exports = function () {
           if (err) {
             return;
           }
+          shell.exec('git add ' + path)
           fs.write(fd, apiTemplate.tpl,
             function (err) {
               if (err) throw err;

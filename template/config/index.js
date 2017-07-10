@@ -28,6 +28,8 @@ module.exports = {
     autoOpenBrowser: false,
     assetsSubDirectory: 'static',
     assetsPublicPath: config.assetsPublicPath,
+    httpsEnable: true,
+    httpsPort: 8443,
     proxyTable: {
       '/api': {
         target: ((config.mockHost || 'http://localhost').indexOf('http') !== -1 ? config.mockHost : ('http://' + config.mockHost)) + ':' + config.mockPort,

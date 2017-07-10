@@ -171,6 +171,7 @@ var server = {
         if (err) {
           return;
         }
+        shell.exec('git add ' + path)
         fs.write(fd,
           templates[type]['tpl']
             .replace(/<%name%>/gi, name)

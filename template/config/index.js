@@ -30,7 +30,7 @@ module.exports = {
     assetsPublicPath: config.assetsPublicPath,
     proxyTable: {
       '/api': {
-        target: (config.mockHost.indexOf('http') !== -1 ? config.mockHost : ('http://' + config.mockHost)) + ':' + config.mockPort,
+        target: ((config.mockHost || 'http://localhost').indexOf('http') !== -1 ? config.mockHost : ('http://' + config.mockHost)) + ':' + config.mockPort,
         changeOrigin: true,
         pathRewrite: config.pathRewrite
       }

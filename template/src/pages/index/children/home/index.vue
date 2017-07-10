@@ -42,7 +42,7 @@
 
   .info {
     position: absolute;
-    top: 10px;
+    top: 100px;
     right: 10px;
   }
 </style>

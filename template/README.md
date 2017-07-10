@@ -30,6 +30,7 @@ yarn run build --report
 - 标准html语法支持，less|sass|scss|postcss支持
 - 标准html、css语法支持，less|sass|scss|postcss支持
 - eslint规则调整
+- 页面布局定义，topbar，sidebar，navbar，appMain, 可在app.config.js中配置相关特性
 
 
 

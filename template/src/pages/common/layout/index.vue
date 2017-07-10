@@ -1,7 +1,10 @@
 <template>
   <div class="layout-wrapper">
     <div class="topbar-container clearfix" v-show="topbar">
-      <Topbar></Topbar>
+      <Sticky v-if="topbar===2">
+        <Topbar></Topbar>
+      </Sticky>
+      <Topbar v-else="topbar===1"></Topbar>
     </div>
     <div class="sidebar-container scroll-bar" :class="{'top-offset':topbar}" v-show="sidebar">
       <Sidebar></Sidebar>
@@ -16,26 +19,28 @@
   import AppMain from './appmain.vue'
   import Topbar from './topbar.vue'
   import Sidebar from './sidebar.vue'
+  import Sticky from 'components/sticky'
   export default {
     name: 'Layout',
     data(){
       let layout = config.layout
       return {
-        topbar: layout.topbar || 0,
+        topbar: layout.topbar || 2,
         sidebar: layout.sidebar || 0
       }
     },
     components: {
       AppMain,
       Topbar,
-      Sidebar
+      Sidebar,
+      Sticky
     }
   }
 </script>
 <style lang="postcss" scoped>
 
   /*布局相关特性定义*/
-  $height: 110px;  /*topbar height*/
+  $height: 60px;  /*topbar height*/
   $width: 180px;   /*sidebar width*/
 
   .layout-wrapper{
@@ -46,7 +51,6 @@
     position: relative;
     height: $height;
     width: 100%;
-    background: #eee;
   }
   .sidebar-container {
     width: $width;

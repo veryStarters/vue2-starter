@@ -1,6 +1,6 @@
 <template>
   <div class="topbar-wrapper">
-    <div></div>
+    <div>topbar</div>
     <Navbar></Navbar>
   </div>
 </template>
@@ -13,3 +13,9 @@
     }
   }
 </script>
+<style scoped>
+  .topbar-wrapper{
+    height: 60px;
+    background: #eee;
+  }
+</style>

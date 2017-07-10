@@ -5,15 +5,16 @@ module.exports = function (req, res, next) {
     msg: '接口提示信息',
     data: {
       name: req.body.name || '客人',
-      accessToken: 'aabbccddeeffgghhiijjkk',
+      accessToken: 'ajdksldjfkcirpqiwertjdljcv=djrkw',
       menus: [],
       roles: [
-        'role1',
-        'role2'
+        'admin',
+        'editor'
       ],
       permissions: [
         '/',
-        '/test1'
+        '/test1',
+        '/test2'
       ]
     }
   }

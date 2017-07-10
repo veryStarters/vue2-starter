@@ -18,7 +18,7 @@ var userInfo = Mock.mock({
       'path': '/@string(char,8)/@string(char,8)'
     }]
   }],
-  'roles|1-5': ['@string(char, 6)'],
+  'roles': ['admin', 'editor'],
   'permissions|1-5': ['@string(char, 8)']
 })
 module.exports = function (req, res, next) {

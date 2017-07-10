@@ -24,30 +24,30 @@ export default (() => {
      * @returns {number}
      */
     getLoginRemainingTime(){
-      let loginTime = Math.ceil(+localStorage.getItem('userLoginTime') / 1000)
+      let loginTime = Math.ceil(+localStorage.getItem('UserLoginTime') / 1000)
       return config.sessionDuration / 1000 - (Math.ceil(Date.now() / 1000) - loginTime)
     },
     /**
      * 从缓存获取用户信息
      */
     getUserInfoFromCache(){
-      return JSON.parse(localStorage.getItem('userInfo') || '""')
+      return JSON.parse(localStorage.getItem('UserInfo') || '""')
     },
     /**
      * 保存用户信息到缓存
      * @param userInfo
      */
     setUserInfoToCache(userInfo){
-      localStorage.setItem('userInfo', JSON.stringify(userInfo))
-      localStorage.setItem('userLoginTime', Date.now())
+      localStorage.setItem('UserInfo', JSON.stringify(userInfo))
+      localStorage.setItem('UserLoginTime', Date.now())
       localStorage.setItem(config.tokenName || 'AccessToken', userInfo.accessToken)
     },
     /**
      * 移除缓存中的用户信息
      */
     removeUserInfoFromCache(){
-      localStorage.removeItem('userInfo')
-      localStorage.removeItem('userLoginTime')
+      localStorage.removeItem('UserInfo')
+      localStorage.removeItem('UserLoginTime')
       localStorage.removeItem(config.tokenName || 'AccessToken')
     },
     /**

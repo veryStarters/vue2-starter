@@ -37,11 +37,8 @@
 <style scoped>
   .home-wrapper {
     text-align: center;
-    padding-top: 60px;
   }
-
   .info {
-    text-align: center;
     margin: 50px 0;
   }
 </style>

@@ -4,54 +4,59 @@
  * @author taoqili
  * @date 2017/4/24
  */
-const home = r => require(['../pages/index/children/home'], r)
-const test1 = r => require(['../pages/index/children/test1'], r)
-const test2 = r => require(['../pages/index/children/test2'], r)
-export default {
-  common: {
-    meta: {
-      auth: true,
-      title: '通用'
-    }
-  },
-  index: {
-    meta: {
-      auth: true,
-      title: '首页'
-    },
-    children: [
-      {
-        name: 'home',
-        path: '',
-        component: home,
-        meta: {
-          auth: true,
-          title: 'Home'
-        }
-      },
-      {
-        name: 'test1',
-        path: 'test1',
-        meta: {
-          auth: true,
-          title: 'Test1'
-        },
-        component: test1
-      },
-      {
-        name: 'test2',
-        path: 'test2',
-        meta: {
-          auth: true,
-          title: 'Test2'
-        },
-        component: test2
+export default function (children) {
+  return {
+    common: {
+      meta: {
+        auth: true,
+        title: '通用'
       }
-    ]
-  },
-  userLogin: {
-    meta: {
-      title: '系统登录'
+    },
+    index: {
+      meta: {
+        auth: true,
+        title: '首页'
+      },
+      children: [
+        {
+          name: 'home',
+          path: '',
+          meta: {
+            auth: true,
+            title: 'Home'
+          },
+          component: children.indexHome
+        },
+        {
+          name: 'test1',
+          path: 'test1',
+          meta: {
+            auth: true,
+            title: 'Test1'
+          },
+          component: children.indexTest1
+        },
+        {
+          name: 'test2',
+          path: 'test2',
+          meta: {
+            auth: true,
+            title: 'Test2'
+          },
+          component: children.indexTest2
+        }
+      ]
+    },
+    userLogin: {
+      meta: {
+        title: '系统登录'
+      }
+    },
+    userInfo: {
+      meta: {
+        auth: true,
+        title: '用户信息'
+      }
     }
   }
 }

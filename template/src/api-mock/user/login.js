@@ -13,7 +13,8 @@ module.exports = function (req, res, next) {
       ],
       permissions: [
         '/',
-        '/test1'
+        '/test1',
+        '/user/info'
       ]
     }
   }

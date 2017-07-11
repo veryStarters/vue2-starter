@@ -6,10 +6,23 @@
  */
 import * as routes from '../pages/routes'
 import * as comRoutes from '../components/routes'
-import customs from './routes.custom'
+import createCustoms from './routes.custom'
 
+
+let children = {}
+let notChildren = {}
+Object.keys(routes).forEach((key) => {
+  if (key.indexOf('Children') === -1) {
+    notChildren[key] = routes[key]
+  } else {
+    children[key.replace(/Children/g, '')] = routes[key]
+  }
+})
+
+let customs = createCustoms(children)
 const routers = [];
-Object.keys(routes).forEach((name) => {
+
+Object.keys(notChildren).forEach((name) => {
   let path = '/' + name.replace(/([A-Z])/g, "/$1").toLowerCase()
   if (name === 'index') {
     path = '/'
@@ -19,7 +32,7 @@ Object.keys(routes).forEach((name) => {
     name: (name === 'index' && custom.children && custom.children.length) ? '' : name,
     path: custom.path || path,
     meta: custom.meta || {},
-    component: custom.component || routes[name],
+    component: custom.component || notChildren[name],
     children: custom.children || [],
     beforeEnter: custom.beforeEnter ||
     function (to, from, next) {

@@ -1,0 +1,22 @@
+<template>
+  <div class="user-info-wrapper">
+    {{userInfo}}
+    <router-view></router-view>
+  </div>
+</template>
+<script>
+  import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
+  import utils from 'utils'
+  export default {
+    name: 'page-user-info',
+    components: {},
+    computed: {
+      ...mapGetters(['userInfo'])
+    }
+  }
+</script>
+<style lang="postcss" scoped>
+  .user-info-wrapper {
+    text-align: center;
+  }
+</style>

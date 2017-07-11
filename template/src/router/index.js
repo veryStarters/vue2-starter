@@ -41,7 +41,7 @@ routers.push({
   meta: {
     auth: false
   },
-  component: r => require(['../pages/index/401.vue'], r)
+  component: r => require(['../pages/common/error/401.vue'], r)
 })
 routers.push({
   path: '*',
@@ -49,6 +49,6 @@ routers.push({
   meta: {
     auth: false
   },
-  component: r => require(['../pages/index/404.vue'], r)
+  component: r => require(['../pages/common/error/404.vue'], r)
 })
 export default routers

@@ -1,25 +1,25 @@
 <template>
   <div class="layout-wrapper">
     <div class="topbar-container clearfix" v-show="topbar">
-      <Sticky v-if="topbar===2">
-        <Topbar></Topbar>
-      </Sticky>
-      <Topbar v-else="topbar===1"></Topbar>
+      <sticky v-if="topbar===2">
+        <topbar></topbar>
+      </sticky>
+      <topbar v-else="topbar===1"></topbar>
     </div>
     <div class="sidebar-container scroll-bar" :class="{'top-offset':topbar}" v-show="sidebar">
-      <Sidebar></Sidebar>
+      <sidebar></sidebar>
     </div>
     <div class="main-container" :class="{'ml-offset':sidebar}">
-      <App-main></App-main>
+      <app-main></app-main>
     </div>
   </div>
 </template>
 <script>
   import config from 'config'
-  import AppMain from './appmain.vue'
-  import Topbar from './topbar.vue'
-  import Sidebar from './sidebar.vue'
-  import Sticky from 'components/sticky'
+  import appMain from './appmain.vue'
+  import topbar from './topbar.vue'
+  import sidebar from './sidebar.vue'
+  import sticky from 'components/sticky'
   export default {
     name: 'Layout',
     data(){
@@ -30,10 +30,10 @@
       }
     },
     components: {
-      AppMain,
-      Topbar,
-      Sidebar,
-      Sticky
+      'app-main': appMain,
+      topbar,
+      sidebar,
+      sticky
     }
   }
 </script>

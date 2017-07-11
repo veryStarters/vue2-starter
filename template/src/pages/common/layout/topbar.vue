@@ -1,15 +1,15 @@
 <template>
   <div class="topbar-wrapper">
     <div>topbar</div>
-    <Navbar></Navbar>
+    <navbar></navbar>
   </div>
 </template>
 <script>
-  import Navbar from './navbar.vue'
+  import navbar from './navbar.vue'
   export default {
-    name: 'Topbar',
+    name: 'topbar',
     components: {
-      Navbar
+      navbar
     }
   }
 </script>

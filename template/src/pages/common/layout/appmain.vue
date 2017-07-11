@@ -7,6 +7,6 @@
 </template>
 <script>
   export default {
-    name: 'AppMain'
+    name: 'app-main'
   }
 </script>

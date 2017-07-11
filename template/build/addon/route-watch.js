@@ -126,7 +126,7 @@ var server = {
           if (needTest && !checkExitsAndEmpty(testFile)) {
             mkfile(testFile, name, 'test')
           }
-          path = path + (needTest ? '_test.vue' : '')
+          path = path + (needTest ? '_test.vue' : 'index.vue')
           fs.appendFile(
             routesPath,
             `export const ${name} = r => require(['../${type}${path}'], r)\n`,

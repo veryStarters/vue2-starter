@@ -20,6 +20,7 @@ directive.init()
 mixin.init()
 
 Vue.config.productionTip = false
+Vue.config.errorHandler = config.errorHandler || new Function()
 
 components.forEach(function (component) {
   Vue.component(component.name, component)

@@ -3,7 +3,7 @@ module.exports = {
     return [
       '<template>',
       '  <div class="<%wrapper%>">',
-      '    <jc-<%name%>></jc-<%name%>>',
+      '    <C-<%name%>></C-<%name%>>',
       '  </div>',
       '</template>',
       '<script>',
@@ -11,7 +11,7 @@ module.exports = {
       '  export default {',
       '    name: \'test-<%name%>\',',
       '    components: {',
-      '      \'jc-<%name%>\': <%humpName%>',
+      '      \'C-<%name%>\': <%humpName%>',
       '    },',
       '    computed: {},',
       '    methods: {}',

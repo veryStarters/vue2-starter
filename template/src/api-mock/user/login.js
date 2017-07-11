@@ -5,7 +5,7 @@ module.exports = function (req, res, next) {
     msg: '登录成功',
     data: {
       name: req.body.name || '客人',
-      accessToken: 'aabbccddeeffgghhiijjkk',
+      accessToken: 'zhongguorenminggongheguozhongyangrenminzhengfu',
       menus: [],
       roles: [
         'role1',

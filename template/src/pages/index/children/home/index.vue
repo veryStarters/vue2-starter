@@ -10,4 +10,4 @@
   </div>
 </template>
 <script src="./index.js"></script>
-<style lang="postcss" src="./index.pcss" scoped></style>
+<style src="./index.pcss" lang="postcss" scoped></style>

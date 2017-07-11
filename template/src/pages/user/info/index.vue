@@ -1,7 +1,6 @@
 <template>
   <div class="user-info-wrapper">
-    {{userInfo}}
-    <router-view></router-view>
+    你好，{{userInfo.name}}!
   </div>
 </template>
 <script>

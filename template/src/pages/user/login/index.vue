@@ -3,7 +3,7 @@
     <div class="login-box">
       <p class="title">系统登录</p>
       <form v-model="user">
-        <p><input type="text" v-model="user.name" placeholder="请输入用户名"></p>
+        <p><input type="text" v-model="user.name" placeholder="请输入用户名" v-focus></p>
         <p><input type="password" v-model="user.password" placeholder="请输入密码"></p>
       </form>
       <button @click="doLogin">登录</button>
@@ -38,8 +38,6 @@
           console.log(errInfo)
         })
       }
-    },
-    mounted: function () {
     }
   }
 </script>

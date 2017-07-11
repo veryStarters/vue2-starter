@@ -10,12 +10,14 @@ const test2 = r => require(['../pages/index/children/test2'], r)
 export default {
   common: {
     meta: {
-      auth: true
+      auth: true,
+      title: '通用'
     }
   },
   index: {
     meta: {
-      auth: true
+      auth: true,
+      title: '首页'
     },
     children: [
       {
@@ -23,14 +25,16 @@ export default {
         path: '',
         component: home,
         meta: {
-          auth: true
+          auth: true,
+          title: 'Home'
         }
       },
       {
         name: 'test1',
         path: 'test1',
         meta: {
-          auth: true
+          auth: true,
+          title: 'Test1'
         },
         component: test1
       },
@@ -38,7 +42,8 @@ export default {
         name: 'test2',
         path: 'test2',
         meta: {
-          auth: true
+          auth: true,
+          title: 'Test2'
         },
         component: test2
       }
@@ -46,7 +51,7 @@ export default {
   },
   userLogin: {
     meta: {
-      title: '用户登录'
+      title: '系统登录'
     }
   }
 }

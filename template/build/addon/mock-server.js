@@ -26,15 +26,15 @@ module.exports = function () {
     var modules = loadModule(path.join(__dirname, '../../src/api-mock' + dirPath))
     var module = modules[moduleName]
     res.header("Content-Type", "application/json; charset=utf-8");
-    res.cookie('test', 1, {maxAge: 30 * 60 * 1000})
+    // res.cookie('test', 1, {maxAge: 30 * 60 * 1000})
     if (module && typeof module === 'function') {
       res.end(JSON.stringify(module(req, res, next)))
     } else {
-      res.end('{"ret":"error","code":"-1","msg":"模块' + moduleName + '不存在！","data":""}')
+      res.end('{"ret":"error","code":"-1","msg":"模块' + moduleName + '不存在,","data":""}')
     }
   })
   app.use('/', router)
   app.listen(config.mockPort, function () {
-    console.log('Mock服务器已启动...')
+    console.log('Mock数据服务启动成功，端口号：' + config.mockPort + '\n本地开发环境即将启动，端口号：' + config.port)
   })
 }

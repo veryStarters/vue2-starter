@@ -14,6 +14,11 @@ import components from './components/global'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
+import directive from './common/directives'
+import mixin from './common/mixins'
+directive.init()
+mixin.init()
+
 Vue.config.productionTip = false
 
 components.forEach(function (component) {

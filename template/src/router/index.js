@@ -39,7 +39,8 @@ routers.push({
   name: '401',
   path: '/401',
   meta: {
-    auth: false
+    auth: false,
+    title: '您暂无访问权限！'
   },
   component: r => require(['../pages/common/error/401.vue'], r)
 })
@@ -47,7 +48,8 @@ routers.push({
   path: '*',
   name: '404',
   meta: {
-    auth: false
+    auth: false,
+    title: '您访问的页面丢了！'
   },
   component: r => require(['../pages/common/error/404.vue'], r)
 })

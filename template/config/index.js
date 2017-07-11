@@ -25,7 +25,7 @@ module.exports = {
     env: config.env,
     port: config.port,
     mockPort: config.mockPort,
-    autoOpenBrowser: false,
+    autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: config.assetsPublicPath,
     httpsEnable: false,

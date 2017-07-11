@@ -1,1 +1,0 @@
-export const userMixin = require('./user.vue')

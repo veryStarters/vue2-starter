@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-  import Layout from '../common/layout/index.vue'
+  import Layout from '../common/layout/layout.vue'
   export default {
     name: 'page-index',
     components: {

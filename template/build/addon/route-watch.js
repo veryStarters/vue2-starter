@@ -115,7 +115,7 @@ var server = {
         ignored: /(^|[\/\\])\../
       })
       watcher1.on('add', function (fileName) {
-        if (/index\.vue$/.test(fileName) && !/\/(children|layout)\//.test(fileName)) {
+        if (/index\.vue$/.test(fileName)) {
           if (blocks[fileName]) {
             delete blocks[fileName]
             return;

@@ -17,7 +17,7 @@ module.exports = {
       '    },',
       '    mounted(){},',
       '    computed: {',
-      '      ...mapState([])',
+      '      ...mapState([]),',
       '      ...mapGetters([])',
       '    },',
       '    methods: {',

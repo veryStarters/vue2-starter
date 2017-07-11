@@ -34,7 +34,7 @@ Object.keys(notChildren).forEach((name) => {
     meta: custom.meta || {},
     component: custom.component || notChildren[name],
     children: custom.children || [],
-    beforeEnter: custom.beforeEnter ||
+    beforeRouteEnter: custom.beforeRouteEnter ||
     function (to, from, next) {
       next()
     }

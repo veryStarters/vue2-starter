@@ -74,6 +74,11 @@ NProgress.configure({
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
+  // 5s后如果还没加载完成，进度条直接跳转到最后
+  setTimeout(() => {
+    NProgress.done()
+  }, 5000)
+
   let {auth = false} = to.meta
   userInfo = utils.getUserInfoFromCache()
   if (auth) {

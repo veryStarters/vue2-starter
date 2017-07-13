@@ -8,8 +8,6 @@ export default {
   appName: '非常可乐',
   // 应用类型 pc|mobile
   appType: 'pc',
-  // 样式、脚本、模板分离 TODO
-  splitSource: false,
   // 布局配置
   layout: {
     topbar: 0,  //0 hidden; 1 show; 2 fixed

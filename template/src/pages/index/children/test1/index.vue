@@ -1,11 +1,11 @@
 <template>
   <div class="index-children-test1-wrapper">
     <p>test1</p>
-    <p>{{time}}s后自动跳转到test2</p>
+    <p>{{time}}s后自动跳转到test2(可惜当前登录用户无访问test2的权限)</p>
   </div>
 </template>
 <script>
-  import {mapState, mapActions, mapMutations} from 'vuex'
+  import {mapGetters, mapActions, mapMutations} from 'vuex'
   import api from 'api'
   export default {
     name: 'page-index-children-test1',
@@ -16,7 +16,7 @@
       }
     },
     computed: {
-      ...mapState([])
+      ...mapGetters([])
     },
     mounted(){
       let timer = setInterval(() => {
@@ -36,5 +36,6 @@
 <style lang="postcss" scoped>
   .index-children-test1-wrapper {
     text-align: center;
+    line-height: 3;
   }
 </style>

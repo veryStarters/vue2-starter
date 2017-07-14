@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-  import {mapState, mapActions, mapGetters} from 'vuex'
+  import {mapActions} from 'vuex'
   import utils from 'utils'
   export default {
     name: 'userLogin',

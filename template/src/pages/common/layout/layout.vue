@@ -1,12 +1,12 @@
 <template>
   <div class="layout-wrapper">
-    <div class="topbar-container clearfix" v-show="topbar">
+    <div class="topbar-container clearfix" v-if="topbar">
       <sticky v-if="topbar===2">
         <topbar></topbar>
       </sticky>
       <topbar v-else="topbar===1"></topbar>
     </div>
-    <div class="sidebar-container scroll-bar" :class="{'top-offset':topbar}" v-show="sidebar">
+    <div class="sidebar-container scroll-bar" :class="{'top-offset':topbar}" v-if="sidebar">
       <sidebar></sidebar>
     </div>
     <div class="main-container" :class="{'ml-offset':sidebar}">

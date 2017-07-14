@@ -147,7 +147,7 @@ var server = {
       if (path === '/') {
         return 'index';
       }
-      return path.replace(/^\/|\/$/g, '').replace(/\/(.{1})/g, function (a, b) {
+      return path.toLowerCase().replace(/^\/|\/$/g, '').replace(/-|_/g,'').replace(/\/(.{1})/g, function (a, b) {
         return b.toUpperCase();
       })
     }

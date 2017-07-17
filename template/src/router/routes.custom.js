@@ -45,6 +45,14 @@ export default function (children) {
             title: 'Test2'
           },
           component: children.indexTest2
+        },
+        {
+          name: 'test3',
+          path: 'test3',
+          meta: {
+            title: 'Test3'
+          },
+          component: children.indexTest3
         }
       ]
     },

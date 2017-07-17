@@ -1,6 +1,6 @@
 <template>
   <div class="index-children-test3-wrapper">
-    Hello, world!
+    Hello, world! test3
   </div>
 </template>
 <script>

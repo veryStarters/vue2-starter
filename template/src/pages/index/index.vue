@@ -12,3 +12,8 @@
     }
   }
 </script>
+<style>
+  .el-menu {
+    border-radius: 0;
+  }
+</style>

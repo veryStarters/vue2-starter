@@ -7,12 +7,15 @@ import fetchData from 'utils/fetch-data'
 
 export default {
   async login(params) {
-    return await fetchData('/api/user/login', params, 'POST')
+    return await fetchData('/api/user/login', params)
   },
   async logout(params) {
-    return await fetchData('/api/user/logout', params, 'POST')
+    return await fetchData('/api/user/logout', params)
   },
   async getUserInfo(params) {
-    return await fetchData('/api/user/info', params, 'POST')
+    return await fetchData('/api/user/info', params)
+  },
+  async getMenus(params) {
+    return await fetchData('/api/menus', params)
   }
 }

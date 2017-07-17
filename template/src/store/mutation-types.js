@@ -13,3 +13,5 @@ export const LOGOUT = 'LOGOUT'
 export const REGISTER = 'REGISTER'
 //修改密码
 export const CHANGE_PASSWORD = 'CHANGE_PASSWORD'
+//获取菜单
+export const MENUS = 'MENUS'

@@ -29,6 +29,9 @@
         sidebar: layout.sidebar || 0
       }
     },
+    mounted() {
+      this.loginMonitor()
+    },
     components: {
       'app-main': appMain,
       topbar,
@@ -61,7 +64,7 @@
     z-index: 1001;
     overflow-x: hidden;
     transition: all .28s ease-out;
-    background: #ddd;
+    background: #1f2d3d;
     &.top-offset{
       top: $height;
     }

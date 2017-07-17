@@ -13,6 +13,8 @@ import utils from 'utils'
 import components from './components/global'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
 
 import directive from './common/directives'
 import mixin from './common/mixins'
@@ -27,6 +29,7 @@ components.forEach(function (component) {
 })
 
 Vue.use(VueRouter)
+Vue.use(ElementUI)
 
 const router = new VueRouter({
   mode: 'history',

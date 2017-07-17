@@ -5,7 +5,7 @@
  */
 import config from 'config'
 import utils from './index'
-export default async (url, params = {}, type = 'GET') => {
+export default async (url, params = {}, type = 'POST') => {
   if (!url) return
   if (params.ORIGIN) {
     url = params.ORIGIN + url

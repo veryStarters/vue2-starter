@@ -1,11 +1,15 @@
 <template>
   <div class="sidebar-wrapper">
-    sidebar
+    <menubar></menubar>
   </div>
 </template>
 <script>
+  import menubar from './menubar.vue'
   export default {
-    name: 'sidebar'
+    name: 'sidebar',
+    components: {
+      menubar
+    }
   }
 </script>
 <style scoped>

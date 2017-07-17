@@ -5,7 +5,7 @@
  */
 var Mock = require('mockjs')
 var data = Mock.mock({
-  activeName: 'nav1',
+  activeName: 'test1',
   menus: [
     {
       name: 'menu1',

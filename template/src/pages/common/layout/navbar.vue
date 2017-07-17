@@ -1,14 +1,18 @@
 <template>
   <div class="navbar-wrapper">
-    <el-menu theme="dark" :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-      <el-menu-item index="1">处理中心</el-menu-item>
+    <el-menu theme="dark" :default-active="activeName" class="el-menu-demo" mode="horizontal">
+      <router-link :to="{path: '/'}">
+        <el-menu-item index="home">首页</el-menu-item>
+      </router-link>
       <el-submenu index="2">
-        <template slot="title">我的工作台</template>
-        <el-menu-item index="2-1">选项1</el-menu-item>
-        <el-menu-item index="2-2">选项2</el-menu-item>
-        <el-menu-item index="2-3">选项3</el-menu-item>
+        <template slot="title">测试菜单</template>
+        <router-link :to="{path: '/test1'}">
+          <el-menu-item index="test1">测试1</el-menu-item>
+        </router-link>
+        <router-link :to="{path: '/test3'}">
+          <el-menu-item index="test3">测试3</el-menu-item>
+        </router-link>
       </el-submenu>
-      <el-menu-item index="3">订单管理</el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -16,14 +20,15 @@
   export default {
     name: 'navbar',
     data() {
-      return {
-        activeIndex: '1'
+      return {}
+    },
+    computed: {
+      activeName(){
+        return this.$route.name || 'home'
       }
     },
-    methods: {
-      handleSelect() {
-
-      }
-    }
+    mounted() {
+    },
+    methods: {}
   }
 </script>

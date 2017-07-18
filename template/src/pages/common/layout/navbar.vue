@@ -32,3 +32,15 @@
     methods: {}
   }
 </script>
+<style lang="postcss">
+  .navbar-wrapper {
+    .el-menu-item, .el-submenu__title {
+      transition: .3s ease-out;
+      &:hover {
+        text-shadow: 2px 2px 2px rgba(200, 200, 200, .5);
+        transform: scale3d(1.1, 1, 1);
+        transition: .2s ease-in;
+      }
+    }
+  }
+</style>

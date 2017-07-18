@@ -62,6 +62,14 @@
 </script>
 <style lang="postcss" scoped>
   $topHeight: 60px;
+  @define-mixin anim {
+    transition: .3s ease-out;
+    &:hover {
+     text-shadow: 2px 2px 2px rgba(222, 222, 222, .5);
+     transform: scale3d(1.1, 1.1, 1);
+     transition: .2s ease-in;
+   }
+  }
   .topbar-wrapper{
     height: $topHeight;
     line-height: $topHeight;
@@ -72,11 +80,11 @@
     cursor: pointer;
     margin-left: 20px;
     font-size: 22px;
-    transition: .3s ease-out;
-    &:hover {
-      text-shadow: 2px 2px 2px rgba(222, 222, 222, .5);
-      transform: scale3d(1.1, 1.1, 1);
-      transition: .2s ease-in;
+    @add-mixin anim
+  }
+  .user-info-container {
+    .el-menu-item {
+      @add-mixin anim
     }
   }
 </style>

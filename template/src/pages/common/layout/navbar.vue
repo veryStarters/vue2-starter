@@ -34,7 +34,7 @@
 </script>
 <style lang="postcss">
   .navbar-wrapper {
-    .el-menu-item, .el-submenu__title {
+    .el-menu-item {
       transition: .3s ease-out;
       &:hover {
         text-shadow: 2px 2px 2px rgba(200, 200, 200, .5);

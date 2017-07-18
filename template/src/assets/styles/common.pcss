@@ -10,6 +10,14 @@
     color: $color !important;
   }
 }
+/* 混入定义 */
+@define-mixin test {
+  color: red;
+}
+/* 混入使用 */
+.user-mixin {
+  @add-mixin test;
+}
 
 .clearfix {
   &:after {

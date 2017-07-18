@@ -11,12 +11,12 @@
   }
 }
 /* 混入定义 */
-@define-mixin test {
+@define-mixin mix-test {
   color: red;
 }
 /* 混入使用 */
-.user-mixin {
-  @add-mixin test;
+.use-mixin {
+  @add-mixin mix-test;
 }
 
 .clearfix {

@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-  import { mapState, mapActions, mapMutations } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import api from 'api'
   export default {
     name: 'page-index-children-test2',
@@ -13,11 +13,10 @@
       return {}
     },
     computed: {
-      ...mapState([])
+      ...mapGetters([])
     },
     methods: {
-      ...mapActions([]),
-      ...mapMutations([])
+      ...mapActions([])
     }
   }
 </script>

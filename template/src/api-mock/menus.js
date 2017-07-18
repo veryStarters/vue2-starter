@@ -12,16 +12,16 @@ var data = Mock.mock({
       label: '一级菜单一',
       children: [
         {
-          name: 'test1',
-          label: '导航1',
+          name: 'home',
+          label: '首页',
         },
         {
           name: 'menu7',
           label: '菜单7',
           children: [
             {
-              name: 'testTest',
-              label: '导航2',
+              name: 'userLogin',
+              label: '登录',
             }
           ]
         },

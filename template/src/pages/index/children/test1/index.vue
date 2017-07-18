@@ -5,8 +5,7 @@
   </div>
 </template>
 <script>
-  import {mapGetters, mapActions, mapMutations} from 'vuex'
-  import api from 'api'
+  import {mapGetters, mapActions} from 'vuex'
   export default {
     name: 'page-index-children-test1',
     components: {},
@@ -22,7 +21,6 @@
     },
     methods: {
       ...mapActions([]),
-      ...mapMutations([]),
       gotoTest2(){
         this.$router.push({path: '/test2'})
       }

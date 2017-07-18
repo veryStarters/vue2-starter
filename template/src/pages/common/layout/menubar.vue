@@ -1,7 +1,8 @@
 <template>
   <div class="menubar-wrapper">
     <!--最多支持三层嵌套-->
-    <el-menu ref="menu" :default-active="activeName" :default-openeds="openedNames" :unique-opened="true" class="el-menu-vertical-demo"
+    <el-menu ref="menu" :default-active="activeName" :default-openeds="openedNames" :unique-opened="true"
+             class="el-menu-vertical-demo"
              @select="handleSelect" theme="dark">
       <template v-for="menu in menus">
         <el-submenu v-if="menu.children && menu.children.length" :index="menu.name">
@@ -58,6 +59,10 @@
           this.$nextTick(() => {
             let menu = this.$refs.menu
             let item = menu.items[this.activeName]
+            //路由不存在menus中的情况下，item可能不存在
+            if (!item) {
+              return
+            }
             this.openedNames = item.indexPath.slice(0, item.indexPath.length - 1)
           })
         })

@@ -6,7 +6,7 @@
 
 import {LOGIN, LOGOUT} from '../mutation-types'
 import api from 'api'
-import doAction from '../do-action'
+import {doAction} from '../util'
 
 const state = {
   isLogin: false,

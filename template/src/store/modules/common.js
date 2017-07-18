@@ -4,7 +4,7 @@
  * @date 2017/4/24
  */
 import * as types from '../mutation-types'
-import doAction from '../do-action'
+import {doAction} from '../util'
 import api from 'api'
 
 const state = {

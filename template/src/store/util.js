@@ -4,7 +4,7 @@
  * @date 2017/6/23
  */
 import store from './index'
-export default (options) => {
+export const doAction = (options) => {
   options = Object.assign({
     api: function () {
       return new Promise(function (resolev, reject) {

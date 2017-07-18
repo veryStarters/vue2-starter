@@ -44,7 +44,6 @@
       ...mapGetters(['userInfo'])
     },
     mounted() {
-      console.log(this.$refs.navbar)
     },
     methods: {
       ...mapActions(['logout']),

@@ -7,9 +7,11 @@
 import * as routes from '../pages/routes'
 import * as comRoutes from '../components/routes'
 import createCustoms from './routes.custom'
+import utils from 'utils'
 
-
+//所有子路由
 let children = {}
+//所有父路由
 let notChildren = {}
 Object.keys(routes).forEach((key) => {
   if (key.indexOf('Children') === -1) {
@@ -28,17 +30,53 @@ Object.keys(notChildren).forEach((name) => {
     path = '/'
   }
   const custom = customs[name] || {}
-  routers.push({
-    name: (name === 'index' && custom.children && custom.children.length) ? '' : name,
+  let router = {
+    name: (name === 'index' && custom.children && !utils.isEmpty(custom.children)) ? '' : name,
     path: custom.path || path,
     meta: custom.meta || {},
     component: custom.component || notChildren[name],
-    children: custom.children || [],
+    children: (() => {
+      let ret = []
+      if (utils.isEmpty(children)) {
+        return ret
+      }
+      Object.keys(children).forEach((componentName) => {
+        //获取当前
+        if (componentName.indexOf(name) === 0) {
+          let childName = componentName.replace(name, '').replace(/^[A-Z]{1}/g, function (match) {
+            return match.toLowerCase()
+          })
+          let childPath = childName.replace(/([A-Z])/g, "/$1").toLowerCase()
+          if (childName === 'home') {
+            childPath = ''
+          }
+          let childCustom = custom.children ? (custom.children[childName] || {}) : {}
+          console.log(componentName)
+          ret.push({
+            name: componentName,
+            path: childCustom.path || childPath,
+            meta: childCustom.meta || {},
+            component: childCustom.component || children[componentName],
+            beforeEnter: childCustom.beforeEnter ||
+            function (to, from, next) {
+              next()
+            }
+          })
+        }
+      })
+      return ret
+    })(),
     beforeRouteEnter: custom.beforeRouteEnter ||
     function (to, from, next) {
       next()
     }
-  })
+  }
+  //若存在子路由，则父路由增加/结尾, 且清空命名路由
+  if (router.children.length) {
+    router.path = /\/$/.test(router.path) ? router.path : (router.path + '/')
+    router.name = ''
+  }
+  routers.push(router)
 })
 //组件路由注册
 Object.keys(comRoutes).forEach((name) => {

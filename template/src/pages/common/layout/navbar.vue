@@ -1,16 +1,16 @@
 <template>
   <div class="navbar-wrapper">
     <el-menu theme="dark" :default-active="activeName" class="el-menu-demo" mode="horizontal">
-      <router-link :to="{name: 'home'}">
-        <el-menu-item index="home">首页</el-menu-item>
+      <router-link :to="{name: 'indexHome'}">
+        <el-menu-item index="indexHome">首页</el-menu-item>
       </router-link>
       <el-submenu index="2">
         <template slot="title">测试菜单</template>
-        <router-link :to="{name: 'test1'}">
-          <el-menu-item index="test1">测试1</el-menu-item>
+        <router-link :to="{name: 'indexTest1'}">
+          <el-menu-item index="indexTest1">测试1</el-menu-item>
         </router-link>
-        <router-link :to="{name: 'test3'}">
-          <el-menu-item index="test3">测试3</el-menu-item>
+        <router-link :to="{name: 'indexTest3'}">
+          <el-menu-item index="indexTest3">测试3</el-menu-item>
         </router-link>
       </el-submenu>
     </el-menu>
@@ -24,7 +24,7 @@
     },
     computed: {
       activeName(){
-        return this.$route.name || 'home'
+        return this.$route.name || 'indexHome'
       }
     },
     mounted() {

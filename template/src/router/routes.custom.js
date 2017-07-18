@@ -18,43 +18,13 @@ export default function (children) {
         auth: true,
         title: '首页'
       },
-      children: [
-        {
-          name: 'home',
-          path: '',
+      children: {
+        test4: {
           meta: {
-            auth: true,
-            title: 'Home'
-          },
-          component: children.indexHome
-        },
-        {
-          name: 'test1',
-          path: 'test1',
-          meta: {
-            auth: true,
-            title: 'Test1'
-          },
-          component: children.indexTest1
-        },
-        {
-          name: 'test2',
-          path: 'test2',
-          meta: {
-            auth: true,
-            title: 'Test2'
-          },
-          component: children.indexTest2
-        },
-        {
-          name: 'test3',
-          path: 'test3',
-          meta: {
-            title: 'Test3'
-          },
-          component: children.indexTest3
+            auth: false
+          }
         }
-      ]
+      }
     },
     userLogin: {
       meta: {

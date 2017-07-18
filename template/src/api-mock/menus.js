@@ -13,7 +13,7 @@ var data = Mock.mock({
       icon: 'el-icon-menu',
       children: [
         {
-          name: 'home',
+          name: 'indexHome',
           label: '首页',
           icon: ''
         },
@@ -46,7 +46,7 @@ var data = Mock.mock({
           icon: 'el-icon-menu',
           children: [
             {
-              name: 'test3',
+              name: 'indexTest3',
               label: '导航3',
             }
           ]
@@ -54,7 +54,7 @@ var data = Mock.mock({
       ]
     },
     {
-      name: 'test1',
+      name: 'indexTest1',
       icon: 'el-icon-menu',
       label: '一级导航1'
     }

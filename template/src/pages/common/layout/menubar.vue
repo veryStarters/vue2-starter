@@ -44,7 +44,7 @@
     },
     computed: {
       activeName() {
-        return this.$route.name || 'home'
+        return this.$route.name || 'indexHome'
       }
     },
     mounted(){

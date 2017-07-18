@@ -5,18 +5,27 @@
              @select="handleSelect" theme="dark">
       <template v-for="menu in menus">
         <el-submenu v-if="menu.children && menu.children.length" :index="menu.name">
-          <template slot="title"><i class="el-icon-menu"></i>{{menu.label}}</template>
+          <template slot="title">
+            <i v-if="menu.icon" :class="menu.icon"></i>{{menu.label}}
+          </template>
           <template v-for="submenu in menu.children">
             <el-submenu v-if="submenu.children && submenu.children.length" :index="submenu.name">
-              <template slot="title"><i class="el-icon-menu"></i>{{submenu.label}}</template>
+              <template slot="title">
+                <i v-if="submenu.icon" :class="submenu.icon"></i>{{submenu.label}}
+              </template>
               <el-menu-item v-for="subSubmenu in submenu.children" :key="subSubmenu.name"
-                            :index="subSubmenu.name">{{subSubmenu.label}}
+                            :index="subSubmenu.name">
+                <i v-if="subSubmenu.icon" :class="subSubmenu.icon"></i>{{subSubmenu.label}}
               </el-menu-item>
             </el-submenu>
-            <el-menu-item :index="submenu.name" v-else>{{submenu.label}}</el-menu-item>
+            <el-menu-item :index="submenu.name" v-else>
+              <i v-if="submenu.icon" :class="submenu.icon"></i>{{submenu.label}}
+            </el-menu-item>
           </template>
         </el-submenu>
-        <el-menu-item :index="menu.name" v-else><i class="el-icon-menu"></i>{{menu.label}}</el-menu-item>
+        <el-menu-item :index="menu.name" v-else>
+          <i v-if="menu.icon" :class="menu.icon"></i>{{menu.label}}
+        </el-menu-item>
       </template>
     </el-menu>
   </div>

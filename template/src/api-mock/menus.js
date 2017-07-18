@@ -10,24 +10,29 @@ var data = Mock.mock({
     {
       name: 'menu1',
       label: '一级菜单一',
+      icon: 'el-icon-menu',
       children: [
         {
           name: 'home',
           label: '首页',
+          icon: ''
         },
         {
           name: 'menu7',
           label: '菜单7',
+          icon: 'el-icon-menu',
           children: [
             {
               name: 'userLogin',
               label: '登录',
+              icon: ''
             }
           ]
         },
         {
           name: 'menu4',
           label: '菜单四',
+          icon: 'el-icon-menu',
           children: [
             {
               name: 'test3',
@@ -43,6 +48,7 @@ var data = Mock.mock({
       children: [
         {
           name: 'nav4',
+          icon: 'el-icon-message',
           label: '导航4'
         },
         {
@@ -53,6 +59,7 @@ var data = Mock.mock({
     },
     {
       name: 'test1',
+      icon: 'el-icon-menu',
       label: '一级导航1'
     }
   ]

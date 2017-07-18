@@ -1,7 +1,7 @@
 <template>
   <div class="menubar-wrapper">
     <!--最多支持三层嵌套-->
-    <el-menu ref="menu" :default-active="activeName" :default-openeds="openedNames" class="el-menu-vertical-demo"
+    <el-menu ref="menu" :default-active="activeName" :default-openeds="openedNames" :unique-opened="true" class="el-menu-vertical-demo"
              @select="handleSelect" theme="dark">
       <template v-for="menu in menus">
         <el-submenu v-if="menu.children && menu.children.length" :index="menu.name">

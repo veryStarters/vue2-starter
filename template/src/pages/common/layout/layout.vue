@@ -6,7 +6,7 @@
       </sticky>
       <topbar v-else="topbar===1"></topbar>
     </div>
-    <div class="sidebar-container scroll-bar" :class="{'top-offset':topbar}" v-if="sidebar">
+    <div class="sidebar-container scroll-bar" :class="{'top-offset':topbar, 'fixed': topbar===2}" v-if="sidebar">
       <sidebar></sidebar>
     </div>
     <div class="main-container" :class="{'ml-offset':sidebar}">
@@ -57,7 +57,7 @@
   }
   .sidebar-container {
     width: $width;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     top:0;
     left: 0;
@@ -67,6 +67,9 @@
     background: #1f2d3d;
     &.top-offset{
       top: $height;
+    }
+    &.fixed{
+      position: fixed;
     }
   }
   .main-container {

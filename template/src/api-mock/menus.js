@@ -28,17 +28,6 @@ var data = Mock.mock({
               icon: ''
             }
           ]
-        },
-        {
-          name: 'menu4',
-          label: '菜单四',
-          icon: 'el-icon-menu',
-          children: [
-            {
-              name: 'test3',
-              label: '导航3',
-            }
-          ]
         }
       ]
     },
@@ -52,8 +41,15 @@ var data = Mock.mock({
           label: '导航4'
         },
         {
-          name: 'test2',
-          label: '导航2'
+          name: 'menu4',
+          label: '菜单四',
+          icon: 'el-icon-menu',
+          children: [
+            {
+              name: 'test3',
+              label: '导航3',
+            }
+          ]
         }
       ]
     },

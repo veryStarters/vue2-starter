@@ -3,7 +3,8 @@
     <el-row>
       <el-col :span="4">
         <div class="logo-info-container" @click="gotoHome">
-          <img src="~images/logo.png" height="50" alt="" align="absmiddle">xxx集团
+          <img src="~images/logo.png" height="45" alt="" align="absmiddle">
+          <span class="name">xxx集团</span>
         </div>
       </el-col>
       <el-col :span="17">
@@ -13,7 +14,7 @@
       </el-col>
       <el-col :span="3">
         <div class="user-info-container">
-          <el-menu theme="dark" :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+          <el-menu theme="dark" :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
             <el-submenu index="1">
               <template slot="title">{{userInfo.name}}</template>
               <el-menu-item index="1-1">个人信息</el-menu-item>
@@ -53,8 +54,6 @@
           this.$router.push({path: '/user/login'})
         });
       },
-      handleSelect() {
-      },
       gotoHome(e) {
         this.$router.push('/')
       }
@@ -73,8 +72,11 @@
     cursor: pointer;
     margin-left: 20px;
     font-size: 22px;
+    transition: .3s ease-out;
     &:hover {
-      text-shadow: 10px 4px 2px rgba(222, 222, 222, .5);
+      text-shadow: 2px 2px 2px rgba(222, 222, 222, .5);
+      transform: scale3d(1.1, 1.1, 1);
+      transition: .2s ease-in;
     }
   }
 </style>

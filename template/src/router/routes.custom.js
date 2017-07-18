@@ -13,6 +13,15 @@ export default function (children) {
         title: '通用'
       }
     },
+    test: {
+      children: {
+        test1: {
+          meta: {
+            title: 'test测试'
+          }
+        }
+      }
+    },
     index: {
       meta: {
         auth: true,
@@ -21,6 +30,7 @@ export default function (children) {
       children: {
         test4: {
           meta: {
+            title: '测试',
             auth: false
           }
         }

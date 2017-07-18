@@ -51,7 +51,6 @@ Object.keys(notChildren).forEach((name) => {
             childPath = ''
           }
           let childCustom = custom.children ? (custom.children[childName] || {}) : {}
-          console.log(componentName)
           ret.push({
             name: componentName,
             path: childCustom.path || childPath,

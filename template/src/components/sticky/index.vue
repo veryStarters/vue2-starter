@@ -9,7 +9,7 @@
 </template>
 <script>
   export default {
-    name: 'jc-sticky',
+    name: 'sticky',
     props: {
       stickyTop: {
         type: Number,

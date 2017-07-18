@@ -31,7 +31,7 @@ Object.keys(notChildren).forEach((name) => {
   }
   const custom = customs[name] || {}
   let router = {
-    name: (name === 'index' && custom.children && !utils.isEmpty(custom.children)) ? '' : name,
+    name: name,
     path: custom.path || path,
     meta: custom.meta || {},
     component: custom.component || notChildren[name],

@@ -11,7 +11,6 @@
     components: {},
     data() {
       return {
-        time: 5
       }
     },
     computed: {

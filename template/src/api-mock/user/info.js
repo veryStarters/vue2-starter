@@ -5,6 +5,7 @@
  * @author taoqili
  * @date 2017/6/23
  */
+var sleep = require('sleep')
 var char = 'abcdefghijklmnopqrstuvwxyz';
 var Mock = require('mockjs')
 var userInfo = Mock.mock({
@@ -22,6 +23,7 @@ var userInfo = Mock.mock({
   'permissions|1-5': ['@string(char, 8)']
 })
 module.exports = function (req, res, next) {
+  sleep.msleep(3000)
   return {
     ret: 'success',
     code: 0,

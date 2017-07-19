@@ -4,7 +4,7 @@
  * @date 2017/4/24
  */
 
-import {LOGIN, LOGOUT} from '../mutation-types'
+import {LOGIN, LOGOUT, GET_USER_INFO} from '../mutation-types'
 import api from 'api'
 import {doAction} from '../util'
 
@@ -21,6 +21,9 @@ const mutations = {
   [LOGOUT](state){
     state.isLogin = false
     state.userInfo = {}
+  },
+  [GET_USER_INFO](state, userInfo) {
+    state.userInfo = userInfo
   }
 }
 
@@ -36,6 +39,12 @@ const actions = {
     return doAction({
       api: api.logout,
       mutationName: LOGOUT
+    })
+  },
+  getUserInfo({commit}) {
+    return doAction({
+      api: api.getUserInfo,
+      mutationName: GET_USER_INFO
     })
   }
 

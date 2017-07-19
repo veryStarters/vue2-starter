@@ -9,6 +9,8 @@ export const TEST = 'TEST'
 export const LOGIN = 'LOGIN'
 //登出
 export const LOGOUT = 'LOGOUT'
+//获取用户信息
+export const GET_USER_INFO = 'GET_USER_INFO'
 //注册
 export const REGISTER = 'REGISTER'
 //修改密码

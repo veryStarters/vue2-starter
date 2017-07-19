@@ -4,13 +4,21 @@
   </div>
 </template>
 <script>
-  import {mapGetters} from 'vuex'
+  import {mapGetters, mapActions} from 'vuex'
   import utils from 'utils'
   export default {
     name: 'page-user-info',
     components: {},
     computed: {
       ...mapGetters(['userInfo', 'menuInfo'])
+    },
+    methods: {
+      ...mapActions(['getUserInfo'])
+    },
+    mounted() {
+      this.getUserInfo().then((res) => {
+        console.log(res.name)
+      })
     }
   }
 </script>

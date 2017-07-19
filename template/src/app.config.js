@@ -6,8 +6,6 @@
 export default {
   // 应用名称
   appName: '非常可乐',
-  // 应用类型 pc|mobile
-  appType: 'pc',
   // 布局配置
   layout: {
     topbar: 2,  //0 hidden; 1 show; 2 fixed

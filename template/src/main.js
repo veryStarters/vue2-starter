@@ -97,7 +97,11 @@ router.beforeEach((to, from, next) => {
     NProgress.done()
   }, 5000)
 
-  let {auth = false} = to.meta
+  let meta = to.meta || {}
+  let auth = config.defaultAuth || false
+  if(meta.auth !== undefined) {
+    auth = meta.auth
+  }
   userInfo = utils.getUserInfoFromCache()
   if (auth) {
     //1.需要登录

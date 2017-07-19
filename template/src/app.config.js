@@ -15,15 +15,17 @@ export default {
   sessionDuration: 30 * 60 * 1000,
   // 采用auth token鉴权时的header token名称
   tokenName: 'AccessToken',
-  //修改请求头
+  // 修改请求头
   headers: {
     'Content-Type': 'application/json'
   },
+  // 默认是否开启权限校验
+  defaultAuth: false,
   // 首页地址
   indexPath: '/',
   // 登录页地址
   loginPath: '/user/login',
-  //渲染错误处理
+  // 渲染错误处理
   errorHandler(e){
     console.log('捕获到了错误：' + e)
   }

@@ -30,6 +30,7 @@ yarn run build --report
 - 顶部导航栏（可配置，支持多级嵌套）
 - 通用登录、登录超时检测支持
 - 通用directive、mixin支持
+- 预渲染支持（可配置，支持多个指定路由的预渲染）
 - less、scss、postcss支持
 
 ###开发规范

@@ -25,6 +25,8 @@ export default {
   indexName: 'indexHome',
   // 登录页路由名称
   loginName: 'userLogin',
+  // 预渲染路由列表
+  preRenderRouters: [],
   // 渲染错误处理
   errorHandler(e){
     console.log('捕获到了错误：' + e)

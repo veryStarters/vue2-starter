@@ -72,6 +72,7 @@
     "postcss-nested-ancestors": "^1.0.0",
     "postcss-sorting": "^2.0.1",
     "postcss-sprites": "^4.2.1",
+    "prerender-spa-plugin": "^2.0.1",
     "rimraf": "^2.6.0",
     "sass-loader": "^6.0.5",
     "semver": "^5.3.0",

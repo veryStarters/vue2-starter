@@ -4,15 +4,12 @@
   </div>
 </template>
 <script>
-  import Layout from '../common/layout/layout.vue'
   export default {
-    name: 'page-index',
-    components: {
-      Layout
-    }
+    name: 'page-index'
   }
 </script>
 <style>
+  <!-- 全局覆盖el-menu定义 -->
   .el-menu {
     border-radius: 0;
   }

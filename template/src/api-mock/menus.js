@@ -50,6 +50,21 @@ var data = Mock.mock({
               label: '导航3',
             }
           ]
+        },
+        { //嵌套了另外一个父路由
+          name: 'menu8',
+          label: '嵌套测试',
+          icon: 'el-icon-menu',
+          children: [
+            {
+              name: 'testHome',
+              label: '嵌套测试Home'
+            },
+            {
+              name: 'testTest1',
+              label: '嵌套测试Test1'
+            }
+          ]
         }
       ]
     },

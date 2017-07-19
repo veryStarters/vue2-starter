@@ -1,6 +1,6 @@
 <template>
   <div class="test-wrapper">
-    <router-view></router-view>
+    <Layout></Layout>
   </div>
 </template>
 <script>
@@ -8,7 +8,6 @@
   import utils from 'utils'
   export default {
     name: 'page-test',
-    components: {},
     data() {
       return {}
     },

@@ -51,11 +51,11 @@
       doLogout(){
         this.logout().then(() => {
           utils.removeUserInfoFromCache()
-          this.$router.push({path: '/user/login'})
+          this.$router.push({name: 'userLogin'})
         });
       },
       gotoHome(e) {
-        this.$router.push('/')
+        this.$router.push({name: 'indexHome'})
       }
     }
   }

@@ -22,7 +22,7 @@
     methods: {
       ...mapActions([]),
       gotoTest2(){
-        this.$router.push({path: '/test2'})
+        this.$router.push({name: 'indexTest2'})
       }
     }
   }

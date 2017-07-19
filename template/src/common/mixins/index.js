@@ -34,7 +34,7 @@ export default {
             if (remainingTime < 1) {
               console.log('登录已经失效，请重新登录！')
               clearInterval(timer)
-              this.$router.push({path: '/user/login'})
+              this.$router.push({name: 'userLogin'})
               return
             }
             this.remainingTime = remainingTime

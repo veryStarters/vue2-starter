@@ -33,7 +33,7 @@
             return
           }
           utils.setUserInfoToCache(userInfo)
-          this.$router.push({path: '/'})
+          this.$router.push({name: 'indexHome'})
         }).catch(errInfo => {
           console.log(errInfo)
         })

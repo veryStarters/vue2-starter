@@ -2,7 +2,7 @@
   <div class="topbar-wrapper">
     <el-row>
       <el-col :span="4">
-        <div class="logo-info-container" @click="gotoHome">
+        <div class="logo-info-container" @click="handleGoHome">
           <img src="~images/logo.png" height="45" alt="" align="absmiddle">
           <span class="name">xxx集团</span>
         </div>
@@ -14,7 +14,7 @@
       </el-col>
       <el-col :span="3">
         <div class="user-info-container">
-          <el-menu theme="dark" class="el-menu-demo" mode="horizontal" @select="select">
+          <el-menu theme="dark" class="el-menu-demo" mode="horizontal" @select="handleSelect">
             <el-submenu index="home">
               <template slot="title">{{userInfo.name}}</template>
               <el-menu-item index="userInfo">个人信息</el-menu-item>
@@ -47,16 +47,16 @@
     },
     methods: {
       ...mapActions(['logout']),
-      select(index){
+      handleSelect(index){
         switch (index) {
           case 'userInfo':
-            this.$router.push({name: 'userInfo'})
+            this.$message('欢迎你！' + this.userInfo.name)
             break
           case 'logout':
             this.doLogout()
             break
           case 'changePassword':
-            console.log('修改密码')
+            this.$message('修改密码')
             break
           default:
         }
@@ -67,7 +67,7 @@
           this.$router.push({name: 'userLogin'})
         });
       },
-      gotoHome(e) {
+      handleGoHome() {
         this.$router.push({name: 'indexHome'})
       }
     }

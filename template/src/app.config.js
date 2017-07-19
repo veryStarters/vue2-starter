@@ -15,7 +15,7 @@ export default {
   },
   // session有效时间 ms
   sessionDuration: 30 * 60 * 1000,
-  // 采用auth token鉴权时的token名称
+  // 采用auth token鉴权时的header token名称
   tokenName: 'AccessToken',
   //修改请求头
   headers: {

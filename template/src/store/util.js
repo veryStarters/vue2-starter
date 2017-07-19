@@ -17,7 +17,7 @@ export const doAction = (options) => {
     let res = await options.api(options.params)
     if (res.code === 0 && res.data) {
       let data = res.data
-      store.commit(options.mutationName, data)
+      options.mutationName && store.commit(options.mutationName, data)
       resolve(data)
     } else {
       reject(res)

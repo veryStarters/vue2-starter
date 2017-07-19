@@ -8,17 +8,17 @@ import {doAction} from '../util'
 import api from 'api'
 
 const state = {
-  menus: [],
+  menuInfo: {},
 }
 
 const mutations = {
-  [types.MENUS](state, menus) {
-    state.menus = menus
+  [types.MENUS](state, menuInfo) {
+    state.menuInfo = menuInfo
   }
 }
 
 const actions = {
-  getMenus(store, params) {
+  getMenus({commit}, params) {
     return doAction({
       api: api.getMenus,
       params,

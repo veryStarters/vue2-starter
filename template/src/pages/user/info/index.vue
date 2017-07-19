@@ -10,7 +10,7 @@
     name: 'page-user-info',
     components: {},
     computed: {
-      ...mapGetters(['userInfo'])
+      ...mapGetters(['userInfo', 'menuInfo'])
     }
   }
 </script>

@@ -14,12 +14,12 @@
       </el-col>
       <el-col :span="3">
         <div class="user-info-container">
-          <el-menu theme="dark" :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-            <el-submenu index="1">
+          <el-menu theme="dark" class="el-menu-demo" mode="horizontal" @select="select">
+            <el-submenu index="home">
               <template slot="title">{{userInfo.name}}</template>
-              <el-menu-item index="1-1">个人信息</el-menu-item>
-              <el-menu-item index="1-2">修改密码</el-menu-item>
-              <el-menu-item index="1-4" @click="doLogout">退出系统</el-menu-item>
+              <el-menu-item index="userInfo">个人信息</el-menu-item>
+              <el-menu-item index="changePassword">修改密码</el-menu-item>
+              <el-menu-item index="logout">退出系统</el-menu-item>
             </el-submenu>
           </el-menu>
         </div>
@@ -38,7 +38,6 @@
     },
     data() {
       return {
-        activeIndex: '',
       }
     },
     computed: {
@@ -48,6 +47,20 @@
     },
     methods: {
       ...mapActions(['logout']),
+      select(index){
+        switch (index) {
+          case 'userInfo':
+            this.$router.push({name: 'userInfo'})
+            break
+          case 'logout':
+            this.doLogout()
+            break
+          case 'changePassword':
+            console.log('修改密码')
+            break
+          default:
+        }
+      },
       doLogout(){
         this.logout().then(() => {
           utils.removeUserInfoFromCache()

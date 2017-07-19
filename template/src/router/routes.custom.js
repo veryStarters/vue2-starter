@@ -9,7 +9,6 @@ export default function (children) {
   return {
     common: {
       meta: {
-        auth: true,
         title: '通用'
       }
     },

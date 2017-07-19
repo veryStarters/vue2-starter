@@ -23,8 +23,8 @@ var data = Mock.mock({
           icon: 'el-icon-menu',
           children: [
             {
-              name: 'userLogin',
-              label: '登录',
+              name: 'indexTest4',
+              label: '通用',
               icon: ''
             }
           ]
@@ -38,7 +38,7 @@ var data = Mock.mock({
         {
           name: 'nav4',
           icon: 'el-icon-message',
-          label: '导航4'
+          label: '不存在的路由'
         },
         {
           name: 'menu4',

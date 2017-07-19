@@ -67,11 +67,10 @@ const loginTimeout = function () {
 }
 
 //路由权限判断
-const hasPermission = function (routePath) {
-  routePath = routePath === '/' ? '//' : routePath
+const hasPermission = function (routeName) {
   let userInfo = utils.getUserInfoFromCache()
-  let permissions = userInfo.permissions
-  return permissions.indexOf(routePath.replace(/\/$/, '')) !== -1
+  let permissions = userInfo.permissions || []
+  return permissions.indexOf(routeName) !== -1
 }
 
 //刷新时重建登录信息store
@@ -91,6 +90,7 @@ NProgress.configure({
 });
 
 router.beforeEach((to, from, next) => {
+  console.log('即将访问路由：' + to.name)
   NProgress.start()
   // 5s后如果还没加载完成，进度条直接跳转到最后
   setTimeout(() => {
@@ -107,42 +107,42 @@ router.beforeEach((to, from, next) => {
     //1.需要登录
     if (!userInfo || loginTimeout()) {
       //2.没有登录信息或者登录已经超时
-      next({path: config.loginPath})
+      next({name: config.loginName})
     } else {
       //2.正常登录状态
-      if (to.path === config.loginPath) {
+      if (to.name === config.loginName) {
         //3.访问登录页时
-        if (hasPermission(config.indexPath)) {
+        if (hasPermission(config.indexName)) {
           //4.如果有首页权限，则直接跳转到首页
-          next({path: config.indexPath})
+          next({name: config.indexName})
         } else {
           //4.没有首页权限，则继续停留在登录页
           next()
         }
       } else {
         //3.访问非登录页
-        if (hasPermission(to.path)) {
+        if (hasPermission(to.name)) {
           //4.如果有权限，则直接访问
           next()
         } else {
           //4.无权限则访问401
-          console.log('您无权限访问页面：' + to.path + ' ，请联系管理员添加！')
-          next({path: '/401'})
+          console.log('无权访问路由：' + to.name + ' ，请联系管理员添加！')
+          next({name: '401'})
         }
       }
     }
   } else {
     // 1.不需要登录
-    if (to.path === config.loginPath) {
+    if (to.name === config.loginName) {
       // 2.如果访问的是登录页，且登录超时，则直接访问
       if (loginTimeout()) {
         // 3.登录已经超时了
         next()
       } else {
         // 3.登录未超时
-        if (hasPermission(config.indexPath)) {
+        if (hasPermission(config.indexName)) {
           // 4.有访问首页的权限则跳到首页
-          next({path: config.indexPath})
+          next({name: config.indexName})
         } else {
           // 4.没有就继续访问登录页
           next()

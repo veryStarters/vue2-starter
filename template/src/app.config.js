@@ -20,11 +20,11 @@ export default {
     'Content-Type': 'application/json'
   },
   // 默认是否开启权限校验
-  defaultAuth: false,
-  // 首页地址
-  indexPath: '/',
-  // 登录页地址
-  loginPath: '/user/login',
+  defaultAuth: true,
+  // 首页路由名称
+  indexName: 'indexHome',
+  // 登录页路由名称
+  loginName: 'userLogin',
   // 渲染错误处理
   errorHandler(e){
     console.log('捕获到了错误：' + e)

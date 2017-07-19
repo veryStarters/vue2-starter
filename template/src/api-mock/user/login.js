@@ -14,9 +14,11 @@ module.exports = function (req, res, next) {
         'role2'
       ],
       permissions: [
-        '/',
-        '/test1',
-        '/user/info'
+        'indexHome',
+        'indexTest1',
+        'userInfo',
+        'indexTest3',
+        'testTest1'
       ]
     }
   }

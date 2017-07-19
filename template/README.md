@@ -22,20 +22,15 @@ yarn run build --report
 
 ###主要功能
 - vue-cli默认功能
-
-- 自动路由：在pages|components文件夹下创建index.vue文件，系统将按照文件路径自动创建路由并初始化index.vue模板；删除index.vue文件则删除对应路由；
-- 自动路由规则：pages下创建index.vue文件，如/pages/user/index.vue对应的路由为/user/; /pages/user/login/index.vue文件对应的路由为/user/login/。components下创建的路由规则同pages，但会自动在前面增加/components/
-- 自动创建的路由均为平级，嵌套路由需要在routes.custom.js中手动设置, 但component可直接通过children参数获取,component的引用方式为children.routeName
-- https支持(自签名证书)、权限控制支持
+- 自动路由（可配置，支持一级、二级嵌套）
+- 数据Mock（自动生成mock数据文件，集成MockJS）
+- https支持（可配置开启）
+- 路由级别的权限控制（可配置）
+- 侧边菜单栏（可配置，支持一级、二级嵌套）
+- 顶部导航栏（可配置，支持多级嵌套）
+- 通用登录、登录超时检测支持
 - 通用directive、mixin支持
-- 数据mock：在/api/index.js文件中新增一个api接口，系统将自动按照其中定义的访问路径在api-mock下生成对应层级的文件夹和文件内容模板，填充该文件内容模板即可模拟服务端数据
-- 标准html语法支持，less|sass|scss|postcss支持
-- 标准html、css语法支持，less|sass|scss|postcss支持
-- 页面布局定义，topbar，sidebar，navbar，appMain, 可在app.config.js中配置相关特性
-- eslint规则调整
-
-
-
+- less、scss、postcss支持
 
 ###开发规范
 - pages下文件夹的命名允许使用驼峰或者横杠或者下划线方式命名，但访问时均会被忽略，如

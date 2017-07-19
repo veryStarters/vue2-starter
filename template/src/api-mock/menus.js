@@ -9,23 +9,23 @@ var data = Mock.mock({
   menus: [
     {
       name: 'menu1',
-      label: '一级菜单一',
+      label: '菜单一',
       icon: 'el-icon-menu',
       children: [
         {
           name: 'indexHome',
           label: '首页',
-          icon: ''
+          icon: 'el-icon-star-on'
         },
         {
-          name: 'menu7',
-          label: '菜单7',
+          name: 'submenu1',
+          label: '子菜单1',
           icon: 'el-icon-menu',
           children: [
             {
               name: 'indexTest4',
-              label: '通用',
-              icon: ''
+              label: '测试4',
+              icon: 'el-icon-edit'
             }
           ]
         }
@@ -33,36 +33,39 @@ var data = Mock.mock({
     },
     {
       name: 'menu2',
-      label: '一级菜单二',
+      label: '菜单二',
+      icon: 'el-icon-menu',
       children: [
         {
           name: 'nav4',
-          icon: 'el-icon-message',
-          label: '不存在的路由'
+          icon: 'el-icon-warning',
+          label: '丢失的页面'
         },
         {
-          name: 'menu4',
-          label: '菜单四',
+          name: 'submenu2',
+          label: '子菜单2',
           icon: 'el-icon-menu',
           children: [
             {
               name: 'indexTest3',
-              label: '导航3',
+              label: '测试3',
             }
           ]
         },
         { //嵌套了另外一个父路由
-          name: 'menu8',
-          label: '嵌套测试',
+          name: 'submenu3',
+          label: '嵌套子菜单',
           icon: 'el-icon-menu',
           children: [
             {
               name: 'testHome',
-              label: '嵌套测试Home'
+              icon: 'el-icon-close',
+              label: '无访问权限'
             },
             {
               name: 'testTest1',
-              label: '嵌套测试Test1'
+              label: '嵌套Test1',
+              icon: 'el-icon-picture'
             }
           ]
         }
@@ -70,8 +73,8 @@ var data = Mock.mock({
     },
     {
       name: 'indexTest1',
-      icon: 'el-icon-menu',
-      label: '一级导航1'
+      icon: 'el-icon-share',
+      label: '测试1'
     }
   ]
 })

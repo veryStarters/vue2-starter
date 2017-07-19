@@ -17,5 +17,8 @@ export default {
   },
   async getMenus(params) {
     return await fetchData('/api/menus', params)
-  }
+  },
+  async getTest(params) {
+    return await fetchData('/api/gettest', params)
+  },
 }

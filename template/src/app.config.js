@@ -8,8 +8,8 @@ export default {
   appName: '非常可乐',
   // 布局配置
   layout: {
-    topbar: 0,  //0 hidden; 1 show; 2 fixed
-    sidebar: 0  //0 hidden; 1 show;
+    topbar: 2,  //0 hidden; 1 show; 2 fixed
+    sidebar: 1  //0 hidden; 1 show;
   },
   // session有效时间 ms
   sessionDuration: 30 * 60 * 1000,

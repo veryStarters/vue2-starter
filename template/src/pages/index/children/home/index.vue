@@ -1,6 +1,6 @@
 <template>
   <div class="home-wrapper">
-    <jc-hello></jc-hello>
+    <Hello></Hello>
   </div>
 </template>
 <!--可以拆分JS|CSS至单独的文件-->

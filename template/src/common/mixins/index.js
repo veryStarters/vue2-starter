@@ -33,7 +33,7 @@ export default {
           let timer = setInterval(() => {
             let remainingTime = Math.ceil(utils.getLoginRemainingTime() / 60)
             if (remainingTime < 1) {
-              console.log('登录已经失效，请重新登录！')
+              this.$message({type:'error', message: '登录已经失效，请重新登录！'})
               clearInterval(timer)
               this.$router.push({name: 'userLogin'})
               return

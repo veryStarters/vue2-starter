@@ -42,6 +42,7 @@ export default function (children) {
     },
     userLogin: {
       meta: {
+        auth: false,
         title: '系统登录'
       }
     },

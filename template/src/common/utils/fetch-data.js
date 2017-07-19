@@ -11,13 +11,15 @@ export default async (url, params = {}, type = 'POST') => {
     url = params.ORIGIN + url
   }
   type = type.toUpperCase()
+  //默认headers
   let headers = {
     'Content-Type': 'application/json',
     'Accept': '*/*',
     // 'X-CSRF-Token': utils.localStorage.getItem('XCSRFToken') || ''
   }
+  Object.assign(headers, config.headers || {})
   let tokenName = config.tokenName || 'AccessToken'
-  headers[tokenName] = utils.localStorage.getItem(tokenName)
+  headers[tokenName] = utils.localStorage.getItem(tokenName) || ''
   const options = Object.assign({}, {
     method: type,
     mode: 'cors',

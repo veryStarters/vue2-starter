@@ -6,7 +6,7 @@
         <p><input type="text" v-model="user.name" placeholder="请输入用户名" v-focus></p>
         <p><input type="password" v-model="user.password" placeholder="请输入密码"></p>
       </form>
-      <button @click="doLogin">登录</button>
+      <button @click="doLogin" v-loading="loading">登录</button>
     </div>
   </div>
 </template>
@@ -19,15 +19,18 @@
       return {
         user: {
           name: '',
-          password: ''
-        }
+          password: '',
+        },
+        loading: false
       }
     },
     computed: {},
     methods: {
       ...mapActions(['login']),
       doLogin (){
+        this.loading = true
         this.login(this.user).then(userInfo => {
+          this.loading = false
           if (!userInfo || utils.isEmpty(userInfo)) {
             console.log('登录成功，但用户信息错误或者为空')
             return

@@ -1,4 +1,6 @@
+var sleep = require('sleep')
 module.exports = function (req, res, next) {
+  sleep.msleep(2000)
   return {
     ret: 'success',
     code: 0,

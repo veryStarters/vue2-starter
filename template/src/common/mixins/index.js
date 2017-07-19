@@ -23,7 +23,8 @@ export default {
          * @param title
          */
         setTitle(title){
-          document.title = title || this.$route.meta.title || ''
+          let meta = this.$route && this.$route.meta ? this.$route.meta : {}
+          document.title = title || meta.title || ''
         },
         /**
          * 登录状态监控

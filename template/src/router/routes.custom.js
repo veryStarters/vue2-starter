@@ -27,6 +27,11 @@ export default function (children) {
         title: '首页'
       },
       children: {
+        home: {
+          meta: {
+            title: 'Home'
+          }
+        },
         test4: {
           meta: {
             title: '测试',

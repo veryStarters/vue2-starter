@@ -15,10 +15,10 @@ module.exports = function (req, res, next) {
       ],
       permissions: [
         'indexHome',
-        'indexTest1',
+        'indexTest11',
         'userInfo',
-        'indexTest3',
-        'testTest1'
+        'indexTest13',
+        'anotherTest1'
       ]
     }
   }

@@ -4,8 +4,8 @@
       <el-menu-item index="indexHome">首页</el-menu-item>
       <el-submenu index="2">
         <template slot="title">测试菜单</template>
-        <el-menu-item index="indexTest1">测试1</el-menu-item>
-        <el-menu-item index="indexTest3">测试3</el-menu-item>
+        <el-menu-item index="indexTest11">测试1</el-menu-item>
+        <el-menu-item index="indexTest13">测试3</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>

@@ -1,36 +1,8 @@
-<template>
-  <div class="topbar-wrapper">
-    <el-row>
-      <el-col :span="4">
-        <div class="logo-info-container" @click="handleGoHome">
-          <img src="~images/logo.png" height="45" alt="" align="absmiddle">
-          <span class="name">xxx集团</span>
-        </div>
-      </el-col>
-      <el-col :span="17">
-        <div class="navbar-container">
-          <navbar></navbar>
-        </div>
-      </el-col>
-      <el-col :span="3">
-        <div class="user-info-container">
-          <el-menu theme="dark" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-            <el-submenu index="home">
-              <template slot="title">{{userInfo.name}}</template>
-              <el-menu-item index="userInfo">个人信息</el-menu-item>
-              <el-menu-item index="changePassword">修改密码</el-menu-item>
-              <el-menu-item index="logout">退出系统</el-menu-item>
-            </el-submenu>
-          </el-menu>
-        </div>
-      </el-col>
-    </el-row>
-  </div>
-</template>
 <script>
   import {mapGetters, mapActions} from 'vuex'
   import utils from 'utils'
   import navbar from './navbar.vue'
+  import img from 'images/logo.png'
   export default {
     name: 'topbar',
     components: {
@@ -43,7 +15,36 @@
     computed: {
       ...mapGetters(['userInfo'])
     },
-    mounted() {
+    render(h){
+      return (
+        <div class='topbar-wrapper'>
+          <el-row>
+            <el-col span={4}>
+              <div class='logo-info-container' onClick='handleGoHome'>
+                <img src={img} height='45' align='absmiddle'/>
+                <span class='name'>xxx集团</span>
+              </div>
+            </el-col>
+            <el-col span={17}>
+              <div class='navbar-container'>
+                <navbar></navbar>
+              </div>
+            </el-col>
+            <el-col span={3}>
+              <div class='user-info-container'>
+                <el-menu theme='dark' class='el-menu-demo' mode='horizontal' onSelect='handleSelect'>
+                  <el-submenu index='home'>
+                    <template slot='title'>{this.userInfo.name}</template>
+                    <el-menu-item index='userInfo'>个人信息</el-menu-item>
+                    <el-menu-item index='changePassword'>修改密码</el-menu-item>
+                    <el-menu-item index='logout'>退出系统</el-menu-item>
+                  </el-submenu>
+                </el-menu>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+      )
     },
     methods: {
       ...mapActions(['logout']),

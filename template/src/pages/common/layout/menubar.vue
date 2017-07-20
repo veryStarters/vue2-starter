@@ -1,38 +1,6 @@
-<template>
-  <div class="menubar-wrapper">
-    <!--最多支持三层嵌套-->
-    <el-menu ref="menu" :default-active="activeName" :default-openeds="openedNames" :unique-opened="true"
-             class="el-menu-vertical-demo"
-             @select="handleSelect" theme="dark">
-      <template v-for="menu in menus">
-        <el-submenu v-if="menu.children && menu.children.length" :index="menu.name">
-          <template slot="title">
-            <i v-if="menu.icon" :class="menu.icon"></i>{{menu.label}}
-          </template>
-          <template v-for="submenu in menu.children">
-            <el-submenu v-if="submenu.children && submenu.children.length" :index="submenu.name">
-              <template slot="title">
-                <i v-if="submenu.icon" :class="submenu.icon"></i>{{submenu.label}}
-              </template>
-              <el-menu-item v-for="subSubmenu in submenu.children" :key="subSubmenu.name"
-                            :index="subSubmenu.name">
-                <i v-if="subSubmenu.icon" :class="subSubmenu.icon"></i>{{subSubmenu.label}}
-              </el-menu-item>
-            </el-submenu>
-            <el-menu-item :index="submenu.name" v-else>
-              <i v-if="submenu.icon" :class="submenu.icon"></i>{{submenu.label}}
-            </el-menu-item>
-          </template>
-        </el-submenu>
-        <el-menu-item :index="menu.name" v-else>
-          <i v-if="menu.icon" :class="menu.icon"></i>{{menu.label}}
-        </el-menu-item>
-      </template>
-    </el-menu>
-  </div>
-</template>
 <script>
   import {mapGetters, mapActions} from 'vuex'
+  import config from 'config'
   export default {
     name: 'menubar',
     components: {},
@@ -47,11 +15,52 @@
         return this.$route.name || 'indexHome'
       }
     },
-    mounted(){
+    render(h) {
+      return (
+        <div class='menubar-wrapper'>
+          <el-menu ref='menu' default-active={this.activeName} default-openeds={this.openedNames} unique-opened={true}
+                   class='el-menu-vertical-demo' onSelect={this.handleSelect} theme={config.sidebarTheme}>
+            {
+              this.menus.map(menu => {
+                return !menu.children || !menu.children.length
+                  ? this.menuItem(menu)
+                  : this.submenu(menu)
+              })
+            }
+          </el-menu>
+        </div>
+      )
+    },
+    mounted() {
       this.loadMenus()
     },
     methods: {
       ...mapActions(['getMenus']),
+      submenu(props){
+        return (
+          <el-submenu index={props.name}>
+            <template slot='title'>
+              {props.icon ? <i class={props.icon}></i> : ''}
+              {props.label}
+            </template>
+            {
+              props.children.map(submenu => {
+                return !submenu.children || !submenu.children.length
+                  ? this.menuItem(submenu)
+                  : this.submenu(submenu)
+              })
+            }
+          </el-submenu>
+        )
+      },
+      menuItem(props){
+        return (
+          <el-menu-item index={props.name}>
+            {props.icon ? <i class={props.icon}/> : ''}
+            {props.label}
+          </el-menu-item>
+        )
+      },
       loadMenus(){
         this.getMenus().then(res => {
           this.menus = res.menus

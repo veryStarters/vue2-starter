@@ -6,7 +6,7 @@
       </sticky>
       <topbar v-else="topbar===1"></topbar>
     </div>
-    <div class="sidebar-container scroll-bar" :class="{'top-offset':topbar, 'fixed': topbar===2}" v-if="sidebar">
+    <div class="sidebar-container scroll-bar" :class="{'top-offset':topbar, 'fixed': topbar===2, 'dark': dark}" v-if="sidebar">
       <sidebar></sidebar>
     </div>
     <div class="main-container" :class="{'ml-offset':sidebar}">
@@ -26,7 +26,8 @@
       let layout = config.layout
       return {
         topbar: layout.topbar || 0,
-        sidebar: layout.sidebar || 0
+        sidebar: layout.sidebar || 0,
+        dark: config.sidebarTheme === 'dark'
       }
     },
     mounted() {
@@ -64,12 +65,15 @@
     z-index: 1001;
     overflow-x: hidden;
     transition: all .28s ease-out;
-    background: #1f2d3d;
+    background: #e4e8f1;
     &.top-offset{
       top: $height;
     }
     &.fixed{
       position: fixed;
+    }
+    &.dark {
+      background: #1f2d3d;
     }
   }
   .main-container {

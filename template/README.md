@@ -37,7 +37,9 @@ yarn run build --report
 ###DEVELOPER GET START
 1. 安装依赖（yarn install）
 
-2. 启动开发环境（yarn start），该命令会启动2个本地服务：一个是本地开发 
+2. 启动开发环境（yarn start），该命令会启动2个本地服务：一个是本地开发服务，另一个是本地数据模拟服务 
+
+3. 找到pages目录，新建一个目录test
 
 ###开发规范
 - pages下文件夹的命名允许使用驼峰或者横杠或者下划线方式命名，但访问时均会被忽略，如

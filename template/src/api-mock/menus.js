@@ -58,12 +58,12 @@ var data = Mock.mock({
           icon: 'el-icon-menu',
           children: [
             {
-              name: 'testHome',
+              name: 'anotherHome',
               icon: 'el-icon-close',
               label: '无访问权限'
             },
             {
-              name: 'testTest1',
+              name: 'anotherTest1',
               label: '嵌套Test1',
               icon: 'el-icon-picture'
             }

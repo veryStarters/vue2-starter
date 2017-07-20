@@ -1,6 +1,6 @@
 <template>
   <div class="test-children-test1-wrapper">
-    test test1
+    another test1
   </div>
 </template>
 <script>

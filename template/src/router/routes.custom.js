@@ -12,10 +12,11 @@ export default function (children) {
         title: '通用'
       }
     },
-    test: {
+    another: {
       children: {
         test1: {
           meta: {
+            auth: false,
             title: 'test测试'
           }
         }

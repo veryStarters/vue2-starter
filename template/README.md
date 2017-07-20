@@ -106,11 +106,11 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	我们可以在routes.custom.js文件中配置指定路由的细节，该路由细节以该路由的name作为key，以其余属性作为value，如：
 	```
 	userLogin: {
-		path: '/user/:id/login',
-		meta: {
-			title: '测试',
-			auth: false
-		}
+	  path: '/user/:id/login',
+	  meta: {
+	    title: '测试',
+	    auth: false
+	  }
 	}
 	```
 
@@ -141,7 +141,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	A. 在api/index.js文件中新增一条API记录
 	```
 	async getTestInfo(params) {
-		return await fetchData('/api/test/info', params)
+	  return await fetchData('/api/test/info', params)
 	}
 	```
 	
@@ -153,13 +153,13 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	})
 	var sleep = require('sleep')
 	module.exports = function (req, res, next) {
-		sleep.msleep(2000)
-		return {
-			ret: 'success',
-			code: 0,
-			msg: '接口提示信息',
-			data: data
-		}
+	  sleep.msleep(2000)
+	  return {
+	  ret: 'success',
+	    code: 0,
+	    msg: '接口提示信息',
+	    data: data
+	  }
 	}
 	```
 	
@@ -168,7 +168,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	import api from 'api'
 	
 	api.getTestInfo({}).then(res => {
-		console.log(res)
+	  console.log(res)
 	})
 	```
 	

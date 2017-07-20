@@ -1,7 +1,7 @@
 
-## vue2-starter(V2S)
+## Vue2-Starter(V2S)
 
-vue2-starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的一套『高度自动化』的前端开发脚手架。
+Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的一套『高度自动化』的前端开发脚手架。
 
 它通过为vue-cli增加多个扩展插件来自动化完成一系列模板代码，并提供了一套简易、可行的基础代码框架，能同时支持pc端展示、pc端后台管理、移动端等常用的应用类型。
 

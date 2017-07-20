@@ -21,8 +21,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 - 路由级别的权限控制（可配置）
 
 
-### DEVELOPER GET START
-
+### 开始
 
 0. 安装vue-cli，初始化一个自己的项目
 	```
@@ -211,7 +210,6 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 
 ### 开发规范
 
-
 ### Q | A
 
 Q: 编译过程中提示sass解析错误
@@ -223,7 +221,4 @@ A: 一般情况下删除sass-loader并重装即可，
 
 ```
 
-
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
-

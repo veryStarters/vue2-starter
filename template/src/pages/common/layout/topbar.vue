@@ -32,7 +32,7 @@
             </el-col>
             <el-col span={3}>
               <div class='user-info-container'>
-                <el-menu theme='dark' class='el-menu-demo' mode='horizontal' onSelect='handleSelect'>
+                <el-menu theme='dark' class='el-menu-demo' mode='horizontal' onSelect={this.handleSelect}>
                   <el-submenu index='home'>
                     <template slot='title'>{this.userInfo.name}</template>
                     <el-menu-item index='userInfo'>个人信息</el-menu-item>

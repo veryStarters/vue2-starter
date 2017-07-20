@@ -1,17 +1,11 @@
 <template>
   <div class="navbar-wrapper">
-    <el-menu theme="dark" :default-active="activeName" class="el-menu-demo" mode="horizontal">
-      <router-link :to="{name: 'indexHome'}">
-        <el-menu-item index="indexHome">首页</el-menu-item>
-      </router-link>
+    <el-menu theme="dark" :default-active="activeName" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+      <el-menu-item index="indexHome">首页</el-menu-item>
       <el-submenu index="2">
         <template slot="title">测试菜单</template>
-        <router-link :to="{name: 'indexTest1'}">
-          <el-menu-item index="indexTest1">测试1</el-menu-item>
-        </router-link>
-        <router-link :to="{name: 'indexTest3'}">
-          <el-menu-item index="indexTest3">测试3</el-menu-item>
-        </router-link>
+        <el-menu-item index="indexTest1">测试1</el-menu-item>
+        <el-menu-item index="indexTest3">测试3</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>
@@ -27,9 +21,11 @@
         return this.$route.name || 'indexHome'
       }
     },
-    mounted() {
-    },
-    methods: {}
+    methods: {
+      handleSelect(index){
+        this.$router.push({name: index})
+      }
+    }
   }
 </script>
 <style lang="postcss">

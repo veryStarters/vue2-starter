@@ -25,7 +25,10 @@ module.exports = {
       '  }',
       '</script>',
       '<style lang="postcss" scoped>',
-      '  .<%wrapper%> {}',
+      '  .<%wrapper%> {',
+      '    text-align: center;',
+      '    line-height: 5;',
+      '  }',
       '</style>'
     ].join('\n')
   })()

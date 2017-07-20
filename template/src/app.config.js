@@ -21,7 +21,7 @@ export default {
     'Content-Type': 'application/json'
   },
   // 默认是否开启权限校验
-  defaultAuth: true,
+  defaultAuth: false,
   // 首页路由名称
   indexName: 'indexHome',
   // 登录页路由名称

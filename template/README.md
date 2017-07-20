@@ -25,11 +25,11 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 
 0. 安装vue-cli，初始化一个自己的项目
 	```
-		npm install -g vue-cli
-		
-		vue init veryStarters/vue2-starter MyProject
-		
-		cd MyProject 
+	npm install -g vue-cli
+	
+	vue init veryStarters/vue2-starter MyProject
+	
+	cd MyProject 
 	```
 1. 安装依赖（yarn install）
 
@@ -89,9 +89,9 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	
 	A. 默认情况下，自动创建的路由规则将按照以pages作为根目录的目录路径来代替，具体规则如下:
 	```
-		./src/pages/user/login/index.vue    =>    {name: 'userLogin', path: '/user/login'}
-		./src/pages/test/index.vue          =>    {name: 'test', path: '/test'}
-		./src/pages/test/test1/index.vue    =>    {name: 'testTest1', path: '/test/test1'}
+	./src/pages/user/login/index.vue    =>    {name: 'userLogin', path: '/user/login'}
+	./src/pages/test/index.vue          =>    {name: 'test', path: '/test'}
+	./src/pages/test/test1/index.vue    =>    {name: 'testTest1', path: '/test/test1'}
 	```
 	通俗来讲，就是将目录层级路径作为path，目录层级驼峰后化后作为name。
 	
@@ -105,13 +105,13 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	
 	我们可以在routes.custom.js文件中配置指定路由的细节，该路由细节以该路由的name作为key，以其余属性作为value，如：
 	```
-		userLogin: {
-			path: '/user/:id/login',
-			meta: {
-				title: '测试',
-				auth: false
-			}
+	userLogin: {
+		path: '/user/:id/login',
+		meta: {
+			title: '测试',
+			auth: false
 		}
+	}
 	```
 
 2. 嵌套路由
@@ -140,36 +140,36 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	
 	A. 在api/index.js文件中新增一条API记录
 	```
-		async getTestInfo(params) {
-			return await fetchData('/api/test/info', params)
-		}
+	async getTestInfo(params) {
+		return await fetchData('/api/test/info', params)
+	}
 	```
 	
 	B. 稍等片刻，查看api-mock文件夹，可以发现已经在该文件夹下自动生成了test/info.js文件，文件内容为：
 	```
-		var Mock = require('mockjs')
-		var data = Mock.mock({
-			
-		})
-		var sleep = require('sleep')
-		module.exports = function (req, res, next) {
-			sleep.msleep(2000)
-			return {
-				ret: 'success',
-				code: 0,
-				msg: '接口提示信息',
-				data: data
-			}
+	var Mock = require('mockjs')
+	var data = Mock.mock({
+		
+	})
+	var sleep = require('sleep')
+	module.exports = function (req, res, next) {
+		sleep.msleep(2000)
+		return {
+			ret: 'success',
+			code: 0,
+			msg: '接口提示信息',
+			data: data
 		}
+	}
 	```
 	
 	然后只需要在data中填入对应的mock数据信息，组件中就可以通过如下方式访问该数据：
 	```
-		import api from 'api'
-		
-		api.getTestInfo({}).then(res => {
-			console.log(res)
-		})
+	import api from 'api'
+	
+	api.getTestInfo({}).then(res => {
+		console.log(res)
+	})
 	```
 	
 	mock相关配置在config/index.js和config/env.config.js文件中

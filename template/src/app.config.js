@@ -11,6 +11,7 @@ export default {
     topbar: 2,  //0 hidden; 1 show; 2 fixed
     sidebar: 1  //0 hidden; 1 show;
   },
+  // 侧边栏风格
   sidebarTheme: 'light',  // light; dark
   // session有效时间 ms
   sessionDuration: 30 * 60 * 1000,

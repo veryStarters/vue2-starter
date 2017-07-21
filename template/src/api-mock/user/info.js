@@ -19,7 +19,13 @@ var userInfo = Mock.mock({
     }]
   }],
   'roles': ['admin', 'editor'],
-  'permissions|1-5': ['@string(char, 8)']
+  'permissions': [
+    'indexHome',
+    'indexTest11',
+    'userInfo',
+    'indexTest13',
+    'anotherTest1'
+  ]
 })
 module.exports = function (req, res, next) {
   return {

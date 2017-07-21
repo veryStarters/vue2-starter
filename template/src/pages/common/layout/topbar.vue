@@ -10,10 +10,8 @@
     },
     data() {
       return {
+        userInfo: utils.getUserInfoFromCache()
       }
-    },
-    computed: {
-      ...mapGetters(['userInfo'])
     },
     render(h){
       return (

@@ -126,7 +126,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	
 	B. 在another/children/test目录下新建index.vue文件
 	
-	C. 在another/index.vue文件中放置<router-view></router-view>组件
+	C. 在another/index.vue文件中放置&lt;router-view&gt;&lt;/router-view&gt;组件
 	
 	D. 稍候片刻，在浏览器中输入http://localhost:8080/another/test, 又可以见证奇迹了！
 	

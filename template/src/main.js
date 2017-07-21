@@ -85,7 +85,7 @@ const rebuildStore = (accessToken, userInfo) => {
   }
 }
 
-const initRouter = () => {
+const initApp = () => {
   NProgress.configure({
     showSpinner: false
   });
@@ -171,10 +171,15 @@ const initRouter = () => {
 
 api.getUserInfo().then(res => {
   let accessToken = utils.getAccessToken()
-  rebuildStore(accessToken, res.data)
-  initRouter()
+  if (accessToken && res.code === 0 && res.data) {
+    rebuildStore(accessToken, res.data)
+    initApp()
+  } else {
+    console.log('当前未登录或者登录状态已经失效，仅能访问无权限页面！')
+    initApp()
+  }
 }).catch(() => {
-  initRouter()
+  initApp()
 })
 
 

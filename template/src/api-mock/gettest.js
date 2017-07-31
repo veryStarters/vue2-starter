@@ -5,9 +5,9 @@
 */
 var Mock = require('mockjs')
 var data = Mock.mock('test3 message from server!!')
-var sleep = require('sleep')
+var sleep = require('system-sleep')
 module.exports = function (req, res, next) {
-  sleep.msleep(2000)
+  sleep(2000)
   return {
     ret: 'success',
     code: 0,

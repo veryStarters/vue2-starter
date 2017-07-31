@@ -1,6 +1,6 @@
-var sleep = require('sleep')
+var sleep = require('system-sleep')
 module.exports = function (req, res, next) {
-  sleep.msleep(200)
+  sleep(200)
   return {
     ret: 'success',
     code: 0,

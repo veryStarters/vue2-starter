@@ -60,7 +60,7 @@ var data = Mock.mock({
             {
               name: 'anotherHome',
               icon: 'el-icon-close',
-              label: '无访问权限'
+              label: '嵌套Home'
             },
             {
               name: 'anotherTest1',

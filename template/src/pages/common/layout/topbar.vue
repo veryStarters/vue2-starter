@@ -32,10 +32,8 @@
               <div class='user-info-container'>
                 <el-menu theme='dark' class='el-menu-demo' mode='horizontal' onSelect={this.handleSelect}>
                   <el-submenu index='home'>
-                    <template slot='title'>{this.userInfo.name}</template>
-                    <el-menu-item index='userInfo'>个人信息</el-menu-item>
-                    <el-menu-item index='changePassword'>修改密码</el-menu-item>
-                    <el-menu-item index='logout'>退出系统</el-menu-item>
+                    <template slot='title'>{this.userInfo.name || '游客'}</template>
+                    {this.userInfo.name ? this.userMenu() : <el-menu-item index='login'>登录</el-menu-item>}
                   </el-submenu>
                 </el-menu>
               </div>
@@ -46,6 +44,15 @@
     },
     methods: {
       ...mapActions(['logout']),
+      userMenu(){
+        return (
+          <div>
+            <el-menu-item index='userInfo'>个人信息</el-menu-item>
+            <el-menu-item index='changePassword'>修改密码</el-menu-item>
+            <el-menu-item index='logout'>退出系统</el-menu-item>
+          </div>
+        )
+      },
       handleSelect(index){
         switch (index) {
           case 'userInfo':
@@ -56,6 +63,9 @@
             break
           case 'changePassword':
             this.$message('修改密码')
+            break
+          case 'login':
+            this.$router.push({name: 'userLogin'})
             break
           default:
         }

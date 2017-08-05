@@ -3,7 +3,7 @@
  * @author taoqili
  * @date 2017/4/24
  */
-import fetchData from 'utils/fetch-data'
+import fetchData from 'utils/fetch'
 
 export default {
   async login(params) {

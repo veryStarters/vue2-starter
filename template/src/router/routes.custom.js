@@ -16,7 +16,7 @@ export default function (children) {
       children: {
         test1: {
           meta: {
-            auth: false,
+            auth: true,
             title: 'test测试'
           }
         }
@@ -24,16 +24,16 @@ export default function (children) {
     },
     index: {
       meta: {
-        auth: true,
         title: '首页'
       },
       children: {
         home: {
           meta: {
-            title: 'Home'
+            title: 'Home',
+            auth: false
           }
         },
-        test4: {
+        test14: {
           meta: {
             title: '测试',
             auth: false

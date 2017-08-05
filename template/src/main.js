@@ -1,7 +1,5 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import 'whatwg-fetch'
-import 'fetch-jsonp'
 import 'babel-polyfill'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -85,7 +83,7 @@ const rebuildStore = (accessToken, userInfo) => {
   }
 }
 
-const initRouter = () => {
+const initApp = () => {
   NProgress.configure({
     showSpinner: false
   });
@@ -171,10 +169,15 @@ const initRouter = () => {
 
 api.getUserInfo().then(res => {
   let accessToken = utils.getAccessToken()
-  rebuildStore(accessToken, res.data)
-  initRouter()
+  if (accessToken && res.code === 0 && res.data) {
+    rebuildStore(accessToken, res.data)
+    initApp()
+  } else {
+    console.log('当前未登录或者登录状态已经失效，仅能访问无权限页面！')
+    initApp()
+  }
 }).catch(() => {
-  initRouter()
+  initApp()
 })
 
 

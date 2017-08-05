@@ -31,7 +31,7 @@
       }
     },
     mounted() {
-      this.loginMonitor()
+      this.addLoginMonitor()
     },
     components: {
       'app-main': appMain,

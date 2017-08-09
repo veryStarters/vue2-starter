@@ -26,7 +26,7 @@ module.exports = function () {
     var modules = loadModule(path.join(__dirname, '../../src/api-mock' + dirPath))
     var module = modules[moduleName]
     res.header("Content-Type", "application/json; charset=utf-8");
-    // res.cookie('test', 1, {maxAge: 30 * 60 * 1000})
+    res.cookie('TestCookie', 1, {maxAge: 30 * 60 * 1000})
     if (module && typeof module === 'function') {
       res.end(JSON.stringify(module(req, res, next)))
     } else {

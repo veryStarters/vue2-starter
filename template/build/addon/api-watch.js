@@ -32,7 +32,7 @@ module.exports = function () {
           if (!matches || !matches[2]) return;
           var path = Path.join(__dirname, '../../src/api-mock', matches[1])
           var name = matches[2] + '.js'
-          var apiFile = path + '/' + name;
+          var apiFile = path + Path.sep + name;
           if (checkExits(path)) {
             if (!checkExits(apiFile)) {
               mkfile(apiFile)

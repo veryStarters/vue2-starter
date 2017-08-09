@@ -39,6 +39,7 @@ BeforeBuildPlugin.prototype.apply = function (compiler) {
   }
 };
 function formatPath(path) {
+  path = path.replace(/\\/gi, '/')
   var reg = new RegExp('^.*src\\/pages', 'gi')
   return path.replace(reg, '').replace('index.vue', '');
 }

@@ -65,7 +65,7 @@ var server = {
           var testFileName;
           if (/\.vue$/.test(path)) {
             testFileName = path;
-            path = path.substring(0, path.lastIndexOf('/') + 1)
+            path = path.substring(0, path.lastIndexOf(Path.sep) + 1)
           }
           var indexFileName = path + 'index.vue'
           if (checkExitsAndEmpty(path)) {
@@ -139,6 +139,7 @@ var server = {
     }
 
     function formatPath(path, type) {
+      path = path.replace(/\\/gi, '/')
       var reg = new RegExp('^.*src\\/' + type, 'gi')
       return path.replace(reg, '').replace('index.vue', '').replace('_test.vue', '');
     }

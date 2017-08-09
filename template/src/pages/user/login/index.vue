@@ -53,16 +53,16 @@
   }
 </script>
 <style lang="postcss" scoped>
-  .tips {
-    color: #ddd;
-    font-size: 10px;
-  }
   .user-login-wrapper {
     position: relative;
     width: 100%;
     height: 700px;
     background: url(~images/bg.png) no-repeat;
     background-size: 100%;
+  }
+  .tips {
+    color: #ddd;
+    font-size: 10px;
   }
   .login-box {
     position: relative;

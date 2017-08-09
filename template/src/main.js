@@ -17,14 +17,14 @@ import 'nprogress/nprogress.css'
 
 
 // PC端应用全局模块导入
-// import ElementUI from 'element-ui'
-// import 'element-ui/lib/theme-default/index.css'
-// Vue.use(ElementUI)
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+Vue.use(ElementUI)
 
 // 移动端应用全局模块导入
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
-Vue.use(MintUI)
+// import MintUI from 'mint-ui'
+// import 'mint-ui/lib/style.css'
+// Vue.use(MintUI)
 
 Vue.config.productionTip = false
 Vue.config.errorHandler = config.errorHandler || new Function()

@@ -5,7 +5,7 @@
  */
 
 // 应用类型 pc|mobile  (PS:修改之后需要重新编译启动，否则不会生效)
-const AppType = 'mobile'
+const AppType = 'pc'
 
 // 应用具体配置
 const AppConfig = {

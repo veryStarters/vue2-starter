@@ -14,7 +14,7 @@ let instance = axios.create({
     'Accept': '*',
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*'
-  }, config.headers || {})
+  }, config.httpHeaders || {})
 })
 instance.interceptors.request.use(function (config) {
   return config

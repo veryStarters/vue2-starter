@@ -19,7 +19,7 @@
       return (
         <div class='menubar-wrapper'>
           <el-menu ref='menu' default-active={this.activeName} default-openeds={this.openedNames} unique-opened={true}
-                   class='el-menu-vertical-demo' onSelect={this.handleSelect} theme={config.sidebarTheme}>
+                   class='el-menu-vertical-demo' onSelect={this.handleSelect} theme={config.layout.sidebarTheme}>
             {
               this.menus.map(menu => {
                 return !menu.children || !menu.children.length

@@ -27,7 +27,7 @@
       return {
         topbar: layout.topbar || 0,
         sidebar: layout.sidebar || 0,
-        dark: config.sidebarTheme === 'dark'
+        dark: layout.sidebarTheme === 'dark'
       }
     },
     mounted() {

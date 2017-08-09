@@ -106,14 +106,14 @@ const initApp = () => {
       //1.需要登录
       if (!accessToken || loginTimeout()) {
         //2.没有登录信息或者登录已经超时
-        next({name: config.loginName})
+        next({name: config.loginPageName})
       } else {
         //2.正常登录状态
-        if (to.name === config.loginName) {
+        if (to.name === config.loginPageName) {
           //3.访问登录页时
-          if (hasPermission(permissions, config.indexName)) {
+          if (hasPermission(permissions, config.indexPageName)) {
             //4.如果有首页权限，则直接跳转到首页
-            next({name: config.indexName})
+            next({name: config.indexPageName})
           } else {
             //4.没有首页权限，则继续停留在登录页
             next()
@@ -132,16 +132,16 @@ const initApp = () => {
       }
     } else {
       // 1.不需要登录
-      if (to.name === config.loginName) {
+      if (to.name === config.loginPageName) {
         // 2.如果访问的是登录页，且登录超时，则直接访问
         if (loginTimeout()) {
           // 3.登录已经超时了
           next()
         } else {
           // 3.登录未超时
-          if (hasPermission(permissions, config.indexName)) {
+          if (hasPermission(permissions, config.indexPageName)) {
             // 4.有访问首页的权限则跳到首页
-            next({name: config.indexName})
+            next({name: config.indexPageName})
           } else {
             // 4.没有就继续访问登录页
             next()
@@ -173,7 +173,9 @@ api.getUserInfo().then(res => {
     rebuildStore(accessToken, res.data)
     initApp()
   } else {
-    console.log('当前未登录或者登录状态已经失效，仅能访问无权限页面！')
+    if(config.defaultAuth) {
+      console.log('当前未登录或者登录状态已经失效，仅能访问无权限页面！')
+    }
     initApp()
   }
 }).catch(() => {

@@ -6,8 +6,8 @@
 
 // 应用类型 pc|mobile
 // PS: 修改之后需要重新编译启动，否则不会生效;
-// 此处修改后，最好同步修改main.js中引入的UI库，否则element-ui对移动端来说太过巨大
-const AppType = 'pc'
+// 由于无法做到条件加载，此处修改后，最好同步修改main.js中引入的UI库，否则element-ui对移动端来说太过巨大
+const AppType = 'mobile'
 
 // 应用具体配置
 const AppConfig = {
@@ -23,9 +23,7 @@ const AppConfig = {
       },
       // 移动端配置
       mobile: {
-        header: 1,
-        subHeader: 1,
-        footer: 1
+
       }
     }[type]
   })(AppType),

@@ -5,6 +5,7 @@
       <form v-model="user">
         <p><input type="text" v-model="user.name" placeholder="请输入用户名" v-focus></p>
         <p><input type="password" v-model="user.password" placeholder="请输入密码"></p>
+        <p class="tips">PS: 密码请随意输入</p>
       </form>
       <button @click="doLogin" v-loading="loading">登录</button>
     </div>
@@ -28,6 +29,13 @@
     methods: {
       ...mapActions(['login']),
       doLogin (){
+        if(!this.user.name){
+          this.$message({
+            type: 'error',
+            message: '敢问英雄尊姓大名？'
+          })
+          return
+        }
         this.loading = true
         this.login(this.user).then(userInfo => {
           this.loading = false
@@ -45,6 +53,10 @@
   }
 </script>
 <style lang="postcss" scoped>
+  .tips {
+    color: #ddd;
+    font-size: 10px;
+  }
   .user-login-wrapper {
     position: relative;
     width: 100%;
@@ -80,7 +92,7 @@
     padding: 3px 10px;
   }
   button {
-    margin-top: 26px;
+    margin-top: 18px;
     width: 100px;
     border: 1px solid #bfcbd9;
     color: #1f2d3d;

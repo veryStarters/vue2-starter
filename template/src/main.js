@@ -91,15 +91,15 @@ const rebuildStore = (accessToken, userInfo) => {
 }
 
 const initApp = () => {
-  NProgress.configure({
+  Progress.configure({
     showSpinner: false
   });
   router.beforeEach((to, from, next) => {
     console.log('即将访问路由：' + to.name)
 
-    NProgress.start()
+    Progress.start()
     setTimeout(() => {
-      NProgress.done()
+      Progress.done()
     }, 5000)
 
     let meta = to.meta || {}
@@ -162,7 +162,7 @@ const initApp = () => {
   })
 
   router.afterEach(() => {
-    NProgress.done();
+    Progress.done();
   });
 
   new Vue({

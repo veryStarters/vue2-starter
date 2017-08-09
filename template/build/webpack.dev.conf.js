@@ -2,6 +2,7 @@ var path = require('path')
 var utils = require('./utils')
 var webpack = require('webpack')
 var config = require('../config')
+var appConfig = require('../src/app.config')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -32,6 +33,7 @@ module.exports = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
+      appType: appConfig.appType,
       inject: true
     }),
     new FriendlyErrorsPlugin(),

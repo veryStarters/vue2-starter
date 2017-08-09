@@ -2,6 +2,7 @@ var path = require('path')
 var utils = require('./utils')
 var webpack = require('webpack')
 var config = require('../config')
+var appConfig = require('../src/app.config')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -57,6 +58,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       filename: config.build.index,
       template: 'index.html',
       inject: true,
+      appType: appConfig.appType,
       minify: {
         removeComments: true,
         collapseWhitespace: true,

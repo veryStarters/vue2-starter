@@ -6,7 +6,12 @@
  * 全局组件请使用首字母大写命名
  * 未在此引入的组件，需要在使用位置手动导入并配置后方可使用
  */
+import config from 'config'
+const layouts = {
+  pc: require('pages/common/layouts/pc/layout.vue'),
+  mobile: require('pages/common/layouts/mobile/layout.vue'),
+}
 export default [
-  require('pages/common/layout/layout.vue'),
+  layouts[config.appType],
   require('./hello/')
 ]

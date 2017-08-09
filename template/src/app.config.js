@@ -4,8 +4,8 @@
  * @date 2017/7/3
  */
 
-// 应用类型 pc|mobile
-const AppType = 'pc'
+// 应用类型 pc|mobile  (PS:修改之后需要重新编译启动，否则不会生效)
+const AppType = 'mobile'
 
 // 应用具体配置
 const AppConfig = {
@@ -21,7 +21,9 @@ const AppConfig = {
       },
       // 移动端配置
       mobile: {
-
+        header: 1,
+        subHeader: 1,
+        footer: 1
       }
     }[type]
   })(AppType),
@@ -44,4 +46,4 @@ const AppConfig = {
     console.log('捕获到了错误：' + e)
   }
 }
-export default AppConfig
+module.exports = AppConfig

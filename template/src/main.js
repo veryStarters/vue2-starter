@@ -12,24 +12,31 @@ import api from 'api'
 import components from './components/global'
 import directive from './common/directives'
 import mixin from './common/mixins'
-import NProgress from 'nprogress'
+import Progress from 'nprogress'
 import 'nprogress/nprogress.css'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
 
-directive.init()
-mixin.init()
+
+// PC端应用全局模块导入
+// import ElementUI from 'element-ui'
+// import 'element-ui/lib/theme-default/index.css'
+// Vue.use(ElementUI)
+
+// 移动端应用全局模块导入
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+Vue.use(MintUI)
 
 Vue.config.productionTip = false
 Vue.config.errorHandler = config.errorHandler || new Function()
+
+directive.init()
+mixin.init()
 
 components.forEach(component => {
   Vue.component(component.name, component)
 })
 
 Vue.use(VueRouter)
-Vue.use(ElementUI)
-
 
 const router = new VueRouter({
   mode: 'history',

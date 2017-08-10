@@ -253,4 +253,7 @@ A: 一般情况下删除sass-loader并重装即可，
 
 ```
 
+Q: yarn install的时候老是失败怎么办？
+A: 换个时间重试或者更换npm源（直接使用npm config set registry = "https://registry.npm.taobao.org/" , 不要使用cnmp）
+
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

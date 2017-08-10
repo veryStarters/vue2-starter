@@ -154,11 +154,11 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	var data = Mock.mock({
 		
 	})
-	var sleep = require('sleep')
+	var sleep = require('system-sleep')
 	module.exports = function (req, res, next) {
-	  sleep.msleep(2000)
+	  sleep(2000)
 	  return {
-	  ret: 'success',
+	    ret: 'success',
 	    code: 0,
 	    msg: '接口提示信息',
 	    data: data

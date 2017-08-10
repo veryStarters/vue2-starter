@@ -246,7 +246,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 
 Q: Windows系统下安装时提示缺少python，为什么？
 A: 由于集成了sass预处理库，而sass的运行需要依赖python，故V2S也需要依赖python环境。
-python的安装方法可参加python官网(python版本请使用2.7+)
+python的安装方法可参加python官网(python版本请使用2.7+ && 3.0-)
 
 Q: 编译过程中提示sass解析错误
 A: 一般情况下删除sass-loader并重装即可， 

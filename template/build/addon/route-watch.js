@@ -10,12 +10,14 @@ var shell = require('shelljs')
 var mkdirp = require('mkdirp')
 var chokidar = require('chokidar')
 var pagesTemplate = require('./template/page-template')
+var storeTemplate = require('./template/store-template')
 var componentsTemplate = require('./template/component-template')
 var componentsTestTemplate = require('./template/component-test-template')
 var templates = {
   pages: pagesTemplate,
   components: componentsTemplate,
-  test: componentsTestTemplate
+  test: componentsTestTemplate,
+  store: storeTemplate
 }
 var server = {
   start(){
@@ -28,6 +30,7 @@ var server = {
 
     routes2template(routesPath, pagesPath, 'pages');
     template2routes(pagesPath, routesPath, 'pages');
+    template2Store()
 
     routes2template(componentsRoutePath, componentsPath, 'components', true);
     template2routes(componentsPath, componentsRoutePath, 'components', true);
@@ -111,10 +114,10 @@ var server = {
      */
     function template2routes(pagesPath, routesPath, type, needTest) {
       clearFileContent(routesPath);
-      var watcher1 = chokidar.watch(pagesPath, {
+      var watcher = chokidar.watch(pagesPath, {
         ignored: /(^|[\/\\])\../
       })
-      watcher1.on('add', function (fileName) {
+      watcher.on('add', function (fileName) {
         if (/index\.vue$/.test(fileName)) {
           if (blocks[fileName]) {
             delete blocks[fileName]
@@ -138,6 +141,22 @@ var server = {
       })
     }
 
+    function template2Store() {
+      var watcher = chokidar.watch(pagesPath, {
+        ignored: /(^|[\/\\])\../
+      })
+      watcher.on('addDir', function (path) {
+        var regStr = '.*\\' + Path.sep + 'pages\\' + Path.sep + '([a-zA-Z0-9]*?)$'
+        var matches = path.match(new RegExp(regStr))
+        if (matches && matches[1]) {
+          var storePath = Path.join(__dirname, '../../src/store/modules/', matches[1] + '.js')
+          if (!checkExitsAndEmpty(storePath)) {
+            mkfile(storePath, '', 'store')
+          }
+        }
+      })
+    }
+
     function formatPath(path, type) {
       path = path.replace(/\\/gi, '/')
       var reg = new RegExp('^.*src\\/' + type, 'gi')
@@ -148,7 +167,7 @@ var server = {
       if (path === '/') {
         return 'index';
       }
-      return path.toLowerCase().replace(/^\/|\/$/g, '').replace(/-|_/g,'').replace(/\/(.{1})/g, function (a, b) {
+      return path.toLowerCase().replace(/^\/|\/$/g, '').replace(/-|_/g, '').replace(/\/(.{1})/g, function (a, b) {
         return b.toUpperCase();
       })
     }

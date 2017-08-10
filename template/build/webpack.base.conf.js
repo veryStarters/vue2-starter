@@ -22,16 +22,16 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      src: resolve('src'),
-      config: resolve('src/app.config.js'),
-      api: resolve('src/api'),
-      components: resolve('src/components'),
-      pages: resolve('src/pages'),
-      utils: resolve('src/common/utils'),
+      src:    resolve('src'),
+      api:    resolve('src/api'),
+      pages:  resolve('src/pages'),
+      fonts:  resolve('src/assets/fonts'),
+      utils:  resolve('src/common/utils'),
       mixins: resolve('src/common/mixins'),
       images: resolve('src/assets/images'),
       styles: resolve('src/assets/styles'),
-      fonts: resolve('src/assets/fonts')
+      config: resolve('src/app.config.js'),
+      components: resolve('src/components')
     }
   },
   module: {

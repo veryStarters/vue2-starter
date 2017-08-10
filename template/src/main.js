@@ -1,5 +1,8 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+/**
+ * Created by Webstorm.
+ * @author taoqili
+ * @date 2017/6/3
+ */
 import 'babel-polyfill'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -12,32 +15,27 @@ import api from 'api'
 import components from './components/global'
 import directive from './common/directives'
 import mixin from './common/mixins'
-import Progress from 'nprogress'
+import progress from 'nprogress'
 import 'nprogress/nprogress.css'
 
+// 导入布局pc的基础UI库，请配合app.config.js中的appType参数选择性导入，这样能最大程度减少最后的打包尺寸
+import 'pages/common/layouts/pc/uilibs'
 
-// PC端应用全局模块导入
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
-Vue.use(ElementUI)
+// 导入布局mobile的基础UI库
+import 'pages/common/layouts/mobile/uilibs'
 
-// 移动端应用全局模块导入
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
-Vue.use(MintUI)
-
+// 初始化系统模块配置信息
 Vue.config.productionTip = false
 Vue.config.errorHandler = config.errorHandler || new Function()
-
-directive.init()
-mixin.init()
-
+progress.configure({
+  showSpinner: false
+})
+Vue.use(VueRouter)
 components.forEach(component => {
   Vue.component(component.name, component)
 })
 
-Vue.use(VueRouter)
-
+// 1.创建一个路由实例
 const router = new VueRouter({
   mode: 'history',
   linkActiveClass: 'is-active',
@@ -66,40 +64,18 @@ const router = new VueRouter({
   }
 })
 
-//登录超时判断
-const loginTimeout = () => {
-  return utils.getLoginRemainingTime() <= 0
-}
-
-//路由权限判断
-const hasPermission = (permissions, routeName) => {
-  permissions = permissions || []
-  return permissions.indexOf(routeName) !== -1
-}
-
-//已登录且未超时的情况下，刷新页面时重建store信息
-const rebuildStore = (accessToken, userInfo) => {
-  //刷新时重建登录信息store
-  if (accessToken) {
-    if (!loginTimeout()) {
-      store.commit('LOGIN', userInfo)
-    } else {
-      utils.removeUserInfoFromCache()
-      store.commit('LOGOUT')
-    }
-  }
-}
-
+// 2.应用初始化
 const initApp = () => {
-  Progress.configure({
-    showSpinner: false
-  });
+  //初始化全局指令和混入
+  directive.init()
+  mixin.init()
+
+  // 路由权限控制
   router.beforeEach((to, from, next) => {
     console.log('即将访问路由：' + to.name)
-
-    Progress.start()
+    progress.start()
     setTimeout(() => {
-      Progress.done()
+      progress.done()
     }, 5000)
 
     let meta = to.meta || {}
@@ -162,7 +138,7 @@ const initApp = () => {
   })
 
   router.afterEach(() => {
-    Progress.done();
+    progress.done();
   });
 
   new Vue({
@@ -174,13 +150,14 @@ const initApp = () => {
   })
 }
 
+// 3.应用启动主流程
 api.getUserInfo().then(res => {
   let accessToken = utils.getAccessToken()
   if (accessToken && res.code === 0 && res.data) {
     rebuildStore(accessToken, res.data)
     initApp()
   } else {
-    if(config.defaultAuth) {
+    if (config.defaultAuth) {
       console.log('当前未登录或者登录状态已经失效，仅能访问无权限页面！')
     }
     initApp()
@@ -189,4 +166,28 @@ api.getUserInfo().then(res => {
   initApp()
 })
 
+/**-------------以下为辅助函数-------------**/
+//登录超时判断
+const loginTimeout = () => {
+  return utils.getLoginRemainingTime() <= 0
+}
+
+//路由权限判断
+const hasPermission = (permissions, routeName) => {
+  permissions = permissions || []
+  return permissions.indexOf(routeName) !== -1
+}
+
+//已登录且未超时的情况下，刷新页面时重建store信息
+const rebuildStore = (accessToken, userInfo) => {
+  //刷新时重建登录信息store
+  if (accessToken) {
+    if (!loginTimeout()) {
+      store.commit('LOGIN', userInfo)
+    } else {
+      utils.removeUserInfoFromCache()
+      store.commit('LOGOUT')
+    }
+  }
+}
 

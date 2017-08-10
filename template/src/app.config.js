@@ -3,7 +3,6 @@
  * @author taoqili
  * @date 2017/7/3
  */
-
 // 应用类型 pc|mobile
 // PS: 修改之后需要重新编译启动，否则不会生效;
 // 由于无法做到条件加载，此处修改后，最好同步修改main.js中引入的UI库，否则element-ui对移动端来说太过巨大
@@ -46,4 +45,5 @@ const AppConfig = {
     console.log('捕获到了错误：' + e)
   }
 }
+
 module.exports = AppConfig

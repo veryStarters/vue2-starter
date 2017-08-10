@@ -232,6 +232,16 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 
 ### 开发规范
 
+1、API接口返回数据格式约定：
+	```
+		{
+			ret: Boolean,
+			code: Number,
+			msg: Sring,
+			data: Object|Array|String|Boolean
+		}
+	```
+
 ### Q | A
 
 Q: 编译过程中提示sass解析错误

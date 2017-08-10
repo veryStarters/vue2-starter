@@ -21,9 +21,13 @@
     mounted(){
       api.getTest().then(res => {
         this.loading = false
-        setTimeout(_ => {
+        if(res.code === 0 && res.data) {
           this.message = res.data
-        }, 200)
+        }else {
+          this.message = '数据获取失败'
+        }
+      }).catch(res => {
+        this.message = '数据获取失败'
       })
     }
 

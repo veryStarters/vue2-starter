@@ -15,10 +15,10 @@ export const doAction = (options) => {
   }, options)
   return new Promise(async (resolve, reject) => {
     let res = await options.api(options.params)
-    if (res.code === 0 && res.data) {
+    if (res.ret && res.data) {
       let data = res.data
       options.mutationName && store.commit(options.mutationName, data)
-      resolve(data)
+      resolve(data, res)
     } else {
       reject(res)
     }

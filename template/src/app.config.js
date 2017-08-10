@@ -32,14 +32,16 @@ const AppConfig = {
   httpHeaders: {
     'Content-Type': 'application/json'
   },
-  // 是否默认开启权限校验
+  // 每个路由默认的权限校验状态
   defaultAuth: false,
   // 首页路由名称
   indexPageName: 'indexHome',
   // 登录页路由名称
   loginPageName: 'userLogin',
   // 预渲染路由列表
-  preRenderRouters: [],
+  preRenderRouters: [
+    // '/user/login'
+  ],
   // 渲染错误处理
   errorHandler(e){
     console.log('捕获到了错误：' + e)

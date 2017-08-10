@@ -73,7 +73,9 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	│   │   │       └── home // 嵌套路由的默认首页，该目录也为系统保留目录
 	│   │   ├── common       
 	│   │   │   ├── error
-	│   │   │   └── layout   // 布局组件
+	│   │   │   └── layouts  // 布局组件
+	│   │   │       ├── pc
+	│   │   │       └── mobile
 	│   │   ├── index        // 系统首页
 	│   │   │   └── children
 	│   │   │       └── home

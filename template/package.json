@@ -1,8 +1,8 @@
 {
-  "name": "Vue2-Starter",
+  "name": "{{name}}",
   "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "taoqili",
+  "description": "{{description}}",
+  "author": "{{author}}",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

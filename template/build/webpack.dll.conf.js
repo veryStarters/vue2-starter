@@ -7,8 +7,6 @@ module.exports = {
       'vue',
       'vue-router',
       'vuex',
-      'whatwg-fetch',
-      'fetch-jsonp',
       'babel-polyfill'
     ]
   },

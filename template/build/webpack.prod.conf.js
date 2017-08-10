@@ -58,6 +58,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       filename: config.build.index,
       template: 'index.html',
       inject: true,
+      appName: appConfig.appName,
       appType: appConfig.appType,
       minify: {
         removeComments: true,

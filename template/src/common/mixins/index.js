@@ -26,7 +26,7 @@ export default {
          */
         setTitle(title){
           let meta = this.$route && this.$route.meta ? this.$route.meta : {}
-          document.title = title || meta.title || ''
+          document.title = title || meta.title || config.appName || ''
         },
         /**
          * 登录状态监控

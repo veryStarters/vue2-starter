@@ -33,6 +33,7 @@ module.exports = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
+      appName: appConfig.appName,
       appType: appConfig.appType,
       inject: true
     }),

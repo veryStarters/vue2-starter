@@ -92,7 +92,7 @@ routers.push({
     auth: false,
     title: '您暂无访问权限！'
   },
-  component: r => require(['../pages/common/error/401.vue'], r)
+  component: r => require(['../pages/common/errors/401.vue'], r)
 })
 routers.push({
   path: '*',
@@ -101,6 +101,6 @@ routers.push({
     auth: false,
     title: '您访问的页面丢了！'
   },
-  component: r => require(['../pages/common/error/404.vue'], r)
+  component: r => require(['../pages/common/errors/404.vue'], r)
 })
 export default routers

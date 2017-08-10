@@ -212,7 +212,9 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
       // 如果出现获取用户信息异常，那就当作未登录处理，直接初始化应用
     })
 	```
-6. PC端、移动端多种布局支持，且支持自定义扩展，仅需在pages/common/layouts下增加对应的布局文件即可
+6. PC端、移动端多种布局支持，且支持自定义扩展，仅需在pages/common/layouts下增加对应的布局文件即可。
+	
+	先睹为快，不妨试试修改app.config.js中的appType为'mobile'或者'pc'试试！（记得要重新编译构建）
 	
 7. 侧边菜单栏、顶部导航栏
 	

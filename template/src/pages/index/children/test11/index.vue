@@ -1,6 +1,6 @@
 <template>
   <div class="index-children-test1-wrapper">
-    <p>test1</p>
+    <p>订单到底是什么东西？</p>
     <p><button @click="gotoTest2">test2</button></p>
   </div>
 </template>

@@ -36,6 +36,9 @@ module.exports = function () {
 
   app.use('/', router)
   app.listen(config.mockPort, function () {
-    console.log('\n本地开发环境即将启动， http://localhost:' + config.port)
+    console.log('\n本地开发环境即将启动，请访问：http://localhost:' + config.port)
+    if(config.httpsEnable){
+      console.log('您已开启https支持，请访问：https://localhost:' + config.httpsPort)
+    }
   })
 }

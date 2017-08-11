@@ -25,10 +25,10 @@ module.exports = {
     env: config.env,
     port: config.port,
     mockPort: config.mockPort,
-    autoOpenBrowser: true,
+    autoOpenBrowser: false,
     assetsSubDirectory: 'static',
     assetsPublicPath: config.assetsPublicPath,
-    httpsEnable: false,
+    httpsEnable: true,
     httpsPort: 8443,
     proxyTable: {
       '/api': {

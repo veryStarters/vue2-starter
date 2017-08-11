@@ -6,7 +6,7 @@
 import axios from 'axios'
 import config from 'config'
 let instance = axios.create({
-  baseURL: config.baseURL || 'http://localhost:8080/',
+  baseURL: config.baseURL || '/',
   method: 'post',
   withCredentials: true,
   timeout: 6000,

@@ -24,7 +24,7 @@ Object.keys(routes).forEach((key) => {
 
 let customs = createCustoms(children)
 const routers = [];
-
+//TODO 无限级嵌套
 Object.keys(notChildren).forEach((name) => {
   let path = '/' + name.replace(/([A-Z])/g, "/$1").toLowerCase()
   if (name === 'index') {

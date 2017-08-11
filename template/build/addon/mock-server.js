@@ -36,13 +36,6 @@ module.exports = function () {
 
   app.use('/', router)
   app.listen(config.mockPort, function () {
-    require('dns').lookup(require('os').hostname(), function (err, add, fam) {
-      console.log(
-        'Mock数据服务启动成功， http://localhost:' + config.mockPort +
-        '\nMock数据服务启动成功， http://' + add + ':' + config.mockPort +
-        '\n本地开发环境即将启动， http://localhost:' + config.port +
-        '\n本地开发环境即将启动， http://' + add + ':' + config.port
-      )
-    })
+    console.log('\n本地开发环境即将启动， http://localhost:' + config.port)
   })
 }

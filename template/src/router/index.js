@@ -35,7 +35,6 @@ Object.keys(notChildren).forEach((name) => {
     name: name,
     path: custom.path || path,
     meta: custom.meta || {},
-    query: custom.query || {},
     component: custom.component || notChildren[name],
     children: (() => {
       let ret = []
@@ -57,7 +56,6 @@ Object.keys(notChildren).forEach((name) => {
             name: componentName,
             path: childCustom.path || childPath,
             meta: childCustom.meta || {},
-            query: childCustom.query || {},
             component: childCustom.component || children[componentName],
             beforeEnter: childCustom.beforeEnter ||
             function (to, from, next) {

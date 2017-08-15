@@ -72,7 +72,7 @@ const initApp = () => {
 
   // 路由权限控制
   router.beforeEach((to, from, next) => {
-    console.log('即将访问路由：' + to.name)
+    console.log('即将访问路由：' + (to.name || to.path))
     progress.start()
     setTimeout(() => {
       progress.done()

@@ -63,7 +63,7 @@ var data = Mock.mock({
               label: '嵌套Home'
             },
             {
-              name: 'anotherTest1',
+              name: 'anotherTest1Home',
               label: '嵌套Test1',
               icon: 'el-icon-picture'
             }

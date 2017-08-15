@@ -1,4 +1,9 @@
 /**
+ * Created by Webstorm.
+ * @author taoqili
+ * @date 2017/8/14
+ */
+/**
  * 路由生成，本模块处理了自动生成路由的相关逻辑，一般无需更改。
  * 如有自定义路由需求，请移步至routes.custom.js文件
  * Created by Webstorm.
@@ -7,78 +12,91 @@
  */
 import * as routes from '../pages/routes'
 import * as comRoutes from '../components/routes'
-import createCustoms from './routes.custom'
-import utils from 'utils'
+import routesCustom from './routes.custom'
 
-//所有子路由
-let children = {}
-//所有父路由
-let notChildren = {}
+const customConfig = routesCustom()
+// 顶级路由
+let topRouters = {}
+// 所有子路由
+let allChildRouters = {}
+
+// 拆分路由分类
 Object.keys(routes).forEach((key) => {
   if (key.indexOf('Children') === -1) {
-    notChildren[key] = routes[key]
+    topRouters[key] = routes[key]
   } else {
-    children[key.replace(/Children/g, '')] = routes[key]
+    allChildRouters[key] = routes[key]
   }
 })
 
-let customs = createCustoms(children)
-const routers = [];
-//TODO 无限级嵌套
-Object.keys(notChildren).forEach((name) => {
+let routers = []
+
+//从顶层路由开始构建
+Object.keys(topRouters).forEach((name) => {
   let path = '/' + name.replace(/([A-Z])/g, "/$1").toLowerCase()
   if (name === 'index') {
     path = '/'
   }
-  const custom = customs[name] || {}
+  let custom = customConfig[name] || {}
   let router = {
     name: name,
     path: custom.path || path,
     meta: custom.meta || {},
-    component: custom.component || notChildren[name],
-    children: (() => {
-      let ret = []
-      if (utils.isEmpty(children)) {
-        return ret
-      }
-      Object.keys(children).forEach((componentName) => {
-        //获取当前
-        if (componentName.indexOf(name) === 0) {
-          let childName = componentName.replace(name, '').replace(/^[A-Z]{1}/g, function (match) {
-            return match.toLowerCase()
-          })
-          let childPath = childName.replace(/([A-Z])/g, "/$1").toLowerCase()
-          if (childName === 'home') {
-            childPath = ''
-          }
-          let childCustom = custom.children ? (custom.children[childName] || {}) : {}
-          ret.push({
-            name: componentName,
-            path: childCustom.path || childPath,
-            meta: childCustom.meta || {},
-            component: childCustom.component || children[componentName],
-            beforeEnter: childCustom.beforeEnter ||
-            function (to, from, next) {
-              next()
-            }
-          })
-        }
-      })
-      return ret
-    })(),
-    beforeRouteEnter: custom.beforeRouteEnter ||
-    function (to, from, next) {
+    component: custom.component || topRouters[name],
+    beforeRouteEnter: custom.beforeEnter || function (to, from, next) {
       next()
     }
   }
-  //若存在子路由，则父路由增加/结尾, 且清空命名路由
+  router.children = getChildren(name) || []
+  // 若存在子路由，则父路由增加/结尾, 且清空命名路由
   if (router.children.length) {
-    router.path = /\/$/.test(router.path) ? router.path : (router.path + '/')
+    router.path = /\/$/.test(path) ? path : (path + '/')
     router.name = ''
   }
   routers.push(router)
 })
-//组件路由注册
+
+// 获取并设置当前路由的子路由信息
+function getChildren(parentName) {
+  let ret = []
+  let router = {}
+  Object.keys(allChildRouters).forEach((name) => {
+    //获取以父路由名称开头的子路由
+    if (hasChildren(name, parentName)) {
+      let parentPath = getParentPath(parentName)
+      let childName = getChildName(name, parentName)
+      let childPath = getChildPath(childName, parentPath)
+      if (childName === parentName.replace(/Children/g, '') + 'Home') {
+        childPath = ''
+      }
+      let custom = getCustomConfig(name) || {}
+      router = {
+        name: childName,
+        path: custom.path || childPath,
+        meta: custom.meta || {},
+        component: custom.component || allChildRouters[name],
+        beforeEnter: custom.beforeEnter || function (to, from, next) {
+          next()
+        }
+      }
+      router.children = getChildren(name) || []
+      if (router.children.length) {
+        router.name = ''
+        router.path = /\/$/.test(router.path) ? router.path : (router.path + '/')
+        if (router.children.length === 1 && router.children[0].name !== 'home') {
+          console.log('路由' + childName + ' 缺少默认的home路由')
+        }
+      }
+
+      ret.push(router)
+    }
+  })
+  return ret
+}
+
+console.log(routers)
+
+// 组件路由注册
 Object.keys(comRoutes).forEach((name) => {
   routers.push({
     name: 'com_' + name,
@@ -86,6 +104,7 @@ Object.keys(comRoutes).forEach((name) => {
     component: comRoutes[name]
   })
 })
+// 401
 routers.push({
   name: '401',
   path: '/401',
@@ -95,6 +114,7 @@ routers.push({
   },
   component: r => require(['../pages/common/errors/401.vue'], r)
 })
+// 404
 routers.push({
   path: '*',
   name: '404',
@@ -104,4 +124,35 @@ routers.push({
   },
   component: r => require(['../pages/common/errors/404.vue'], r)
 })
+
+function hasChildren(fullName, parentName) {
+  let tmpName = parentName + 'Children'
+  return fullName.indexOf(tmpName) === 0 && fullName.replace(tmpName, '').indexOf('Children') === -1
+}
+
+function getChildName(fullName, parentName) {
+  return parentName.replace(/Children/g, '') + fullName.replace(parentName, '').replace('Children', '').replace(/Children.*/, '')
+}
+
+function getChildPath(childName, parentPath) {
+  return childName.replace(/([A-Z])/g, '/$1').toLowerCase().replace(parentPath + '/', '')
+}
+
+function getParentPath(parentName) {
+  return parentName.replace(/Children/g, '').replace(/([A-Z])/g, "/$1").toLowerCase()
+}
+
+function getCustomConfig(name) {
+  let keys = name.toLowerCase().split('children')
+  let config = {}
+  let parentConfig = customConfig
+  for (let i = 0; i < keys.length; i++) {
+    config = parentConfig[keys[i]]
+    if(config && config.children) {
+      parentConfig = config.children
+    }
+  }
+  return config || {}
+}
+
 export default routers

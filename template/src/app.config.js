@@ -10,7 +10,7 @@ const AppType = 'pc'
 
 // 应用具体配置
 const AppConfig = {
-  appName: '非常可乐',
+  appName: 'Vue2-Starter',
   appType: AppType,
   layout: (function (type) {
     return {

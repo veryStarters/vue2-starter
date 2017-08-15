@@ -1,6 +1,6 @@
 <template>
   <div class="test-children-test1-wrapper">
-    another test1
+    <router-view></router-view>
   </div>
 </template>
 <script>

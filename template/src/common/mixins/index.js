@@ -16,9 +16,6 @@ export default {
           remainingTime: Math.ceil(utils.getLoginRemainingTime() / 60)
         }
       },
-      mounted: function () {
-        this.setTitle()
-      },
       methods: {
         /**
          * 标题修改

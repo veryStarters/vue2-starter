@@ -5,7 +5,17 @@
 </template>
 <script>
   import 'styles/index.pcss'
+  import mixins from 'mixins'
   export default {
-    name: 'app'
+    name: 'app',
+    mixins: [mixins],
+    created(){
+      this.setTitle()
+    },
+    watch: {
+      '$route': function () {
+        this.setTitle()
+      }
+    }
   }
 </script>

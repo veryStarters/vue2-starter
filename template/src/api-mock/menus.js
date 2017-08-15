@@ -37,11 +37,6 @@ var data = Mock.mock({
       icon: 'el-icon-menu',
       children: [
         {
-          name: 'nav4',
-          icon: 'el-icon-warning',
-          label: '丢失的页面'
-        },
-        {
           name: 'submenu2',
           label: '子菜单2',
           icon: 'el-icon-menu',

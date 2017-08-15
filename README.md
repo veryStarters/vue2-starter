@@ -8,10 +8,9 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 ### 主要功能
 
 - vue-cli默认功能（已经集成vue, vue-router, vuex, axios, element-ui, mint-ui）
-- 根据vue文件自动生成（子）路由（可配置，支持一级、二级嵌套）
-- 数据Mock（自动生成mock数据文件，集成MockJS）
+- 根据vue文件自动生成（子）路由（可配置，支持无限级嵌套）
+- 数据Mock（根据API自动生成mock数据文件，集成MockJS）
 - https支持（可配置开启）
-- 通用directive、mixin支持
 - 预渲染支持（可配置，支持多个指定路由的预渲染）
 - less、scss、postcss支持（可配置）
 - jsx|vue 两种语法模式支持（menubar采用了jsx语法来实现）

@@ -14,7 +14,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 - 预渲染支持（可配置，支持多个指定路由的预渲染）
 - less、scss、postcss支持（可配置）
 - jsx|vue 两种语法模式支持（menubar采用了jsx语法来实现）
-- PC端（展示、后台）、移动端等多种布局支持（可配置）
+- PC端（前台展示、后台管理系统）、移动端等多种布局支持（可配置）
 - 侧边菜单栏（可配置，支持无限级嵌套）
 - 顶部导航栏（可配置，支持多级嵌套）
 - 通用登录、登录超时检测支持
@@ -91,9 +91,11 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	
 	A. 默认情况下，自动创建的路由规则将按照以pages作为根目录的目录路径来代替，具体规则如下:
 	```
-	./src/pages/user/login/index.vue    =>    {name: 'userLogin', path: '/user/login'}
-	./src/pages/test/index.vue          =>    {name: 'test', path: '/test'}
-	./src/pages/test/test1/index.vue    =>    {name: 'testTest1', path: '/test/test1'}
+	./src/pages/user/login/index.vue             =>    {name: 'userLogin', path: '/user/login'}
+	./src/pages/test/index.vue                   =>    {name: 'test', path: '/test'}
+	./src/pages/test/test1/index.vue             =>    {name: 'testTest1', path: '/test/test1'}
+	./src/pages/hotel/children/home/index.vue    =>    {name: '', path: '/hotel/', children: [{name: 'hotelHome', path:''}]}
+	./src/pages/hotel/children/test1/index.vue   =>    {name: '', path: '/hotel/', children: [{name: 'hotelTest1', path: 'test1'}]}
 	```
 	通俗来讲，就是将目录层级路径作为path，目录层级驼峰后化后作为name。
 	
@@ -112,6 +114,13 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	  meta: {
 	    title: '测试',
 	    auth: false
+	  },
+	  children: {
+	  	test1: {
+	  		meta: {
+	  			title: '子路由自定义设置'
+	  		}
+	  	}
 	  }
 	}
 	```

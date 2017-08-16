@@ -1,6 +1,7 @@
 <script>
   import {mapGetters, mapActions} from 'vuex'
   import config from 'config'
+  import localMenus from 'src/contants/menus.js'
   export default {
     name: 'menubar',
     components: {},
@@ -77,9 +78,8 @@
             this.openedNames = item.indexPath.slice(0, item.indexPath.length - 1)
           })
         }
-        let tmp = config.layout.menus
-        if (tmp && tmp.length) {
-          createMenus(tmp)
+        if (localMenus && localMenus.length) {
+          createMenus(localMenus)
         } else {
           this.getMenus().then(res => {
             createMenus(res.menus)

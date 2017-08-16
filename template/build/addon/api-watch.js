@@ -18,7 +18,7 @@ var apiTemplate = require('./template/api-template')
 module.exports = function () {
   return {
     start(){
-      var apiPath = Path.join(__dirname, '../../src/api/index.js')
+      var apiPath = Path.join(__dirname, '../../src/contants/api.js')
       fs.watchFile(apiPath, {
         persistent: true,
         interval: 2

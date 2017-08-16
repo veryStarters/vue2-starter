@@ -32,7 +32,9 @@
       )
     },
     mounted() {
-      this.loadMenus()
+      if(config.appType === 'pc'){
+        this.loadMenus()
+      }
     },
     methods: {
       ...mapActions(['getMenus']),
@@ -62,8 +64,8 @@
         )
       },
       loadMenus(){
-        this.getMenus().then(res => {
-          this.menus = res.menus
+        const createMenus = menus => {
+          this.menus = menus
           //根据路由name展开menus
           this.$nextTick(() => {
             let menu = this.$refs.menu
@@ -74,7 +76,15 @@
             }
             this.openedNames = item.indexPath.slice(0, item.indexPath.length - 1)
           })
-        })
+        }
+        let tmp = config.layout.menus
+        if (tmp && tmp.length) {
+          createMenus(tmp)
+        } else {
+          this.getMenus().then(res => {
+            createMenus(res.menus)
+          })
+        }
       },
       handleSelect(name){
         this.$router.push({name: name})

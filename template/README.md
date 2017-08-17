@@ -52,7 +52,6 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	│   └── dll
 	├── config
 	├── src
-	│   ├── api              // API接口配置
 	│   ├── api-mock         // 自动生成的mock数据文件目录
 	│   │   └── user
 	│   ├── assets
@@ -66,6 +65,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	│   ├── components       // 组件库
 	│   │   ├── hello
 	│   │   └── sticky
+	│   ├── contants         // 常量定义
 	│   ├── pages            // 页面视图，一个文件夹 + 一个index.vue文件 = 一个自动路由
 	│   │   ├── another
 	│   │   │   └── children // 嵌套路由，系统保留目录，位于其下的page将作为嵌套路由存在
@@ -149,7 +149,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 
 	针对每一个api，V2S都会自动生成一个mock数据文件，具体操作步骤：
 	
-	A. 在api/index.js文件中新增一条API记录
+	A. 在contants/api.js文件中新增一条API记录
 	```
 	async getTestInfo(params) {
 	  return await fetchData('/api/test/info', params)
@@ -234,7 +234,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	
 	但如何实现侧边菜单栏，尤其是跟权限结合起来菜单栏相信是很多人的噩梦。
 	
-	V2S内置了可无限级嵌套的侧边菜单栏和顶部导航栏（可配置是否使用, 在app.config.js中），可大幅提升开发者的开发效率
+	V2S内置了可无限级嵌套的侧边菜单栏和顶部导航栏（可配置是否使用, 在app.config.js以及contants/menus.js中配置），可大幅提升开发者的开发效率
 
 
 

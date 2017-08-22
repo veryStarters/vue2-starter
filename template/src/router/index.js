@@ -40,6 +40,7 @@ Object.keys(topRouters).forEach((name) => {
   let custom = customConfig[name] || {}
   let router = {
     name: name,
+    _name: name,  // 存在子路由的路由会被清空name，此处做一个备份
     path: custom.path || path,
     meta: custom.meta || {},
     component: custom.component || topRouters[name],
@@ -72,6 +73,7 @@ function getChildren(parentName) {
       let custom = getCustomConfig(name) || {}
       router = {
         name: childName,
+        _name: childName,
         path: custom.path || childPath,
         meta: custom.meta || {},
         component: custom.component || allChildRouters[name],

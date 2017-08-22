@@ -26,6 +26,10 @@ module.exports = function () {
     var modules = loadModule(path.join(__dirname, '../../src/api-mock' + dirPath))
     var module = modules[moduleName]
     res.header("Content-Type", "application/json; charset=utf-8");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
     res.cookie('TestCookie', 1, {maxAge: 30 * 60 * 1000})
     if (module && typeof module === 'function') {
       res.end(JSON.stringify(module(req, res, next)))

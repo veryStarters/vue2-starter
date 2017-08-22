@@ -28,7 +28,7 @@ module.exports = function () {
           terminal: false
         });
         rd.on('line', function (line) {
-          var matches = line.match(/fetchData\((?:'|")\/api(.*)\/(.*?)(?:'|")/)
+          var matches = line.match(/fetch\((?:'|")\/api(.*)\/(.*?)(?:'|")/)
           if (!matches || !matches[2]) return;
           var path = Path.join(__dirname, '../../src/api-mock', matches[1])
           var name = matches[2] + '.js'

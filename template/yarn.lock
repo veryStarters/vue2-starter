@@ -58,6 +58,10 @@ add-asset-html-webpack-plugin@^1.0.2:
   dependencies:
     bluebird "^3.3.5"
 
+address@^1.0.3:
+  version "1.0.3"
+  resolved "http://registry.npm.taobao.org/address/download/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
+
 ajv-keywords@^1.0.0:
   version "1.5.1"
   resolved "http://registry.npm.taobao.org/ajv-keywords/download/ajv-keywords-1.5.1.tgz#314dd0a4b3368fad3dfcdc54ede6171b886daf3c"

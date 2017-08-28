@@ -2,10 +2,6 @@ require('./check-versions')()
 require('./addon/dev-server-watch')()
 require('./addon/mock-server')()
 var config = require('../config')
-if (!process.env.NODE_ENV) {
-  process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
-}
-
 var opn = require('opn')
 var path = require('path')
 var express = require('express')
@@ -67,7 +63,7 @@ app.use(devMiddleware)
 app.use(hotMiddleware)
 
 // serve pure static assets
-var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
+var staticPath = path.posix.join(config.assetsPublicPath, config.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
 var uri = 'http://localhost:' + port

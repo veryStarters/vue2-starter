@@ -5,10 +5,11 @@
   "author": "{{author}}",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
-    "start": "node build/dev-server.js",
-    "build": "cross-env NODE_ENV=production node build/build.js",
+    "dev": "cross-env NODE_ENV=development node build/dev-server.js",
+    "start": "cross-env NODE_ENV=development node build/dev-server.js",
     "build:test": "cross-env NODE_ENV=testing node build/build.js",
+    "build:pre": "cross-env NODE_ENV=preview node build/build.js",
+    "build": "cross-env NODE_ENV=production node build/build.js",
     "dll": "webpack --config build/webpack.dll.conf.js"
   },
   "dependencies": {

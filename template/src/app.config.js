@@ -42,7 +42,20 @@ const AppConfig = {
   preRenderRouters: [
     // '/user/login'
   ],
-
+  // 资源路径
+  assetsPublicPath: {
+    development: '/',
+    testing: 'http://test.static.com/',
+    preview: 'http://pre.static.com/',
+    production: 'http://prod.static.com/'
+  },
+  // Api路径
+  apiPath: {
+    development: '/',
+    testing: 'http://test.my-site.com/',
+    preview: 'http://pre.my-site.com/',
+    production: 'http://prod.my-site.com/'
+  },
   // 渲染错误处理
   errorHandler(e){
     console.log('捕获到了错误：' + e)

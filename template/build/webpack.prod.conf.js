@@ -12,7 +12,7 @@ var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var BeforeBuildPlugin = require('./addon/before-build-webpack-plugin')
 var PrerenderSpaPlugin = require('prerender-spa-plugin')
 
-var env = config.build.env
+var env = config.env
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -23,7 +23,7 @@ var webpackConfig = merge(baseWebpackConfig, {
   },
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
-    path: config.build.assetsRoot,
+    path: config.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
@@ -94,7 +94,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
-        to: config.build.assetsSubDirectory,
+        to: config.assetsSubDirectory,
         ignore: ['.*']
       }
     ]),

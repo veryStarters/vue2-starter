@@ -14,20 +14,22 @@ var configs = {
     },
     env: {
       NODE_ENV: '"development"',
-    },
-    assetsPublicPath: '/'
+    }
   },
   testing: {
     env: {
       NODE_ENV: '"testing"',
-    },
-    assetsPublicPath: 'http://beta.static.com/'
+    }
+  },
+  preview: {
+    env: {
+      NODE_ENV: '"preview"'
+    }
   },
   production: {
     env: {
       NODE_ENV: '"production"',
-    },
-    assetsPublicPath: 'http://prod.static.com/'
+    }
   }
 }
 module.exports = configs[process.env.NODE_ENV || 'development']

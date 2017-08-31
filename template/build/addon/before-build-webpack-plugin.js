@@ -8,39 +8,43 @@ var path = require('path')
 function BeforeBuildPlugin() {
 }
 BeforeBuildPlugin.prototype.apply = function (compiler) {
-  var dirPath = path.join(__dirname, '../../src/pages/')
-  var routePath = path.join(dirPath, 'routes.js');
+  var pageDirPath = path.join(__dirname, '../../src/pages/')
+  var componentDirPath = path.join(__dirname, '../../src/components/')
+  var routePath = path.join(pageDirPath, 'routes.js');
+  var comRoutePath = path.join(componentDirPath, 'routes.js');
   compiler.plugin("compile", function () {
     clearFileContent(routePath)
-    walk(dirPath)
+    clearFileContent(comRoutePath)
+    walk(pageDirPath, routePath, 'pages')
+    walk(componentDirPath, comRoutePath, 'components')
     console.log('\nroute create done')
   });
 
-  function walk(filePath) {
+  function walk(filePath, routePath, type) {
     var fileList = fs.readdirSync(filePath);
     fileList.forEach(function (file) {
       var fileName = path.join(filePath, file)
       if (fs.statSync(fileName).isFile()) {
         if (/index\.vue$/.test(fileName)) {
-          var tmpPath = formatPath(fileName);
+          var tmpPath = formatPath(fileName, type);
           var name = path2name(tmpPath);
           fs.appendFile(
             routePath,
-            `export const ${name} = r => require(['../pages${tmpPath}'], r)\n`,
+            `export const ${name} = r => require(['../${type}${tmpPath}'], r)\n`,
             function (err) {
               if (err) throw err;
             }
           );
         }
       } else if (fs.statSync(fileName).isDirectory()) {
-        walk(fileName)
+        walk(fileName,routePath,type)
       }
     });
   }
 };
-function formatPath(path) {
+function formatPath(path, type) {
   path = path.replace(/\\/gi, '/')
-  var reg = new RegExp('^.*src\\/pages', 'gi')
+  var reg = new RegExp('^.*src\\/' + type, 'gi')
   return path.replace(reg, '').replace('index.vue', '');
 }
 

@@ -6,7 +6,7 @@
 import axios from 'axios'
 import config from 'config'
 let instance = axios.create({
-  baseURL: config.apiPath[process.env.NODE_ENV] || '/',
+  baseURL: config.apiPath[process.env.NODE_ENV] || config.apiPath['development'] || '/',
   method: 'post',
   withCredentials: true,
   timeout: 6000,

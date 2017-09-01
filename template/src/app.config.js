@@ -38,10 +38,6 @@ const AppConfig = {
   indexPageName: 'indexHome',
   // 登录页路由名称
   loginPageName: 'userLogin',
-  // 预渲染路由列表
-  preRenderRouters: [
-    // '/user/login'
-  ],
   // 资源路径
   assetsPublicPath: {
     development: '/',

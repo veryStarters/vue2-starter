@@ -10,6 +10,10 @@ module.exports = {
   assetsRoot: assetsRoot,
   assetsSubDirectory: assetsSubDirectory,
   assetsPublicPath: assetsPublicPath,
+  // 预渲染路由列表
+  preRenderRouters: [
+    // '/user/login'
+  ],
   build: {
     index: path.resolve(__dirname, '../dist/index.html'),
     productionSourceMap: true,

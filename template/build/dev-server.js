@@ -1,13 +1,13 @@
 require('./check-versions')()
 require('./addon/dev-server-watch')()
 require('./addon/mock-server')()
-var config = require('../config')
 var opn = require('opn')
 var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
+var envConfig = require('../config')
 
 var fs = require('fs');
 var https = require('https');
@@ -16,12 +16,12 @@ var certificate = fs.readFileSync('./build/addon/localhost.crt');
 var credentials = {key: privateKey, cert: certificate};
 
 // default port where dev server listens for incoming traffic
-var port = process.env.PORT || config.dev.port
+var port = process.env.PORT || envConfig.dev.port
 // automatically open browser, if not set will be false
-var autoOpenBrowser = !!config.dev.autoOpenBrowser
+var autoOpenBrowser = !!envConfig.dev.autoOpenBrowser
 // Define HTTP proxies to your custom API backend
 // https://github.com/chimurai/http-proxy-middleware
-var proxyTable = config.dev.proxyTable
+var proxyTable = envConfig.dev.proxyTable
 
 var app = express()
 var compiler = webpack(webpackConfig)
@@ -63,7 +63,7 @@ app.use(devMiddleware)
 app.use(hotMiddleware)
 
 // serve pure static assets
-var staticPath = path.posix.join(config.assetsPublicPath, config.assetsSubDirectory)
+var staticPath = path.posix.join(envConfig.assetsPublicPath, envConfig.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
 var uri = 'http://localhost:' + port
@@ -84,9 +84,9 @@ devMiddleware.waitUntilValid(() => {
 
 var server = app.listen(port)
 
-if (config.dev.httpsEnable) {
+if (envConfig.dev.httpsEnable) {
   var httpsServer = https.createServer(credentials, app);
-  httpsServer.listen(config.dev.httpsPort || 8443)
+  httpsServer.listen(envConfig.dev.httpsPort || 8443)
 }
 
 module.exports = {

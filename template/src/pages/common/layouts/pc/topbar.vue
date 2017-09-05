@@ -20,7 +20,7 @@
             <el-col span={4}>
               <div class='logo-info-container' onClick='handleGoHome'>
                 <img src={img} height='45' align='absmiddle'/>
-                <span class='name'>xxx集团</span>
+                <span class='name'>xxx管理系统</span>
               </div>
             </el-col>
             <el-col span={17}>

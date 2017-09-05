@@ -1,6 +1,7 @@
 var path = require('path')
 var config = require('../config')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var env = process.env.NODE_ENV
 
 exports.assetsPath = function (_path) {
   return path.posix.join(config.assetsSubDirectory, _path)
@@ -12,7 +13,7 @@ exports.cssLoaders = function (options) {
   var cssLoader = {
     loader: 'css-loader',
     options: {
-      minimize: process.env.NODE_ENV === 'production',
+      minimize: env === 'production',
       sourceMap: options.sourceMap
     }
   }

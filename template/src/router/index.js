@@ -86,7 +86,7 @@ function getChildren(parentName) {
         router.name = ''
         router.path = /\/$/.test(router.path) ? router.path : (router.path + '/')
         if (router.children.length === 1 && router.children[0].name !== 'home') {
-          console.log('路由' + childName + ' 缺少默认的home路由')
+          console.warn('路由' + childName + ' 缺少默认的home路由')
         }
       }
 
@@ -95,8 +95,6 @@ function getChildren(parentName) {
   })
   return ret
 }
-
-console.log(routers)
 
 // 组件路由注册
 Object.keys(comRoutes).forEach((name) => {

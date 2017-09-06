@@ -54,7 +54,7 @@ const AppConfig = {
   },
   // 渲染错误处理
   errorHandler(e){
-    console.log('捕获到了错误：' + e)
+    console.error('捕获到了错误：' + e)
   }
 }
 

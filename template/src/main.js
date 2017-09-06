@@ -108,7 +108,7 @@ const initApp = () => {
             next()
           } else {
             //4.无权限则访问401
-            console.log('无权访问路由：' + to.name + ' ，请联系管理员添加！')
+            console.warn('无权访问路由：' + to.name + ' ，请联系管理员添加！')
             next({name: '401'})
           }
         }
@@ -158,7 +158,7 @@ api.getUserInfo().then(res => {
     initApp()
   } else {
     if (config.defaultAuth) {
-      console.log('当前未登录或者登录状态已经失效，仅能访问无权限页面！')
+      console.warn('当前未登录或者登录状态已经失效，仅能访问无权限页面！')
     }
     initApp()
   }

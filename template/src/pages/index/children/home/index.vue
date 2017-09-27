@@ -4,5 +4,5 @@
   </div>
 </template>
 <!--可以拆分JS|CSS至单独的文件-->
-<script src="./index.js"></script>
-<style src="./index.pcss" lang="postcss" scoped></style>
+<script src="./home.js"></script>
+<style src="./home.pcss" lang="postcss" scoped></style>

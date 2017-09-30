@@ -6,26 +6,12 @@
 // 应用类型 pc|mobile
 // PS: 修改之后需要重新编译启动，否则不会生效;
 // 由于无法做到条件加载，此处修改后，最好同步修改main.js中引入的UI库，否则element-ui对移动端来说太过巨大
-const AppType = 'pc'
+const APP_TYPE = 'pc'
 
 // 应用具体配置
-const AppConfig = {
+const APP_CONFIG = {
   appName: 'Vue2-Starter',
-  appType: AppType,
-  layout: (function (type) {
-    return {
-      // pc端配置
-      pc: {
-        topbar: 2,              // 0 hidden; 1 show; 2 fixed
-        sidebar: 1,             // 0 hidden; 1 show;
-        sidebarTheme: 'dark'    // light; dark
-      },
-      // 移动端配置
-      mobile: {
-
-      }
-    }[type]
-  })(AppType),
+  appType: APP_TYPE,
   // session有效时间 ms
   sessionDuration: 30 * 60 * 1000,
   // 请求头配置
@@ -58,4 +44,4 @@ const AppConfig = {
   }
 }
 
-module.exports = AppConfig
+module.exports = APP_CONFIG

@@ -15,7 +15,7 @@
   </div>
 </template>
 <script>
-  import config from 'config'
+  import config from './init.conf'
   import appMain from './appmain.vue'
   import topbar from './topbar.vue'
   import sidebar from './sidebar.vue'
@@ -23,11 +23,11 @@
   export default {
     name: 'Layout',
     data(){
-      let layout = config.layout
+      console.log(config)
       return {
-        topbar: layout.topbar || 0,
-        sidebar: layout.sidebar || 0,
-        dark: layout.sidebarTheme === 'dark'
+        topbar: config.topbar || 0,
+        sidebar: config.sidebar || 0,
+        dark: config.sidebarTheme === 'dark'
       }
     },
     mounted() {

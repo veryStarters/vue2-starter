@@ -1,7 +1,7 @@
 <script>
   import {mapGetters, mapActions} from 'vuex'
-  import config from 'config'
-  import localMenus from 'config/menus.js'
+  import config from './init.conf'
+  import localMenus from '../../menus'
   export default {
     name: 'menubar',
     components: {},
@@ -20,7 +20,7 @@
       return (
         <div class='menubar-wrapper'>
           <el-menu ref='menu' default-active={this.activeName} default-openeds={this.openedNames} unique-opened={true}
-                   class='el-menu-vertical-demo' onSelect={this.handleSelect} theme={config.layout.sidebarTheme}>
+                   class='el-menu-vertical-demo' onSelect={this.handleSelect} theme={config.sidebarTheme}>
             {
               this.menus.map(menu => {
                 return !menu.children || !menu.children.length
@@ -33,9 +33,7 @@
       )
     },
     mounted() {
-      if(config.appType === 'pc'){
-        this.loadMenus()
-      }
+      this.loadMenus()
     },
     methods: {
       ...mapActions(['getMenus']),

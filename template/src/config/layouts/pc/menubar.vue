@@ -1,7 +1,7 @@
 <script>
   import {mapGetters, mapActions} from 'vuex'
   import config from 'config'
-  import localMenus from 'src/contants/menus.js'
+  import localMenus from 'config/menus.js'
   export default {
     name: 'menubar',
     components: {},

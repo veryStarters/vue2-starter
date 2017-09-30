@@ -5,6 +5,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .idea
-**/routes.js
+**/pages/routes.js
+**/components/routes.js
 **/children.js
 

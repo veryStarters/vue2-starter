@@ -1,7 +1,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
 var envConfig = require('./env.config')
-var config = require('../src/app.config')
+var config = require('../src/config')
 var assetsRoot = path.resolve(__dirname, '../dist')
 var assetsSubDirectory = 'static'
 var assetsPublicPath = config.assetsPublicPath[process.env.NODE_ENV]

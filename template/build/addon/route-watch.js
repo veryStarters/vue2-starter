@@ -24,16 +24,16 @@ var server = {
     var startTime = Date.now();
     var blocks = {};
     var routesPath = Path.join(__dirname, '../../src/pages/routes.js'),
-      pagesPath = Path.join(__dirname, '../../src/pages'),
-      componentsRoutePath = Path.join(__dirname, '../../src/components/routes.js'),
-      componentsPath = Path.join(__dirname, '../../src/components');
+      pagesPath = Path.join(__dirname, '../../src/pages');
+      // componentsRoutePath = Path.join(__dirname, '../../src/common/components/routes.js'),
+      // componentsPath = Path.join(__dirname, '../../src/common/components');
 
     routes2template(routesPath, pagesPath, 'pages');
     template2routes(pagesPath, routesPath, 'pages');
     template2Store()
 
-    routes2template(componentsRoutePath, componentsPath, 'components', true);
-    template2routes(componentsPath, componentsRoutePath, 'components', true);
+    // routes2template(componentsRoutePath, componentsPath, 'components', true);
+    // template2routes(componentsPath, componentsRoutePath, 'components', true);
 
     /**
      * 通过路由文件生成文件模板

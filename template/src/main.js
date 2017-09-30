@@ -6,23 +6,18 @@
 import 'babel-polyfill'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from './store'
-import config from './app.config'
-import App from './App'
-import routes from './router'
 import utils from 'utils'
 import api from 'api'
-import components from './components/global'
-import directive from './common/directives'
-import mixin from './common/mixins'
+import store from './store'
+import config from './config/'
+import App from './App'
+import routes from './common/router'
+import components from 'components/global'
+import directive from 'directives'
+import mixins from 'mixins'
 import progress from 'nprogress'
 import 'nprogress/nprogress.css'
-
-// 导入布局pc的基础UI库，请配合app.config.js中的appType参数选择性导入，这样能最大程度减少最后的打包尺寸
-import 'pages/common/layouts/pc/uilibs'
-
-// 导入布局mobile的基础UI库
-import 'pages/common/layouts/mobile/uilibs'
+import 'config/layout'
 
 // 初始化系统模块配置信息
 Vue.config.productionTip = false
@@ -31,6 +26,7 @@ progress.configure({
   showSpinner: false
 })
 Vue.use(VueRouter)
+
 components.forEach(component => {
   Vue.component(component.name, component)
 })
@@ -45,20 +41,13 @@ const router = new VueRouter({
       return savedPosition
     } else {
       let position = {}
-      // new navigation.
-      // scroll to anchor by returning the selector
       if (to.hash) {
         position.selector = to.hash
       }
-      // check if any matched route config has meta that requires scrolling to top
       if (to.matched.some(m => m.meta.scrollToTop)) {
-        // cords will be used if no selector is provided,
-        // or if the selector didn't match any element.
         position.x = 0
         position.y = 0
       }
-      // if the returned position is falsy or an empty object,
-      // will retain current scroll position.
       return position
     }
   }
@@ -68,7 +57,7 @@ const router = new VueRouter({
 const initApp = () => {
   //初始化全局指令和混入
   directive.init()
-  mixin.init()
+  mixins.init()
 
   // 路由权限控制
   router.beforeEach((to, from, next) => {

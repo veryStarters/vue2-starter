@@ -227,7 +227,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 
 	V2S默认提供了pc和mobile两个布局，分别引入了element-ui和mint-ui组件库，有需要的同学也可以替换成自己熟悉的。
 	
-	先睹为快，不妨试试修改app.config.js中的appType为'mobile'或者'pc'试试！（记得要重新编译构建哦）
+	先睹为快，不妨试试修改config.js中的appType为'mobile'或者'pc'试试！（记得要重新编译构建哦）
 	
 7. 侧边菜单栏、顶部导航栏
 	
@@ -235,7 +235,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	
 	但如何实现侧边菜单栏，尤其是跟权限结合起来菜单栏相信是很多人的噩梦。
 	
-	V2S内置了可无限级嵌套的侧边菜单栏和顶部导航栏（可配置是否使用, 在app.config.js以及contants/menus.js中配置），可大幅提升开发者的开发效率
+	V2S内置了可无限级嵌套的侧边菜单栏和顶部导航栏（可配置是否使用, 在config.js以及contants/menus.js中配置），可大幅提升开发者的开发效率
 
 
 

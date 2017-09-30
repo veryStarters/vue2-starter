@@ -29,7 +29,7 @@ export default (() => {
      */
     getLoginRemainingTime(){
       let loginTime = Math.ceil(+localStorage.getItem(LOGIN_TIME) / 1000)
-      return config.sessionDuration / 1000 - (Math.ceil(Date.now() / 1000) - loginTime)
+      return (config.sessionDuration || 30 * 60 * 1000) / 1000 - (Math.ceil(Date.now() / 1000) - loginTime)
     },
     /**
      * 从缓存获取用户信息

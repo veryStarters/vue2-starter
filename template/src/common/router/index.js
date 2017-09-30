@@ -10,11 +10,10 @@
  * @author taoqili
  * @date 2017/4/12
  */
-import * as routes from '../pages/routes'
-import * as comRoutes from '../components/routes'
-import routesCustom from './routes.custom'
+import * as routes from 'pages/routes'
+import * as componentRoutes from 'components/routes'
+import * as customRoutes from 'config/routes'
 
-const customConfig = routesCustom()
 // 顶级路由
 let topRouters = {}
 // 所有子路由
@@ -37,7 +36,7 @@ Object.keys(topRouters).forEach((name) => {
   if (name === 'index') {
     path = '/'
   }
-  let custom = customConfig[name] || {}
+  let custom = customRoutes[name] || {}
   let router = {
     name: name,
     _name: name,  // 存在子路由的路由会被清空name，此处做一个备份
@@ -70,7 +69,7 @@ function getChildren(parentName) {
       if (childName === parentName.replace(/Children/g, '') + 'Home') {
         childPath = ''
       }
-      let custom = getCustomConfig(name) || {}
+      let custom = getCustomRoutes(name) || {}
       router = {
         name: childName,
         _name: childName,
@@ -97,11 +96,11 @@ function getChildren(parentName) {
 }
 
 // 组件路由注册
-Object.keys(comRoutes).forEach((name) => {
+Object.keys(componentRoutes).forEach((name) => {
   routers.push({
     name: 'com_' + name,
     path: '/components/' + name.replace(/([A-Z])/g, "/$1").toLowerCase(),
-    component: comRoutes[name]
+    component: componentRoutes[name]
   })
 })
 // 401
@@ -112,7 +111,7 @@ routers.push({
     auth: false,
     title: '您暂无访问权限！'
   },
-  component: r => require(['../pages/common/errors/401.vue'], r)
+  component: r => require(['pages/common/errors/401.vue'], r)
 })
 // 404
 routers.push({
@@ -122,7 +121,7 @@ routers.push({
     auth: false,
     title: '您访问的页面丢了！'
   },
-  component: r => require(['../pages/common/errors/404.vue'], r)
+  component: r => require(['pages/common/errors/404.vue'], r)
 })
 
 function hasChildren(fullName, parentName) {
@@ -142,10 +141,10 @@ function getParentPath(parentName) {
   return parentName.replace(/Children/g, '').replace(/([A-Z])/g, "/$1").toLowerCase()
 }
 
-function getCustomConfig(name) {
+function getCustomRoutes(name) {
   let keys = name.toLowerCase().split('children')
   let config = {}
-  let parentConfig = customConfig
+  let parentConfig = customRoutes
   for (let i = 0; i < keys.length; i++) {
     config = parentConfig[keys[i]]
     if(config && config.children) {

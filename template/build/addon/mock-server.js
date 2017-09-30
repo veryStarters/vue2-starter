@@ -24,7 +24,7 @@ module.exports = function () {
     var lastIndex = pathName.lastIndexOf('/') + 1
     var dirPath = pathName.substring(0, lastIndex).replace('/api', '')
     var moduleName = pathName.substring(lastIndex).replace('&', '')
-    var modules = loadModule(path.join(__dirname, '../../src/api-mock' + dirPath))
+    var modules = loadModule(path.join(__dirname, '../../src/config/mock' + dirPath))
     var module = modules[moduleName]
     res.header("Content-Type", "application/json; charset=utf-8");
     res.header("Access-Control-Allow-Origin", "*");

@@ -23,7 +23,6 @@
   export default {
     name: 'Layout',
     data(){
-      console.log(config)
       return {
         topbar: config.topbar || 0,
         sidebar: config.sidebar || 0,

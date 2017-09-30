@@ -3,6 +3,7 @@ var utils = require('./utils')
 var webpack = require('webpack')
 var config = require('../config')
 var appConfig = require('../src/config')
+var {template} = require('../src/config/layout')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -32,9 +33,8 @@ module.exports = merge(baseWebpackConfig, {
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'index.html',
+      template: template,
       appName: appConfig.appName,
-      appType: appConfig.appType,
       inject: true
     }),
     new FriendlyErrorsPlugin(),

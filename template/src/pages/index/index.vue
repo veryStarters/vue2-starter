@@ -1,16 +1,13 @@
 <template>
   <div class="index-wrapper">
-    <Layout v-if="!isMobile"></Layout>
-    <Layout v-if="isMobile"></Layout>
+    <Layout></Layout>
   </div>
 </template>
 <script>
-  import config from 'config'
   export default {
     name: 'page-index',
     data(){
       return {
-        isMobile: config.appType === 'mobile'
       }
     }
   }

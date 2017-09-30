@@ -3,6 +3,7 @@ var utils = require('./utils')
 var webpack = require('webpack')
 var envConfig = require('../config')
 var appConfig = require('../src/config')
+var {template} = require('../src/config/layout')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -54,10 +55,9 @@ var webpackConfig = merge(baseWebpackConfig, {
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: envConfig.build.index,
-      template: 'index.html',
+      template: template,
       inject: true,
       appName: appConfig.appName,
-      appType: appConfig.appType,
       minify: {
         removeComments: true,
         collapseWhitespace: true,

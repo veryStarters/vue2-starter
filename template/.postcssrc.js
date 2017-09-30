@@ -31,8 +31,8 @@ module.exports = {
     },
     //自动精灵
     'postcss-sprites': {
-      stylesheetPath: './src/assets/styles',
-      spritePath: './src/assets/images/sprites'
+      stylesheetPath: './src/common/assets/styles',
+      spritePath: './src/common/assets/images/sprites'
     },
     // 样式优化
     'cssnano': {}

@@ -136,7 +136,7 @@ var server = {
             function (err) {
               if (err) throw err;
             }
-          );
+          )
         }
       })
     }
@@ -222,3 +222,7 @@ var server = {
 }
 
 module.exports = server
+// 本地调试
+if (process.env.debugger) {
+  server.start()
+}

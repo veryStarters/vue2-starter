@@ -1,9 +1,8 @@
 var path = require('path')
 var utils = require('./utils')
 var webpack = require('webpack')
-var config = require('../config')
+var envConfig = require('../config')
 var appConfig = require('../src/config')
-var {template} = require('../src/config/layout')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -18,14 +17,14 @@ Object.keys(baseWebpackConfig.entry).forEach(function (name) {
 
 module.exports = merge(baseWebpackConfig, {
   module: {
-    rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
+    rules: utils.styleLoaders({ sourceMap: envConfig.dev.cssSourceMap })
   },
   // cheap-module-eval-source-map is faster for development
   devtool: '#cheap-module-eval-source-map',
   plugins: [
 
     new webpack.DefinePlugin({
-      'process.env': config.env
+      'process.env': envConfig.env
     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
@@ -33,7 +32,7 @@ module.exports = merge(baseWebpackConfig, {
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: template,
+      template: 'index.html',
       appName: appConfig.appName,
       inject: true
     }),
@@ -48,7 +47,7 @@ module.exports = merge(baseWebpackConfig, {
     // for add assets, eg dll
     new AddAssetHtmlPlugin({
       filepath: path.join(__dirname, '/dll/' + manifestJSON.name + '.js'),
-      includeSourcemap: config.dev.cssSourceMap
+      includeSourcemap: envConfig.dev.cssSourceMap
     })
   ]
 })

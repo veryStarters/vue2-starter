@@ -9,7 +9,7 @@ function BeforeBuildPlugin() {
 }
 BeforeBuildPlugin.prototype.apply = function (compiler) {
   var pageDirPath = path.join(__dirname, '../../src/pages/')
-  var componentDirPath = path.join(__dirname, '../../src/components/')
+  var componentDirPath = path.join(__dirname, '../../src/common/components/')
   var routePath = path.join(pageDirPath, 'routes.js');
   var comRoutePath = path.join(componentDirPath, 'routes.js');
   compiler.plugin("compile", function () {
@@ -44,7 +44,7 @@ BeforeBuildPlugin.prototype.apply = function (compiler) {
 };
 function formatPath(path, type) {
   path = path.replace(/\\/gi, '/')
-  var reg = new RegExp('^.*src\\/' + type, 'gi')
+  var reg = new RegExp('^.*src\\/' + (type === 'pages' ? '' : 'common' + '\\/') + type, 'gi')
   return path.replace(reg, '').replace('index.vue', '');
 }
 

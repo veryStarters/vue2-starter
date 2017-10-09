@@ -3,7 +3,7 @@
  * @author taoqili
  * @date 2017/7/3
  */
-var configs = {
+const CONFIG = {
   development: {
     port: 8080,
     mockRunning: true,
@@ -32,4 +32,4 @@ var configs = {
     }
   }
 }
-module.exports = configs[process.env.NODE_ENV || 'development']
+module.exports = CONFIG[process.env.NODE_ENV || 'development']

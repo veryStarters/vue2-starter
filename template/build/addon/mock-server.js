@@ -8,7 +8,7 @@ var express = require('express')
 var address = require('address')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
-var config = require('../../config').dev
+var config = require('../config').dev
 var loadModule = require('./load-module')
 
 module.exports = function () {

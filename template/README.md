@@ -183,7 +183,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	})
 	```
 	
-	mock相关配置在config/index.js和config/env.config.js文件中
+	mock相关配置在build/config/index.js和build/config/env.config.js文件中
 
 4. https支持
 

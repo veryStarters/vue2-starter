@@ -7,7 +7,7 @@ var express = require('express')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
-var envConfig = require('../config')
+var envConfig = require('./config')
 
 var fs = require('fs');
 var https = require('https');

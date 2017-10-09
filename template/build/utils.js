@@ -1,5 +1,5 @@
 var path = require('path')
-var config = require('../config')
+var config = require('./config')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var env = process.env.NODE_ENV
 

@@ -7,7 +7,7 @@
 const APP_CONFIG = {
   appName: 'Vue2-Starter',
   // static|dynamic 应用类型，动态或者静态应用
-  // 静态应用指无任何跟后端交互的功能
+  // 静态应用指无任何跟后端交互的功能,包括权限验证、数据请求等
   appType: 'static',
   // session有效时间 ms
   sessionDuration: 30 * 60 * 1000,

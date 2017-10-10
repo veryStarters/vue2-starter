@@ -6,20 +6,20 @@
 // 应用具体配置
 const APP_CONFIG = {
   appName: 'Vue2-Starter',
-  // static|dynamic 应用类型，动态或者静态应用
-  // 静态应用指无任何跟后端交互的功能,包括权限验证、数据请求等
-  appType: 'static',
-  // session有效时间 ms
+  // 是否是静态应用，静态应用指无任何跟后端交互的功能,包括权限验证、数据请求等
+  // 当此处设置位true时，后续跟后台请求、权限相关的所有配置项均失效
+  isStatic: false,
+  // session有效时间 ms, 当isStatic为真时失效
   sessionDuration: 30 * 60 * 1000,
-  // 请求头配置
+  // 请求头配置, 当isStatic为真时失效
   httpHeaders: {
     'Content-Type': 'application/json'
   },
-  // 每个路由默认的权限校验状态
+  // 每个路由默认的权限校验状态, 当isStatic为真时失效
   defaultAuth: false,
-  // 首页路由名称
+  // 首页路由名称, 用于处理遭遇各种异常路由时的最终跳转路由, 当isStatic为真时失效
   indexPageName: 'indexHome',
-  // 登录页路由名称
+  // 登录页路由名称, 当isStatic为真时失效
   loginPageName: 'userLogin',
   // 资源路径
   assetsPublicPath: {
@@ -28,7 +28,7 @@ const APP_CONFIG = {
     preview: 'http://pre.static.com/',
     production: 'http://prod.static.com/'
   },
-  // Api路径
+  // Api路径, 当isStatic为真时失效
   apiPath: {
     development: '/',
     testing: 'http://test.my-site.com/',

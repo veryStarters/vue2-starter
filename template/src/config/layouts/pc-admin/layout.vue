@@ -30,7 +30,9 @@
       }
     },
     mounted() {
-      this.addLoginMonitor()
+      if (!config.isStatic) {
+        this.addLoginMonitor()
+      }
     },
     components: {
       'app-main': appMain,

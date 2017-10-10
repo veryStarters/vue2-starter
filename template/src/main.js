@@ -67,7 +67,7 @@ const initApp = () => {
     setTimeout(() => {
       progress.done()
     }, 5000)
-    if (config.appType === 'static') {
+    if (config.isStatic) {
       return next()
     }
     checkPermission(to, from, next)
@@ -88,7 +88,7 @@ const initApp = () => {
 }
 
 // 3.应用启动主流程
-if (config.appType === 'static') {
+if (config.isStatic) {
   initApp()
 } else {
   api.getUserInfo().then(res => {

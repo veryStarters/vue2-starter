@@ -35,6 +35,14 @@ const APP_CONFIG = {
     preview: 'http://pre.my-site.com/',
     production: 'http://prod.my-site.com/'
   },
+  // req切面配置
+  requestInterceptor(req) {
+    return req
+  },
+  // response切面配置
+  responseInterceptor(res) {
+    return res.data
+  },
   // 渲染错误处理
   errorHandler(e){
     console.error('捕获到了错误：' + e)

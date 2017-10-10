@@ -5,8 +5,9 @@
  */
 import axios from 'axios'
 import config from 'config'
+const env = process.env.NODE_ENV || 'development'
 let instance = axios.create({
-  baseURL: config.apiPath ? config.apiPath[process.env.NODE_ENV || 'development'] || '/' : '/',
+  baseURL: config.apiPath ? config.apiPath[env] || '/' : '/',
   method: 'post',
   withCredentials: true,
   timeout: 6000,
@@ -16,14 +17,14 @@ let instance = axios.create({
     'Access-Control-Allow-Origin': '*'
   }, config.httpHeaders || {})
 })
-instance.interceptors.request.use(function (config) {
-  return config
+instance.interceptors.request.use(function (req) {
+  return config.requestInterceptor ? config.requestInterceptor(req) : req
 }, function (err) {
   return Promise.reject(err)
 })
 
-instance.interceptors.response.use(function (response) {
-  return response.data
+instance.interceptors.response.use(function (res) {
+  return config.responseInterceptor ? config.responseInterceptor(res) : res.data
 }, function (err) {
   return Promise.reject(err)
 })

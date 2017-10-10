@@ -1,6 +1,7 @@
 <template>
   <div class="test-children-home-wrapper">
     another home
+    <p><router-link to="/another/test1">测试1</router-link></p>
   </div>
 </template>
 <script>
@@ -22,5 +23,8 @@
   }
 </script>
 <style lang="postcss" scoped>
-  .test-children-home-wrapper {}
+  .test-children-home-wrapper {
+    text-align: center;
+    line-height: 2;
+  }
 </style>

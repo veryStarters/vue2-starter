@@ -46,23 +46,6 @@ var data = Mock.mock({
               label: '测试3',
             }
           ]
-        },
-        { //嵌套了另外一个父路由
-          name: 'submenu3',
-          label: '嵌套子菜单',
-          icon: 'el-icon-menu',
-          children: [
-            {
-              name: 'anotherHome',
-              icon: 'el-icon-close',
-              label: '嵌套Home'
-            },
-            {
-              name: 'anotherTest1Home',
-              label: '嵌套Test1',
-              icon: 'el-icon-picture'
-            }
-          ]
         }
       ]
     },

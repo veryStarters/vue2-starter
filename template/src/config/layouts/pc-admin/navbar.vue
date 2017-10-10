@@ -2,11 +2,7 @@
   <div class="navbar-wrapper">
     <el-menu theme="dark" :default-active="activeName" class="el-menu-demo" mode="horizontal" @select="handleSelect">
       <el-menu-item index="indexHome">首页</el-menu-item>
-      <el-submenu index="2">
-        <template slot="title">测试菜单</template>
-        <el-menu-item index="indexTest11">测试1</el-menu-item>
-        <el-menu-item index="indexTest13">测试3</el-menu-item>
-      </el-submenu>
+      <el-menu-item index="anotherHome">另外一个布局页</el-menu-item>
     </el-menu>
   </div>
 </template>

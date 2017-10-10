@@ -6,20 +6,22 @@
 import config from 'config'
 import cookie from 'js-cookie'
 import localStorage from './local-storage'
+import fetch from './fetch'
 
 export default (() => {
   const TOKEN = config.accessToken || 'AccessToken'
   const LOGIN_TIME = 'UserLoginTime'
   const USER_INFO = 'UserInfo'
   return {
-    localStorage: localStorage,
-    cookie: cookie,
+    fetch,
+    localStorage,
+    cookie,
     /**
      * 空对象判断
      * @param obj
      * @returns {boolean}
      */
-    isEmpty: function (obj) {
+    isEmpty(obj) {
       for (var key in obj) return false
       return true
     },
@@ -27,14 +29,14 @@ export default (() => {
      * 获取登录剩余时间秒数
      * @returns {number}
      */
-    getLoginRemainingTime(){
+    getLoginRemainingTime() {
       let loginTime = Math.ceil(+localStorage.getItem(LOGIN_TIME) / 1000)
       return (config.sessionDuration || 30 * 60 * 1000) / 1000 - (Math.ceil(Date.now() / 1000) - loginTime)
     },
     /**
      * 从缓存获取用户信息
      */
-    getUserInfoFromCache(){
+    getUserInfoFromCache() {
       return JSON.parse(localStorage.getItem(USER_INFO) || '""')
     },
     getAccessToken() {

@@ -3,15 +3,12 @@
  * @author taoqili
  * @date 2017/7/3
  */
-// 应用类型 pc|mobile
-// PS: 修改之后需要重新编译启动，否则不会生效;
-// 由于无法做到条件加载，此处修改后，最好同步修改main.js中引入的UI库，否则element-ui对移动端来说太过巨大
-const APP_TYPE = 'pc-admin'
-
 // 应用具体配置
 const APP_CONFIG = {
   appName: 'Vue2-Starter',
-  appType: APP_TYPE,
+  // static|dynamic 应用类型，动态或者静态应用
+  // 静态应用指无任何跟后端交互的功能
+  appType: 'static',
   // session有效时间 ms
   sessionDuration: 30 * 60 * 1000,
   // 请求头配置

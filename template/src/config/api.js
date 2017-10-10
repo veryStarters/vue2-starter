@@ -20,8 +20,5 @@ export default {
   },
   async getTest(params) {
     return await fetch('/api/gettest', params)
-  },
-  async getTest1(params) {
-    return await fetch('/api/test', params)
-  },
+  }
 }

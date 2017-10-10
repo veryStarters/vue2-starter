@@ -6,7 +6,7 @@
       </sticky>
       <topbar v-else="topbar===1"></topbar>
     </div>
-    <div class="sidebar-container scroll-bar" :class="{'top-offset':topbar, 'fixed': topbar===2, 'dark': dark}" v-if="sidebar">
+    <div class="sidebar-container scroll-bar" :class="{'top-offset':topbar, 'fixed': true, 'dark': dark}" v-if="sidebar">
       <sidebar></sidebar>
     </div>
     <div class="main-container" :class="{'ml-offset':sidebar}">

@@ -1,15 +1,18 @@
 <template>
   <div class="test-children-home-wrapper">
-    another home
-    <p><router-link to="/another/test1">测试1</router-link></p>
+    <layout></layout>
   </div>
 </template>
 <script>
   import { mapGetters, mapActions } from 'vuex'
+  import config from 'layouts/mobile/init.conf'
+  import layout from 'layouts/mobile/layout.vue'
   import utils from 'utils'
   export default {
     name: 'page-test-children-home',
-    components: {},
+    components: {
+      layout
+    },
     data() {
       return {}
     },

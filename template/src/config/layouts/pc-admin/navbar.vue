@@ -1,8 +1,8 @@
 <template>
   <div class="navbar-wrapper">
     <el-menu theme="dark" :default-active="activeName" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-      <el-menu-item index="indexHome">首页</el-menu-item>
-      <el-menu-item index="anotherHome">另外一个布局页</el-menu-item>
+      <el-menu-item index="indexHome">后台管理布局</el-menu-item>
+      <el-menu-item index="anotherHome">内嵌其它布局</el-menu-item>
     </el-menu>
   </div>
 </template>

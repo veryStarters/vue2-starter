@@ -17,6 +17,7 @@
   </div>
 </template>
 <script>
+  import layoutConfig from './init.conf'
   import topbar from './topbar.vue'
   import subHeader from './subheader.vue'
   import menubar from './menubar.vue'
@@ -28,6 +29,9 @@
       'sub-header': subHeader,
       topbar,
       menubar
+    },
+    mounted() {
+      layoutConfig.layoutInitOnce()
     }
   }
 </script>

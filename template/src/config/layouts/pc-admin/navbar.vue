@@ -30,7 +30,7 @@
       transition: .3s ease-out;
       &:hover {
         text-shadow: 2px 2px 2px rgba(200, 200, 200, .5);
-        transform: scale3d(1.1, 1, 1);
+        transform: scale3d(1.1, 1.1, 1) translate3d(5px, -2px, 0);
         transition: .2s ease-in;
       }
     }

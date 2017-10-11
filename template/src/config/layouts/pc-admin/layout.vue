@@ -6,16 +6,17 @@
       </sticky>
       <topbar v-else="topbar===1"></topbar>
     </div>
-    <div class="sidebar-container scroll-bar" :class="{'top-offset':topbar, 'fixed': true, 'dark': dark}" v-if="sidebar">
+    <div class="sidebar-container scroll-bar fixed" :class="{'top-offset':topbar, 'dark': dark}">
       <sidebar></sidebar>
     </div>
-    <div class="main-container" :class="{'ml-offset':sidebar}">
+    <div class="main-container ml-offset">
       <app-main></app-main>
     </div>
   </div>
 </template>
 <script>
-  import config from './init.conf'
+  import appConfig from 'config'
+  import layoutConfig from './init.conf'
   import appMain from './appmain.vue'
   import topbar from './topbar.vue'
   import sidebar from './sidebar.vue'
@@ -24,13 +25,13 @@
     name: 'Layout',
     data(){
       return {
-        topbar: config.topbar || 0,
-        sidebar: config.sidebar || 0,
-        dark: config.sidebarTheme === 'dark'
+        topbar: layoutConfig.topbar || 0,
+        dark: layoutConfig.sidebarTheme === 'dark'
       }
     },
     mounted() {
-      if (!config.isStatic) {
+      layoutConfig.layoutInitOnce()
+      if (!appConfig.isStatic) {
         this.addLoginMonitor()
       }
     },
@@ -46,7 +47,7 @@
 
   /*布局相关特性定义*/
   $height: 60px;  /*topbar height*/
-  $width: 180px;   /*sidebar width*/
+  $width: 240px;   /*sidebar width*/
 
   .layout-wrapper{
     position: relative;

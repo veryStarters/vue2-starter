@@ -2,11 +2,13 @@
   import {mapGetters, mapActions} from 'vuex'
   import utils from 'utils'
   import navbar from './navbar.vue'
-  import img from 'images/logo.png'
+  import logo from './logo.vue'
+  import config from './init.conf'
   export default {
     name: 'topbar',
     components: {
-      navbar
+      navbar,
+      logo
     },
     data() {
       return {
@@ -18,10 +20,7 @@
         <div class='topbar-wrapper'>
           <el-row>
             <el-col span={4}>
-              <div class='logo-info-container' onClick='handleGoHome'>
-                <img src={img} height='45' align='absmiddle'/>
-                <span class='name'>XX管理系统</span>
-              </div>
+              <logo show={config.topbar !== 0}></logo>
             </el-col>
             <el-col span={17}>
               <div class='navbar-container'>
@@ -88,7 +87,7 @@
     transition: .3s ease-out;
     &:hover {
      text-shadow: 2px 2px 2px rgba(222, 222, 222, .5);
-     transform: scale3d(1.1, 1.1, 1);
+     transform: scale3d(1.1, 1, 1) translate3d(-10px, 0, 0);
      transition: .2s ease-in;
    }
   }
@@ -97,12 +96,6 @@
     line-height: $topHeight;
     color: #bfcbd9;
     background: #324157;
-  }
-  .logo-info-container {
-    cursor: pointer;
-    margin-left: 20px;
-    font-size: 22px;
-    @add-mixin anim
   }
   .user-info-container {
     .el-menu-item {

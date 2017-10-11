@@ -2,9 +2,12 @@
   import {mapGetters, mapActions} from 'vuex'
   import config from './init.conf'
   import localMenus from '../../menus'
+  import logo from './logo.vue'
   export default {
     name: 'menubar',
-    components: {},
+    components: {
+      logo
+    },
     data() {
       return {
         menus: [],
@@ -19,6 +22,14 @@
     render(h) {
       return (
         <div class='menubar-wrapper'>
+          {config.topbar === 0
+            ? (
+              <div style={{ padding: '15px', background: '#324157' }}>
+                <logo show={config.topbar === 0}></logo>
+              </div>
+            )
+            : ''
+          }
           <el-menu ref='menu' default-active={this.activeName} default-openeds={this.openedNames} unique-opened={true}
                    class='el-menu-vertical-demo' onSelect={this.handleSelect} theme={config.sidebarTheme}>
             {

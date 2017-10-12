@@ -2,7 +2,7 @@
   <div class="navbar-wrapper">
     <el-menu theme="dark" :default-active="activeName" class="el-menu-demo" mode="horizontal" @select="handleSelect">
       <el-menu-item class="item" index="indexHome">首页</el-menu-item>
-      <el-menu-item class="item" index="anotherHome">其它页</el-menu-item>
+      <el-menu-item class="item" index="anotherHome">关于我</el-menu-item>
     </el-menu>
   </div>
 </template>

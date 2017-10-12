@@ -1,7 +1,7 @@
 <script>
   import {mapGetters, mapActions} from 'vuex'
   import utils from 'utils'
-  import navbar from './navbar.vue'
+  import navbar from './navs.vue'
   import logo from './logo.vue'
   import config from './config'
   import appConfig from 'config'

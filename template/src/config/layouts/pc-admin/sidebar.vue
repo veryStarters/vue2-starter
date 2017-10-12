@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-  import menubar from './menubar.vue'
+  import menubar from './menus.vue'
   export default {
     name: 'sidebar',
     components: {

@@ -47,7 +47,7 @@
 
   /*布局相关特性定义*/
   $height: 60px;  /*topbar height*/
-  $width: 240px;   /*sidebar width*/
+  $width: 230px;   /*sidebar width*/
 
   .layout-wrapper{
     position: relative;

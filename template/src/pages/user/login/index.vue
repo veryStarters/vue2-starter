@@ -45,8 +45,8 @@
           }
           utils.setUserInfoToCache(userInfo)
           this.$router.push({name: 'indexHome'})
-        }).catch(errInfo => {
-          console.log(errInfo)
+        }).catch(res => {
+          console.log(res)
         })
       }
     }

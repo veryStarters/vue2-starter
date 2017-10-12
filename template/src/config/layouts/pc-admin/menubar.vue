@@ -1,7 +1,8 @@
 <script>
   import {mapGetters, mapActions} from 'vuex'
   import config from './init.conf'
-  import localMenus from '../../menus'
+  import appConfig from 'config'
+  import localMenus from './menus'
   import logo from './logo.vue'
   export default {
     name: 'menubar',
@@ -48,7 +49,7 @@
     },
     methods: {
       ...mapActions(['getMenus']),
-      submenu(props){
+      submenu(props) {
         return (
           <el-submenu index={props.name}>
             <template slot='title'>
@@ -65,7 +66,7 @@
           </el-submenu>
         )
       },
-      menuItem(props){
+      menuItem(props) {
         return (
           <el-menu-item index={props.name}>
             {props.icon ? <i class={props.icon}/> : ''}
@@ -73,7 +74,7 @@
           </el-menu-item>
         )
       },
-      loadMenus(){
+      loadMenus() {
         const createMenus = menus => {
           this.menus = menus
           //根据路由name展开menus
@@ -87,15 +88,26 @@
             this.openedNames = item.indexPath.slice(0, item.indexPath.length - 1)
           })
         }
-        if (localMenus && localMenus.length) {
-          createMenus(localMenus)
+        if (appConfig.isStatic) {
+          if (localMenus && localMenus.length) {
+            createMenus(localMenus)
+          } else {
+            createMenus([
+              {
+                name: 'indexHome',
+                label: '暂无菜单,请配置menus.js!!',
+              }
+            ])
+          }
         } else {
-          this.getMenus().then(res => {
-            createMenus(res.menus)
+          this.getMenus().then((menuInfo) => {
+            let menus = menuInfo.menus
+            createMenus(menus)
+          }).catch(res => {
           })
         }
       },
-      handleSelect(name){
+      handleSelect(name) {
         this.$router.push({name: name})
       }
     }

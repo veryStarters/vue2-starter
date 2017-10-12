@@ -4,6 +4,7 @@
   import navbar from './navbar.vue'
   import logo from './logo.vue'
   import config from './init.conf'
+  import appConfig from 'config'
   export default {
     name: 'topbar',
     components: {
@@ -27,16 +28,18 @@
                 <navbar></navbar>
               </div>
             </el-col>
-            <el-col span={3}>
-              <div class='user-info-container'>
-                <el-menu theme='dark' class='el-menu-demo' mode='horizontal' onSelect={this.handleSelect}>
-                  <el-submenu index='home'>
-                    <template slot='title'>{this.userInfo.name || '游客'}</template>
-                    {this.userInfo.name ? this.userMenu() : <el-menu-item index='login'>登录</el-menu-item>}
-                  </el-submenu>
-                </el-menu>
-              </div>
-            </el-col>
+            {!appConfig.isStatic
+              ? <el-col span={3}>
+                  <div class='user-info-container'>
+                    <el-menu theme='dark' class='el-menu-demo' mode='horizontal' onSelect={this.handleSelect}>
+                      <el-submenu index='home'>
+                        <template slot='title'>{this.userInfo.name || '游客'}</template>
+                        {this.userInfo.name ? this.userMenu() : <el-menu-item index='login'>登录</el-menu-item>}
+                      </el-submenu>
+                    </el-menu>
+                  </div>
+                </el-col> : ''
+            }
           </el-row>
         </div>
       )

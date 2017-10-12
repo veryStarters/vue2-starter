@@ -20,7 +20,7 @@
       return (
         <div class='topbar-wrapper'>
           <el-row>
-            <el-col span={4}>
+            <el-col class='logo' span={4}>
               <logo show={config.topbar !== 0}></logo>
             </el-col>
             <el-col span={17}>
@@ -94,11 +94,14 @@
      transition: .2s ease-in;
    }
   }
-  .topbar-wrapper{
+  .topbar-wrapper {
     height: $topHeight;
     line-height: $topHeight;
     color: #bfcbd9;
     background: #324157;
+    .logo {
+      padding-left: 20px;
+    }
   }
   .user-info-container {
     .el-menu-item {

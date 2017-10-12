@@ -3,7 +3,7 @@
   import utils from 'utils'
   import navbar from './navbar.vue'
   import logo from './logo.vue'
-  import config from './init.conf'
+  import config from './config'
   import appConfig from 'config'
   export default {
     name: 'topbar',

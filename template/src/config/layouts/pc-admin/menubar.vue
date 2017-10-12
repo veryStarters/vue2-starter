@@ -1,6 +1,6 @@
 <script>
   import {mapGetters, mapActions} from 'vuex'
-  import config from './init.conf'
+  import config from './config'
   import appConfig from 'config'
   import logo from './logo.vue'
   const localMenus = config.menus
@@ -88,23 +88,24 @@
             this.openedNames = item.indexPath.slice(0, item.indexPath.length - 1)
           })
         }
-        if (appConfig.isStatic) {
-          if (localMenus && localMenus.length) {
-            createMenus(localMenus)
-          } else {
+        // 如果本地有菜单配置，则以本地为准；否则根据应用类型发起请求或者报错
+        if (localMenus && localMenus.length) {
+          createMenus(localMenus)
+        } else {
+          if (appConfig.isStatic) {
             createMenus([
               {
                 name: 'indexHome',
                 label: '暂无菜单,请配置menus字段!!',
               }
             ])
+          } else {
+            this.getMenus().then((menuInfo) => {
+              let menus = menuInfo.menus
+              createMenus(menus)
+            }).catch(res => {
+            })
           }
-        } else {
-          this.getMenus().then((menuInfo) => {
-            let menus = menuInfo.menus
-            createMenus(menus)
-          }).catch(res => {
-          })
         }
       },
       handleSelect(name) {

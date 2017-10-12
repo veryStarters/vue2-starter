@@ -5,7 +5,7 @@
 </template>
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import config from 'layouts/mobile/init.conf'
+  import config from 'layouts/mobile/config'
   import layout from 'layouts/mobile/layout.vue'
   import utils from 'utils'
   export default {

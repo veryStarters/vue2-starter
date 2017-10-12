@@ -15,7 +15,7 @@ export default {
   // 侧边树形菜单
   menus: [
     // {
-    //   name: 'menu1',
+    //   name: 'name1',
     //   label: '菜单一',
     //   icon: 'el-icon-menu',
     //   children: [

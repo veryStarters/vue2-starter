@@ -16,8 +16,8 @@
 </template>
 <script>
   import appConfig from 'config'
-  import layoutConfig from './init.conf'
-  import appMain from './appmain.vue'
+  import layoutConfig from './config'
+  import appMain from './main.vue'
   import topbar from './topbar.vue'
   import sidebar from './sidebar.vue'
   import sticky from 'components/sticky'

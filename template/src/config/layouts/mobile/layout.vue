@@ -17,11 +17,11 @@
   </div>
 </template>
 <script>
-  import layoutConfig from './init.conf'
+  import layoutConfig from './config'
   import topbar from './topbar.vue'
   import subHeader from './subheader.vue'
   import menubar from './menubar.vue'
-  import appMain from './appmain.vue'
+  import appMain from './main.vue'
   export default {
     name: 'Layout',
     components: {

@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-  import config from './init.conf'
+  import config from './config'
   import appConfig from 'config'
   import img from 'images/logo.png'
 

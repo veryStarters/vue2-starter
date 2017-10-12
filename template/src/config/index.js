@@ -8,7 +8,7 @@ const APP_CONFIG = {
   appName: '金融管理系统',
   // 是否是静态应用，静态应用指无任何跟后端交互的功能,包括权限验证、数据请求等
   // 当此处设置位true时，后续跟后台请求、权限相关的所有配置项均失效
-  isStatic: false,
+  isStatic: true,
   // session有效时间 ms, 当isStatic为真时失效
   sessionDuration: 30 * 60 * 1000,
   // 请求头配置, 当isStatic为真时失效

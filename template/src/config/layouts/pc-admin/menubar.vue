@@ -2,8 +2,8 @@
   import {mapGetters, mapActions} from 'vuex'
   import config from './init.conf'
   import appConfig from 'config'
-  import localMenus from './menus'
   import logo from './logo.vue'
+  const localMenus = config.menus
   export default {
     name: 'menubar',
     components: {
@@ -95,7 +95,7 @@
             createMenus([
               {
                 name: 'indexHome',
-                label: '暂无菜单,请配置menus.js!!',
+                label: '暂无菜单,请配置menus字段!!',
               }
             ])
           }

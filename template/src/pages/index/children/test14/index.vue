@@ -1,5 +1,5 @@
 <template>
-  <div class="index-children-test4-wrapper">
+  <div class="index-test14-wrapper">
     Hello, world! test4
   </div>
 </template>
@@ -7,7 +7,7 @@
   import { mapGetters, mapActions } from 'vuex'
   import utils from 'utils'
   export default {
-    name: 'page-index-children-test4',
+    name: 'page-index-test14',
     components: {},
     data() {
       return {}
@@ -22,5 +22,5 @@
   }
 </script>
 <style lang="postcss" scoped>
-  .index-children-test4-wrapper {}
+  .index-test14-wrapper {}
 </style>

@@ -1,15 +1,13 @@
 <template>
-  <div class="about-children-test1-children-home-wrapper">
-    Hello, world! about test1 home
-    <p><router-link to="/about/test1/test2">test1Test2</router-link></p>
-    <p><router-link to="/about/test1/test3">test1Test3</router-link></p>
+  <div class="about-test2-wrapper">
+    Hello, world!
   </div>
 </template>
 <script>
   import { mapGetters, mapActions } from 'vuex'
   import utils from 'utils'
   export default {
-    name: 'page-about-children-test1-children-home',
+    name: 'page-about-test2',
     components: {},
     data() {
       return {}
@@ -24,8 +22,8 @@
   }
 </script>
 <style lang="postcss" scoped>
-  .about-children-test1-children-home-wrapper {
+  .about-test2-wrapper {
     text-align: center;
-    line-height: 2;
+    line-height: 5;
   }
 </style>

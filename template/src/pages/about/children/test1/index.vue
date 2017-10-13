@@ -1,13 +1,13 @@
 <template>
-  <div class="test-children-test1-wrapper">
-    <router-view></router-view>
+  <div class="test-test1-wrapper">
+    about test1
   </div>
 </template>
 <script>
   import { mapGetters, mapActions } from 'vuex'
   import utils from 'utils'
   export default {
-    name: 'page-test-children-test1',
+    name: 'page-test-test1',
     components: {},
     data() {
       return {}
@@ -22,5 +22,5 @@
   }
 </script>
 <style lang="postcss" scoped>
-  .test-children-test1-wrapper {}
+  .test-test1-wrapper {}
 </style>

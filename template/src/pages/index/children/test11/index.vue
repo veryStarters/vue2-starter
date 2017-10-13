@@ -1,13 +1,13 @@
 <template>
-  <div class="index-children-test1-wrapper">
+  <div class="index-test11-wrapper">
     <p>订单到底是什么东西？</p>
-    <p><button @click="gotoTest2">test2</button></p>
+    <p><button @click="gotoTest2">test12</button></p>
   </div>
 </template>
 <script>
   import {mapGetters, mapActions} from 'vuex'
   export default {
-    name: 'page-index-children-test1',
+    name: 'page-index-test11',
     components: {},
     data() {
       return {
@@ -27,7 +27,7 @@
   }
 </script>
 <style lang="postcss" scoped>
-  .index-children-test1-wrapper {
+  .index-test11-wrapper {
     text-align: center;
     line-height: 3;
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="test-children-home-wrapper">
+  <div class="test-home-wrapper">
     <div class="info">
       <el-table
         :data="tableData2"
@@ -24,7 +24,7 @@
   import { mapGetters, mapActions } from 'vuex'
   import utils from 'utils'
   export default {
-    name: 'page-test-children-home',
+    name: 'page-test-home',
     data() {
       return {
         tableData2: [{
@@ -72,7 +72,7 @@
   }
 </style>
 <style lang="postcss" scoped>
-  .test-children-home-wrapper {
+  .test-home-wrapper {
     .info {
       margin: 10px auto;
       width: 1024px;

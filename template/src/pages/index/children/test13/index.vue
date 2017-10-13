@@ -3,7 +3,7 @@
   import utils from 'utils'
   import api from 'api'
   export default {
-    name: 'page-index-children-test3',
+    name: 'page-index-test13',
     components: {},
     data() {
       return {
@@ -13,7 +13,7 @@
     },
     render(h){
       return (
-        <div class='index-children-test3-wrapper'>
+        <div class='index-test13-wrapper'>
           <div class='content' v-loading={this.loading} element-loading-text='数据加载中'>{this.message}</div>
         </div>
       )
@@ -30,11 +30,10 @@
         this.message = '数据获取失败'
       })
     }
-
   }
 </script>
 <style lang="postcss" scoped>
-  .index-children-test3-wrapper {
+  .index-test13-wrapper {
     text-align: center;
   }
 

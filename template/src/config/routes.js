@@ -9,23 +9,15 @@ export const common = {
   }
 }
 
-export const another = {
+export const about = {
   meta: {
     title: 'another'
   },
   children: {
     test1: {
       meta: {
-        auth: true,
+        auth: false,
         title: 'test测试'
-      },
-      children: {
-        test2: {
-          meta: {
-            title: 'another test2'
-          },
-          auth: true
-        }
       }
     }
   }
@@ -49,7 +41,7 @@ export const index = {
     },
     test14: {
       meta: {
-        title: '测试',
+        title: 'test14',
         auth: false
       }
     }

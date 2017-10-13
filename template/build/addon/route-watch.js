@@ -186,7 +186,7 @@ var server = {
     }
 
     function mkfile(path, name, type) {
-      name = name.replace(/([A-Z])/g, "-$1").toLowerCase()
+      name = name.replace(/([A-Z])/g, "-$1").toLowerCase().replace('children-', '')
       fs.open(path, 'w+', function (err, fd) {
         if (err) {
           return;

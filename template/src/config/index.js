@@ -24,15 +24,15 @@ const APP_CONFIG = {
   // 资源路径
   assetsPublicPath: {
     development: '/',
-    testing: 'http://test.static.com/',
-    preview: 'http://pre.static.com/',
+    test: 'http://test.static.com/',
+    pre: 'http://pre.static.com/',
     production: 'http://prod.static.com/'
   },
   // Api路径, 当isStatic为真时失效
   apiPath: {
     development: '/',
-    testing: 'http://test.my-site.com/',
-    preview: 'http://pre.my-site.com/',
+    test: 'http://test.my-site.com/',
+    pre: 'http://pre.my-site.com/',
     production: 'http://prod.my-site.com/'
   },
   // req切面配置

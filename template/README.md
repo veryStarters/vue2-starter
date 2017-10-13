@@ -47,43 +47,54 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	```
 	.
 	├── build                          
-	│   ├── addon            // 新增的编译插件目录，所有自动化功能均位于此处 
+	│   ├── addon            // 新增的编译插件目录，所有自动化功能均位于此处
 	│   │   └── template     // 自动化生成的相关文件的模板
+    │   ├── config
 	│   └── dll
-	├── config
+	├── static
 	├── src
-	│   ├── api-mock         // 自动生成的mock数据文件目录
-	│   │   └── user
-	│   ├── assets
-	│   │   ├── fonts        // 字体
-	│   │   ├── images       // 图片
-	│   │   └── styles       // 通用样式 
-	│   ├── common           // 通用组件
-	│   │   ├── directives   // 全局指令
-	│   │   ├── mixins       // 全局mixin
-	│   │   └── utils        // 工具函数
-	│   ├── components       // 组件库
-	│   │   ├── hello
-	│   │   └── sticky
-	│   ├── contants         // 常量定义
-	│   ├── pages            // 页面视图，一个文件夹 + 一个index.vue文件 = 一个自动路由
-	│   │   ├── another
-	│   │   │   └── children // 嵌套路由，系统保留目录，位于其下的page将作为嵌套路由存在
-	│   │   │       └── home // 嵌套路由的默认首页，该目录也为系统保留目录
-	│   │   ├── common       
-	│   │   │   ├── error
-	│   │   │   └── layouts  // 布局组件
-	│   │   │       ├── pc
-	│   │   │       └── mobile
-	│   │   ├── index        // 系统首页
-	│   │   │   └── children
-	│   │   │       └── home
-	│   │   └── user
-	│   ├── router           // 路由
-	│   └── store
-	│       └── modules      // 按模块拆分的store
-	└── static
-	```
+        ├── common           // 系统通用模块
+        │   ├── assets
+        │   │   ├── fonts
+        │   │   ├── images
+        │   │   │   ├── icons
+        │   │   │   └── sprites
+        │   │   └── styles
+        │   │       └── lib
+        │   ├── components
+        │   │   ├── hello
+        │   │   └── sticky
+        │   ├── directives
+        │   ├── mixins
+        │   ├── router
+        │   └── utils
+        ├── config          // 系统配置信息
+        │   ├── layouts
+        │   │   ├── mobile
+        │   │   └── pc-admin
+        │   └── mock
+        │       └── user
+        ├── pages           // 业务模块
+        │   ├── about
+        │   │   └── children
+        │   │       ├── home
+        │   │       ├── test1
+        │   │       └── test2
+        │   ├── common
+        │   │   └── errors
+        │   ├── index
+        │   │   └── children
+        │   │       ├── home
+        │   │       ├── test11
+        │   │       ├── test12
+        │   │       ├── test13
+        │   │       └── test14
+        │   ├── mobile
+        │   └── user
+        │       └── login
+        └── store          // store数据模块
+            └── modules
+        ```
 
 1. 自动路由
 
@@ -103,11 +114,11 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	
 	哪里入手呢？
 	
-	打开router目录，可以发现，除了常见的index.js文件外，我们还多了一个routes.custom.js文件。
+	打开config目录，可以发现，有一个routes.js文件。
 	
-	平时我们都是手动维护index.js文件内容，但是，在V2S中，这个文件封装了自动路由的相关逻辑，因此一般不需要做任何改动。
+	平时我们都是手动维护router/index.js文件内容，但是，在V2S中，router/index.js文件由系统自动生成，它封装了自动路由的相关逻辑，因此一般不需要做任何改动。
 	
-	我们可以在routes.custom.js文件中配置指定路由的细节，该路由细节以该路由的name作为key，以其余属性作为value，如：
+	我们可以在config/routes.js文件中配置指定路由的细节，该路由细节以该路由的name作为key，以其余属性作为value，如：
 	```
 	userLogin: {
 	  path: '/user/:id/login',
@@ -131,17 +142,17 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	
 	V2S中对嵌套路由的处理约定了一个特定的目录————children
 	
-	举例来说，如果需要在another页面路由下嵌套一个路由test，需要的操作步骤是：
+	举例来说，如果需要在about页面路由下嵌套一个路由test，需要的操作步骤是：
 	
-	A. 在another目录下新建children目录，在children目录下新建test目录
+	A. 在about目录下新建children目录，在children目录下新建test目录
 	
-	B. 在another/children/test目录下新建index.vue文件
+	B. 在about/children/test目录下新建index.vue文件
 	
-	C. 在another/index.vue文件中放置&lt;router-view&gt;&lt;/router-view&gt;组件
+	C. 在about/index.vue文件中放置&lt;router-view&gt;&lt;/router-view&gt;组件
 	
-	D. 稍候片刻，在浏览器中输入http://localhost:8080/another/test, 又可以见证奇迹了！
+	D. 稍候片刻，在浏览器中输入http://localhost:8080/about/test, 又可以见证奇迹了！
 	
-	同普通路由一样，自动生成的嵌套路由没有参数，但仍然可以通过route.custom.js文件进行手动配置。
+	同普通路由一样，自动生成的嵌套路由没有参数，但仍然可以通过routes.js文件进行手动配置。
 	
 	子路由可以无限嵌套，且children下的home路由将作为该子路由的默认路由
 
@@ -149,14 +160,14 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 
 	针对每一个api，V2S都会自动生成一个mock数据文件，具体操作步骤：
 	
-	A. 在contants/api.js文件中新增一条API记录
+	A. 在config/api.js文件中新增一条API记录
 	```
 	async getTestInfo(params) {
 	  return await fetchData('/api/test/info', params)
 	}
 	```
 	
-	B. 稍等片刻，查看api-mock文件夹，可以发现已经在该文件夹下自动生成了test/info.js文件，文件内容为：
+	B. 稍等片刻，查看mock文件夹，可以发现已经在该文件夹下自动生成了test/info.js文件，文件内容为：
 	```
 	var Mock = require('mockjs')
 	var data = Mock.mock({
@@ -193,7 +204,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	
 	那何不直接将开发环境也切换成https呢？ 
 	
-	V2S内置自签名证书，可以通过config/index.js中的httpsEnable参数轻易开启https支持
+	V2S内置自签名证书，可以通过build/config/index.js中的httpsEnable参数轻易开启https支持
 	
 5. 路由级别的权限控制
 	
@@ -223,11 +234,11 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
     })
     
   ```
-6. PC端、移动端多种布局支持，且支持自定义扩展，仅需在pages/common/layouts下增加对应的布局文件即可。
+6. PC端、移动端多种布局支持，且支持自定义扩展，仅需在config/layouts下增加对应的布局文件即可。
 
-	V2S默认提供了pc和mobile两个布局，分别引入了element-ui和mint-ui组件库，有需要的同学也可以替换成自己熟悉的。
+	V2S默认提供了pc-admin和mobile两个布局，分别引入了element-ui和mint-ui组件库，有需要的同学也可以替换成自己熟悉的。
 	
-	先睹为快，不妨试试修改config.js中的appType为'mobile'或者'pc'试试！（记得要重新编译构建哦）
+	先睹为快，不妨试试修改config/layout.js中不同的布局引入试试
 	
 7. 侧边菜单栏、顶部导航栏
 	
@@ -235,7 +246,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 	
 	但如何实现侧边菜单栏，尤其是跟权限结合起来菜单栏相信是很多人的噩梦。
 	
-	V2S内置了可无限级嵌套的侧边菜单栏和顶部导航栏（可配置是否使用, 在config.js以及contants/menus.js中配置），可大幅提升开发者的开发效率
+	V2S内置了可无限级嵌套的侧边菜单栏和顶部导航栏（可配置是否使用, 在config/layouts/*中配置），可大幅提升开发者的开发效率
 
 
 

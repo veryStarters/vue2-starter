@@ -94,7 +94,8 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
         │       └── login
         └── store          // store数据模块
             └── modules
-        ```
+
+    ```
 
 1. 自动路由
 

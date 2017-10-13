@@ -5,9 +5,9 @@ Vue.use(ElementUI)
 // 此处返回配置项
 export default {
   // 0 hidden; 1 show; 2 fixed
-  topbar: 2,
+  topbar: 0,
   // light; dark,
-  sidebarTheme: 'light',
+  sidebarTheme: 'dark',
   // 顶部导航
   navs: [
     {

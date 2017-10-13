@@ -12,7 +12,8 @@
     data() {
       return {
         menus: [],
-        openedNames: []
+        openedNames: [],
+        className: config.sidebarTheme
       }
     },
     computed: {
@@ -25,7 +26,7 @@
         <div class='menubar-wrapper'>
           {config.topbar === 0
             ? (
-              <div style={{ padding: '15px', background: '#324157' }}>
+              <div style={{ padding: '15px' }} class={this.className}>
                 <logo show={config.topbar === 0}></logo>
               </div>
             )
@@ -116,5 +117,11 @@
 </script>
 <style lang="postcss" scoped>
   .menubar-wrapper {
+    .dark {
+       background: #324157;
+     }
+    .light {
+      background: #eef1f6;
+    }
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="navbar-wrapper">
-    <el-menu theme="dark" :default-active="activeName" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+    <el-menu :theme="theme" :default-active="activeName" class="el-menu-demo" mode="horizontal" @select="handleSelect">
       <el-menu-item v-for="(nav,index) in navs" :key="index" class="item" :index="nav.name">{{nav.label}}</el-menu-item>
     </el-menu>
   </div>
@@ -12,7 +12,8 @@
     name: 'navbar',
     data() {
       return {
-        navs: navs
+        navs: navs,
+        theme: config.sidebarTheme
       }
     },
     computed: {

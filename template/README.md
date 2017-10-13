@@ -52,7 +52,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
     │   ├── config
 	│   └── dll
 	├── static
-	├── src
+    └── src
         ├── common           // 系统通用模块
         │   ├── assets
         │   │   ├── fonts

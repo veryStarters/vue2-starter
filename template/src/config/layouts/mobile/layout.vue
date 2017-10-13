@@ -23,7 +23,7 @@
   import menubar from './menubar.vue'
   import appMain from './main.vue'
   export default {
-    name: 'Layout',
+    name: 'mobile-layout',
     components: {
       'app-main': appMain,
       'sub-header': subHeader,

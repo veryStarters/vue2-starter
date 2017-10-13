@@ -6,9 +6,9 @@
  * 全局组件请使用首字母大写命名
  * 未在此引入的组件，需要在使用位置手动导入并配置后方可使用
  */
-import Layout from './layout'
-import Hello from 'components/hello'
+import layout from './layout'
+import hello from 'components/hello'
 export default [
-  Layout,
-  Hello
+  layout,
+  hello
 ]

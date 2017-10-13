@@ -1,6 +1,6 @@
 <template>
   <div class="index-wrapper">
-    <Layout></Layout>
+    <pc-admin-layout></pc-admin-layout>
   </div>
 </template>
 <script>

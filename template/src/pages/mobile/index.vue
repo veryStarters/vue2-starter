@@ -1,14 +1,18 @@
 <template>
-  <div class="about-wrapper">
-    <pc-admin-layout></pc-admin-layout>
+  <div class="mobile-wrapper">
+    <mobile-layout></mobile-layout>
   </div>
 </template>
 <script>
   import { mapGetters, mapActions } from 'vuex'
+  // 可以单独引入另外一个布局
+  import mobileLayout from 'layouts/mobile/layout'
   import utils from 'utils'
   export default {
-    name: 'page-about',
-    components: {},
+    name: 'page-mobile',
+    components: {
+      mobileLayout
+    },
     data() {
       return {}
     },
@@ -22,6 +26,6 @@
   }
 </script>
 <style lang="postcss" scoped>
-  .about-wrapper {
+  .mobile-wrapper {
   }
 </style>

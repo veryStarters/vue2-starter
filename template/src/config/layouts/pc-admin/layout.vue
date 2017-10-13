@@ -22,7 +22,7 @@
   import sidebar from './sidebar.vue'
   import sticky from 'components/sticky'
   export default {
-    name: 'Layout',
+    name: 'pc-admin-layout',
     data(){
       return {
         topbar: layoutConfig.topbar || 0,

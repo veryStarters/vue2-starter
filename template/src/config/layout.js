@@ -3,11 +3,7 @@
  * @author taoqili
  * @date 2017/9/30
  */
-
-// 导入pc-admin 布局并导出
-import Layout from './layouts/pc-admin/layout.vue'
-
-// 导入布局mobile的基础UI库
-// import Layout from './layouts/mobile/layout.vue'
-
-export default Layout
+export const mobileLayout = require('./layouts/mobile/layout.vue')
+// 默认的layout
+const layout = require('./layouts/pc-admin/layout.vue')
+export default layout

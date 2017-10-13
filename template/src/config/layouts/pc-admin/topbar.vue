@@ -13,12 +13,14 @@
     },
     data() {
       return {
-        userInfo: utils.getUserInfoFromCache()
+        userInfo: utils.getUserInfoFromCache(),
+        theme: config.sidebarTheme,
+        className: 'topbar-wrapper ' + config.sidebarTheme
       }
     },
     render(h){
       return (
-        <div class='topbar-wrapper'>
+        <div class={this.className}>
           <el-row>
             <el-col class='logo' span={4}>
               <logo show={config.topbar !== 0}></logo>
@@ -31,7 +33,7 @@
             {!appConfig.isStatic
               ? <el-col span={3}>
                   <div class='user-info-container'>
-                    <el-menu theme='dark' class='el-menu-demo' mode='horizontal' onSelect={this.handleSelect}>
+                    <el-menu theme={this.theme} class='el-menu-demo' mode='horizontal' onSelect={this.handleSelect}>
                       <el-submenu index='home'>
                         <template slot='title'>{this.userInfo.name || '游客'}</template>
                         {this.userInfo.name ? this.userMenu() : <el-menu-item index='login'>登录</el-menu-item>}
@@ -98,9 +100,14 @@
     height: $topHeight;
     line-height: $topHeight;
     color: #bfcbd9;
-    background: #324157;
     .logo {
       padding-left: 20px;
+    }
+    &.dark {
+      background: #334257;
+    }
+    &.light {
+      background: #eef1f6;
     }
   }
   .user-info-container {

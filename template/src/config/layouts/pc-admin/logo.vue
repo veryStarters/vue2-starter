@@ -1,5 +1,5 @@
 <template>
-  <div class="logo-wrapper" v-if="show" @click="handleGoHome">
+  <div class="logo-wrapper" :class="className" v-if="show" @click="handleGoHome">
     <img :src="img" height="26" align="absmiddle"/>
     <span class="name">{{appName}}</span>
   </div>
@@ -15,6 +15,7 @@
     data() {
       return {
         img: img,
+        className: config.sidebarTheme,
         appName: appConfig.appName
       }
     },
@@ -34,15 +35,21 @@
       transition: .2s ease-in;
    }
   }
+
   .logo-wrapper {
-    /*padding: 15px;*/
     font-size: 18px;
-    color: #bfcbd9;
-    background: transparent;
     cursor: pointer;
     @add-mixin anim;
     .name {
       vertical-align: middle;
+    }
+    &.dark {
+      color: #bfcbd9;
+      background: transparent;
+    }
+    &.light {
+      color: #48576a;
+      background: transparent;
     }
   }
 </style>

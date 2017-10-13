@@ -1,5 +1,5 @@
 <template>
-  <div class="about-test2-wrapper">
+  <div class="index-docx-wrapper">
     Hello, world!
   </div>
 </template>
@@ -7,7 +7,7 @@
   import { mapGetters, mapActions } from 'vuex'
   import utils from 'utils'
   export default {
-    name: 'page-about-test2',
+    name: 'page-index-docx',
     components: {},
     data() {
       return {}
@@ -22,7 +22,7 @@
   }
 </script>
 <style lang="postcss" scoped>
-  .about-test2-wrapper {
+  .index-docx-wrapper {
     text-align: center;
     line-height: 5;
   }

@@ -12,20 +12,6 @@ export const common = {
   }
 }
 
-export const about = {
-  meta: {
-    title: 'another'
-  },
-  children: {
-    test1: {
-      meta: {
-        auth: false,
-        title: 'test测试'
-      }
-    }
-  }
-}
-
 export const index = {
   meta: {
     title: 'Home'
@@ -33,19 +19,13 @@ export const index = {
   children: {
     home: {
       meta: {
-        title: 'Home',
+        title: '合同配置',
         auth: false
       }
     },
-    test11: {
+    docx: {
       meta: {
-        title: 'test11'
-      }
-    },
-    test14: {
-      meta: {
-        title: 'test14',
-        auth: false
+        title: '合同生成'
       }
     }
   }

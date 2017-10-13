@@ -10,7 +10,14 @@ export default {
   sidebarTheme: 'dark',
   // 顶部导航
   navs: [
-
+    {
+      name: 'indexHome',
+      label: '首页'
+    },
+    {
+      name: 'aboutHome',
+      label: '关于我'
+    }
   ],
   // 侧边树形菜单
   menus: [

@@ -1,20 +1,29 @@
 <template>
   <div class="navbar-wrapper">
     <el-menu theme="dark" :default-active="activeName" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-      <el-menu-item class="item" index="indexHome">首页</el-menu-item>
-      <el-menu-item class="item" index="aboutHome">关于我</el-menu-item>
+      <el-menu-item v-for="(nav,index) in navs" :key="index" class="item" :index="nav.name">{{nav.label}}</el-menu-item>
     </el-menu>
   </div>
 </template>
 <script>
+  import config from './config'
+  const navs = config.navs
   export default {
     name: 'navbar',
     data() {
-      return {}
+      return {
+        navs: navs
+      }
     },
     computed: {
       activeName(){
-        return this.$route.name || 'indexHome'
+        debugger
+        let name = this.$route.name || 'indexHome'
+        let match = name.match(/[A-Z]{1}/)
+        if (match) {
+          name = name.substr(0, match.index)
+        }
+        return name + 'Home'
       }
     },
     methods: {

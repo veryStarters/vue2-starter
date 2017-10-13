@@ -17,7 +17,6 @@
     },
     computed: {
       activeName(){
-        debugger
         let name = this.$route.name || 'indexHome'
         let match = name.match(/[A-Z]{1}/)
         if (match) {

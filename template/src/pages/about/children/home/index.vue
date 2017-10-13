@@ -4,7 +4,9 @@
       <el-table
         :data="tableData2"
         style="width: 100%"
-        :row-class-name="tableRowClassName">
+        :row-class-name="tableRowClassName"
+        label-class-name="label"
+      >
         <el-table-column
           prop="date"
           label="日期"
@@ -16,6 +18,14 @@
           width="180">
         </el-table-column>
         <el-table-column prop="address" label="地址"></el-table-column>
+        <el-table-column
+          prop="action"
+          label="操作"
+        >
+          <template scope="scope">
+            <router-link to="/about/test1">测试1</router-link>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
   </div>
@@ -63,12 +73,19 @@
     }
   }
 </script>
-<style>
-  .el-table .info-row {
-    background: #c9e5f5;
-  }
-  .el-table .positive-row {
-    background: #e2f0e4;
+<style lang="postcss">
+  .test-home-wrapper {
+    .el-table {
+      .info-row {
+        background: #c9e5f5;
+      }
+      .positive-row {
+        background: #e2f0e4;
+      }
+      .cell {
+        text-align: center;
+      }
+    }
   }
 </style>
 <style lang="postcss" scoped>

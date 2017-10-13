@@ -1,6 +1,10 @@
 <template>
   <div class="test-test1-wrapper">
-    about test1
+    <el-steps :space="100" :active="1">
+      <el-step title="步骤 1" icon="edit"></el-step>
+      <el-step title="步骤 2" icon="upload"></el-step>
+      <el-step title="步骤 3" icon="picture"></el-step>
+    </el-steps>
   </div>
 </template>
 <script>

@@ -8,7 +8,9 @@
  */
 import layout from './layout'
 import hello from 'components/hello'
+import breadcrumb from './layouts/pc-admin/breadcrumb.vue'
 export default [
   layout,
-  hello
+  hello,
+  breadcrumb
 ]

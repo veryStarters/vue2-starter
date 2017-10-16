@@ -19,13 +19,13 @@ export default {
   menus: [
     {
       name: 'indexHome',
-      label: '合同列表',
+      label: '首页',
       icon: 'el-icon-star-on'
     },
     {
-      name: 'indexDocx',
+      name: 'indexList',
       icon: 'el-icon-edit',
-      label: '合同生成'
+      label: '合同模板列表'
     }
   ],
   // 布局初始化

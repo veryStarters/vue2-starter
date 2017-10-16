@@ -1,5 +1,6 @@
 <template>
   <div class="test-home-wrapper">
+    <breadcrumb :option="breadcrumbOption"></breadcrumb>
     <div class="info">
       <el-table
         :data="tableData2"
@@ -37,6 +38,19 @@
     name: 'page-test-home',
     data() {
       return {
+        breadcrumbOption: {
+          sep: '>',
+          list: [
+            {
+              name: 'indexHome',
+              label: '首页'
+            },
+            {
+              name: 'aboutHome',
+              label: '关于我'
+            }
+          ]
+        },
         tableData2: [{
           date: '2016-05-02',
           name: '王小虎',

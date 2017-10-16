@@ -1,5 +1,6 @@
 <template>
   <div class="index-test14-wrapper">
+    <breadcrumb :option="breadcrumbOption"></breadcrumb>
     Hello, world! test14
   </div>
 </template>
@@ -10,7 +11,20 @@
     name: 'page-index-test14',
     components: {},
     data() {
-      return {}
+      return {
+        breadcrumbOption: {
+          list: [
+            {
+              name: 'indexHome',
+              label: '首页'
+            },
+            {
+              name: 'indexTest14',
+              label: '测试14'
+            }
+          ]
+        }
+      }
     },
     mounted(){},
     computed: {

@@ -7,7 +7,7 @@
 import Vue from 'vue'
 import utils from 'utils'
 import config from 'config'
-let timer
+let loginTimer
 export default {
   init(){
     Vue.mixin({
@@ -21,7 +21,7 @@ export default {
          * 标题修改
          * @param title
          */
-        setTitle(title){
+        setTitle(title) {
           let meta = this.$route && this.$route.meta ? this.$route.meta : {}
           document.title = title || meta.title || config.appName || ''
         },
@@ -29,8 +29,13 @@ export default {
          * 登录状态监控
          */
         addLoginMonitor(){
-          if(timer) clearInterval(timer)
-          timer = setInterval(() => {
+          if (loginTimer){
+            clearInterval(loginTimer)
+          }
+          if (config.isStatic) {
+            return
+          }
+          loginTimer = setInterval(() => {
             let {auth = config.defaultAuth} = this.$route.meta || {}
             if (!auth) {
               return
@@ -38,7 +43,7 @@ export default {
             let remainingTime = Math.ceil(utils.getLoginRemainingTime() / 60)
             if (remainingTime < 1) {
               this.$message({type: 'error', message: '登录已经失效，请重新登录！'})
-              clearInterval(timer)
+              clearInterval(loginTimer)
               this.$router.push({name: 'userLogin'})
               return
             }

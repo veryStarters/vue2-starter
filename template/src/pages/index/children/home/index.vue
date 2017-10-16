@@ -1,8 +1,19 @@
 <template>
   <div class="home-wrapper">
-    <Hello></Hello>
+    <hello></hello>
   </div>
 </template>
-<!--可以拆分JS|CSS至单独的文件-->
-<script src="./home.js"></script>
+<script>
+  import hello from 'components/hello'
+  export default {
+    name: 'home',
+    components: {
+      hello
+    },
+    data() {
+      return {
+      }
+    }
+  }
+</script>
 <style src="./home.pcss" lang="postcss" scoped></style>

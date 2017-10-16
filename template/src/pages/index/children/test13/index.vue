@@ -8,12 +8,25 @@
     data() {
       return {
         loading: true,
-        message: ''
+        message: '',
+        breadcrumbOption: {
+          list: [
+            {
+              name: 'indexHome',
+              label: '首页'
+            },
+            {
+              name: 'indexTest13',
+              label: '测试13'
+            }
+          ]
+        }
       }
     },
     render(h){
       return (
         <div class='index-test13-wrapper'>
+          <breadcrumb option={this.breadcrumbOption}></breadcrumb>
           <div class='content' v-loading={this.loading} element-loading-text='数据加载中'>{this.message}</div>
         </div>
       )

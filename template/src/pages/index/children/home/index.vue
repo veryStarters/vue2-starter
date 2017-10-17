@@ -12,6 +12,13 @@
     </div>
   </div>
 </template>
-<!--可以拆分JS|CSS至单独的文件-->
-<script src="./home.js"></script>
+<script>
+  export default {
+    name: 'home',
+    data() {
+      return {
+      }
+    }
+  }
+</script>
 <style src="./home.pcss" lang="postcss" scoped></style>

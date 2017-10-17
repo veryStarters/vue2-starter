@@ -21,6 +21,9 @@ export const index = {
       meta: {
         title: '合同配置',
         auth: false
+      },
+      beforeEnter(to, from, next) {
+        next()
       }
     },
     docx: {

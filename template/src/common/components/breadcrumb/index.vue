@@ -14,9 +14,9 @@
 <style lang="postcss" scoped>
   .breadcrumb-wrapper {
     margin: 15px 0;
-    padding: 10px;
+    padding: 8px 0;
     color: #1f2d3d;
-    background: #fbfbfc;
+    /*background: #fbfbfc;*/
     font-size: 18px;
   }
 </style>

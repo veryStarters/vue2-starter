@@ -35,6 +35,9 @@ export const index = {
       meta: {
         title: 'Home',
         auth: false
+      },
+      beforeEnter(to, from, next) {
+        next()
       }
     },
     test11: {

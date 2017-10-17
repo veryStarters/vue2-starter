@@ -25,7 +25,7 @@ export default {
     {
       name: 'indexList',
       icon: 'el-icon-edit',
-      label: '合同模板列表'
+      label: '模板列表'
     }
   ],
   // 布局初始化

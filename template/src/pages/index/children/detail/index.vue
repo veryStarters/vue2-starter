@@ -1,6 +1,6 @@
 <template>
   <div class="index-detail-wrapper">
-    <Breadcrumb :option="option"></Breadcrumb>
+    <breadcrumb :option="option"></breadcrumb>
     <p class="title">第一步：</p>
     <el-upload
       class="upload-demo"
@@ -44,7 +44,6 @@
       return {
         replaceList: [],
         option: {
-          separator: '/',
           list: [
             {
               path: '/',
@@ -52,11 +51,11 @@
             },
             {
               path: '/list',
-              label: '合同模板列表页'
+              label: '模板列表'
             },
             {
               path: '',
-              label: '新增|编辑合同模板'
+              label: '新增|编辑模板'
             }
           ]
         },

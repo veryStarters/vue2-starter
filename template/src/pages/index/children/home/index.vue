@@ -3,17 +3,5 @@
     <hello></hello>
   </div>
 </template>
-<script>
-  import hello from 'components/hello'
-  export default {
-    name: 'home',
-    components: {
-      hello
-    },
-    data() {
-      return {
-      }
-    }
-  }
-</script>
+<script src="./home.js"></script>
 <style src="./home.pcss" lang="postcss" scoped></style>

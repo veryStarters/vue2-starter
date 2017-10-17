@@ -19,7 +19,7 @@ var data = Mock.mock({
         },
         {
           name: 'submenu1',
-          label: '子菜单1',
+          label: '子菜单',
           icon: 'el-icon-menu',
           children: [
             {
@@ -38,7 +38,7 @@ var data = Mock.mock({
       children: [
         {
           name: 'submenu2',
-          label: '子菜单2',
+          label: '子菜单',
           icon: 'el-icon-menu',
           children: [
             {

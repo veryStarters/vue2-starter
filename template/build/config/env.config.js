@@ -16,14 +16,14 @@ const CONFIG = {
       NODE_ENV: '"development"',
     }
   },
-  testing: {
+  test: {
     env: {
-      NODE_ENV: '"testing"',
+      NODE_ENV: '"test"',
     }
   },
-  preview: {
+  pre: {
     env: {
-      NODE_ENV: '"preview"'
+      NODE_ENV: '"pre"'
     }
   },
   production: {

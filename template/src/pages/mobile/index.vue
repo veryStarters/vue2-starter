@@ -1,31 +1,34 @@
 <template>
   <div class="mobile-wrapper">
-    <mobile-layout></mobile-layout>
+    <router-view></router-view>
+    <div class="fixed-button">
+      福
+    </div>
   </div>
 </template>
 <script>
-  import { mapGetters, mapActions } from 'vuex'
-  // 可以单独引入另外一个布局
-  import mobileLayout from 'layouts/mobile/layout'
-  import utils from 'utils'
   export default {
     name: 'page-mobile',
-    components: {
-      mobileLayout
-    },
-    data() {
-      return {}
-    },
-    mounted(){},
-    computed: {
-      ...mapGetters([])
-    },
-    methods: {
-      ...mapActions([])
-    }
   }
 </script>
 <style lang="postcss" scoped>
   .mobile-wrapper {
+    .fixed-button {
+      position: fixed;
+      bottom: 65px;
+      right: 10px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 26px;
+      background: #000;
+      color: #fff;
+      opacity: .4;
+      &:hover {
+        background: red;
+      }
+    }
   }
 </style>

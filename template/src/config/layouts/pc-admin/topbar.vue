@@ -3,7 +3,6 @@
   import utils from 'utils'
   import navbar from './navs.vue'
   import logo from './logo.vue'
-  import config from './config'
   import appConfig from 'config'
   export default {
     name: 'topbar',
@@ -11,11 +10,11 @@
       navbar,
       logo
     },
+    props: ['show', 'theme', 'navs'],
     data() {
       return {
         userInfo: utils.getUserInfoFromCache(),
-        theme: config.sidebarTheme,
-        className: 'topbar-wrapper ' + config.sidebarTheme
+        className: 'topbar-wrapper ' + this.theme
       }
     },
     render(h){
@@ -23,11 +22,11 @@
         <div class={this.className}>
           <el-row>
             <el-col class='logo' span={4}>
-              <logo show={config.topbar !== 0}></logo>
+              <logo show={this.show} theme={this.theme}></logo>
             </el-col>
             <el-col span={17}>
               <div class='navbar-container'>
-                <navbar></navbar>
+                <navbar theme={this.theme} navs={this.navs}></navbar>
               </div>
             </el-col>
             {!appConfig.isStatic

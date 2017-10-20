@@ -1,16 +1,16 @@
 <template>
   <div class="footer-wrapper">
     <mt-tabbar v-model="selected">
-      <mt-tab-item id="anotherTest1Home">
+      <mt-tab-item id="aboutHome">
         <img slot="icon" src="~images/icons/1.png">外卖
       </mt-tab-item>
-      <mt-tab-item id="anotherTest1Test2">
+      <mt-tab-item id="aboutTest1">
         <img slot="icon" src="~images/icons/2.png">订单
       </mt-tab-item>
-      <mt-tab-item id="anotherTest1Test3">
+      <mt-tab-item id="aboutTest2">
         <img slot="icon" src="~images/icons/3.png">发现
       </mt-tab-item>
-      <mt-tab-item id="anotherTest1Test2">
+      <mt-tab-item id="aboutTest3">
         <img slot="icon" src="~images/icons/4.png">我的
       </mt-tab-item>
     </mt-tabbar>

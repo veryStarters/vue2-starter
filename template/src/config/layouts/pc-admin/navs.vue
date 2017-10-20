@@ -6,14 +6,11 @@
   </div>
 </template>
 <script>
-  import config from './config'
-  const navs = config.navs
   export default {
     name: 'navbar',
+    props: ['theme', 'navs'],
     data() {
       return {
-        navs: navs,
-        theme: config.sidebarTheme
       }
     },
     computed: {

@@ -1,21 +1,18 @@
 <template>
-  <div class="logo-wrapper" :class="className" v-if="show" @click="handleGoHome">
+  <div class="logo-wrapper" :class="theme" v-if="show" @click="handleGoHome">
     <img :src="img" height="26" align="absmiddle"/>
     <span class="name">{{appName}}</span>
   </div>
 </template>
 <script>
-  import config from './config'
   import appConfig from 'config'
   import img from 'images/logo.png'
-
   export default {
     name: 'logo',
-    props: ['show'],
+    props: ['show', 'theme'],
     data() {
       return {
         img: img,
-        className: config.sidebarTheme,
         appName: appConfig.appName
       }
     },

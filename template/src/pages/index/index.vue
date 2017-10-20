@@ -6,7 +6,7 @@
 <script>
   export default {
     name: 'page-index',
-    data(){
+    data() {
       return {
       }
     }

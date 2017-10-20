@@ -1,44 +1,30 @@
 <template>
   <div class="layout-wrapper">
     <div class="header-container">
-      <topbar></topbar>
+      <slot name="header"></slot>
     </div>
     <div class="main-container">
       <div class="sub-header-container">
-        <sub-header></sub-header>
+        <slot name="subHeader"></slot>
       </div>
       <div class="body-container">
-        <app-main></app-main>
+        <slot name="body"></slot>
       </div>
     </div>
     <div class="footer-container">
-      <menubar></menubar>
+      <slot name="footer"></slot>
     </div>
   </div>
 </template>
 <script>
-  import layoutConfig from './config'
-  import topbar from './topbar.vue'
-  import subHeader from './subheader.vue'
-  import menubar from './menubar.vue'
-  import appMain from './main.vue'
+  import layoutConfig from './default.conf'
   export default {
     name: 'mobile-layout',
-    components: {
-      'app-main': appMain,
-      'sub-header': subHeader,
-      topbar,
-      menubar
-    },
-    mounted() {
-      layoutConfig.layoutInitOnce()
+    beforeMount() {
+      let meta = document.createElement('meta')
+      meta.setAttribute('content', 'width=device-width,minimum-scale=1.0,maximum-scale=1.0,shrink-to-fit=no,user-scalable=no,minimal-ui')
+      meta.setAttribute('name', 'viewport')
+      document.head.appendChild(meta)
     }
   }
 </script>
-<style scoped>
-  .layout-wrapper {
-  }
-  .default-body {
-    text-align: center;
-  }
-</style>

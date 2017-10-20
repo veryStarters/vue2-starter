@@ -1,7 +1,7 @@
 <template>
   <div class="index-test13-wrapper">
     <breadcrumb :option="breadcrumbOption"></breadcrumb>
-    <div class="content" v-loading="loading" element-loading-text="数据加载中">{this.message}</div>
+    <div class="content" v-loading="loading" element-loading-text="数据加载中">{{message}}</div>
   </div>
 </template>
 <script>

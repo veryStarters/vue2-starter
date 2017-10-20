@@ -1,19 +1,17 @@
 <script>
   import {mapGetters, mapActions} from 'vuex'
-  import config from './config'
   import appConfig from 'config'
   import logo from './logo.vue'
-  const localMenus = config.menus
   export default {
     name: 'menubar',
     components: {
       logo
     },
+    props: ['theme', 'topbar', 'menus'],
     data() {
       return {
-        menus: [],
         openedNames: [],
-        className: config.sidebarTheme
+        localMenus: this.menus
       }
     },
     computed: {
@@ -24,18 +22,18 @@
     render(h) {
       return (
         <div class='menubar-wrapper'>
-          {config.topbar === 0
+          {this.topbar === 0
             ? (
-              <div style={{ padding: '15px' }} class={this.className}>
-                <logo show={config.topbar === 0}></logo>
+              <div style={{ padding: '15px' }} class={this.theme}>
+                <logo show={this.topbar === 0}></logo>
               </div>
             )
             : ''
           }
           <el-menu ref='menu' default-active={this.activeName} default-openeds={this.openedNames} unique-opened={true}
-                   class='el-menu-vertical-demo' onSelect={this.handleSelect} theme={config.sidebarTheme}>
+                   class='el-menu-vertical-demo' onSelect={this.handleSelect} theme={this.theme}>
             {
-              this.menus.map(menu => {
+              this.localMenus.map(menu => {
                 return !menu.children || !menu.children.length
                   ? this.menuItem(menu)
                   : this.submenu(menu)
@@ -77,7 +75,7 @@
       },
       loadMenus() {
         const createMenus = menus => {
-          this.menus = menus
+          this.localMenus = menus
           //根据路由name展开menus
           this.$nextTick(() => {
             let menu = this.$refs.menu
@@ -90,6 +88,7 @@
           })
         }
         // 如果本地有菜单配置，则以本地为准；否则根据应用类型发起请求或者报错
+        let localMenus = this.localMenus
         if (localMenus && localMenus.length) {
           createMenus(localMenus)
         } else {

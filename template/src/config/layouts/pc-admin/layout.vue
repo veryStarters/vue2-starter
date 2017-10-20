@@ -1,13 +1,13 @@
 <template>
   <div class="layout-wrapper">
     <div class="topbar-container clearfix" v-if="topbar">
-      <sticky v-if="topbar===2">
-        <topbar></topbar>
+      <sticky v-if="topbar === 2">
+        <topbar :show="topbar !== 0" :theme="theme" :navs="navs"></topbar>
       </sticky>
-      <topbar v-else="topbar===1"></topbar>
+      <topbar v-else="topbar === 1" :show="topbar === 1" :theme="theme" :navs="navs"></topbar>
     </div>
-    <div class="sidebar-container scroll-bar fixed" :class="{'top-offset':topbar, 'dark': dark}">
-      <sidebar></sidebar>
+    <div class="sidebar-container scroll-bar fixed" :class="{'top-offset':topbar, 'dark': theme === 'dark'}">
+      <sidebar :theme="theme" :menus="menus"></sidebar>
     </div>
     <div class="main-container ml-offset">
       <app-main></app-main>
@@ -16,21 +16,36 @@
 </template>
 <script>
   import appConfig from 'config'
-  import layoutConfig from './config'
+  import layoutConfig from './default.conf'
   import appMain from './main.vue'
   import topbar from './topbar.vue'
   import sidebar from './sidebar.vue'
   import sticky from 'components/sticky'
   export default {
     name: 'pc-admin-layout',
-    data(){
-      return {
-        topbar: layoutConfig.topbar || 0,
-        dark: layoutConfig.sidebarTheme === 'dark'
+    props: {
+      topbar: {
+        type: Number,
+        default: layoutConfig.topbar
+      },
+      theme: {
+        type: String,
+        default: layoutConfig.theme
+      },
+      navs: {
+        type: Array,
+        default: function() {
+          return layoutConfig.navs
+        }
+      },
+      menus: {
+        type: Array,
+        default: function () {
+          return layoutConfig.menus
+        }
       }
     },
-    mounted() {
-      layoutConfig.layoutInitOnce()
+    beforeMounted() {
       if (!appConfig.isStatic) {
         this.addLoginMonitor()
       }

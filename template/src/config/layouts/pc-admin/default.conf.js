@@ -2,12 +2,12 @@ import Vue from 'vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 Vue.use(ElementUI)
-// 此处返回配置项
+// 此处返回配置项,此处配置项均为默认配置项，如在
 export default {
   // 0 hidden; 1 show; 2 fixed
   topbar: 2,
   // light; dark,
-  sidebarTheme: 'dark',
+  theme: 'dark',
   // 顶部导航
   navs: [
     {
@@ -17,6 +17,10 @@ export default {
     {
       name: 'aboutHome',
       label: '关于我'
+    },
+    {
+      name: 'mobileHome',
+      label: '移动版'
     }
   ],
   // 侧边树形菜单
@@ -45,9 +49,5 @@ export default {
     //     }
     //   ]
     // }
-  ],
-  // 布局初始化
-  layoutInitOnce: () => {
-    // console.log('布局初始化')
-  }
+  ]
 }

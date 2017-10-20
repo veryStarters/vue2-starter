@@ -1,6 +1,11 @@
 <template>
   <div class="home-wrapper">
-    本页面采用了pc-admin布局，可以在index/index.vue中自定义menus和navs
+    <h1>布局说明</h1>
+    <div class="content">
+      <p class="title">1、XCVCVXXCVCX</p>
+      <p>sadfasdfdsafdfs</p>
+      <p class="title">2、XCVCVXXCVCX</p>
+    </div>
   </div>
 </template>
 <script src="./home.js"></script>

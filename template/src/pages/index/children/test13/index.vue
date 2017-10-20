@@ -18,7 +18,7 @@
         breadcrumbOption: {
           list: [
             {
-              name: 'index',
+              name: 'indexHome',
               label: '首页'
             },
             {

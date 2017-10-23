@@ -2,7 +2,6 @@
   <div class="index-test11-wrapper">
     <breadcrumb :option="breadcrumbOption"></breadcrumb>
     <p>订单到底是什么东西？</p>
-    <p><button @click="gotoTest2">test11</button></p>
   </div>
 </template>
 <script>

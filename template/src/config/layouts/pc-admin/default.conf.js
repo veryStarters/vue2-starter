@@ -12,15 +12,15 @@ export default {
   navs: [
     {
       name: 'indexHome',
-      label: '首页'
+      label: '布局一'
     },
     {
       name: 'aboutHome',
-      label: '关于我'
+      label: '布局二'
     },
     {
       name: 'mobileHome',
-      label: '移动版'
+      label: '布局三'
     }
   ],
   // 侧边树形菜单

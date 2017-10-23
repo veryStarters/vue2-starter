@@ -32,80 +32,6 @@ components.forEach(component => {
   Vue.component(component.name, component)
 })
 
-// 1.创建一个路由实例
-const router = new VueRouter({
-  mode: 'history',
-  linkActiveClass: 'is-active',
-  routes,
-  scrollBehavior(to, from, savedPosition){
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      let position = {}
-      if (to.hash) {
-        position.selector = to.hash
-      }
-      if (to.matched.some(m => m.meta.scrollToTop)) {
-        position.x = 0
-        position.y = 0
-      }
-      return position
-    }
-  }
-})
-
-// 2.应用初始化
-const initApp = () => {
-  //初始化全局指令和混入
-  directive.init()
-  mixins.init()
-
-  // 路由权限控制
-  router.beforeEach((to, from, next) => {
-    console.log('即将访问路由：' + (to.name || to.path))
-    progress.start()
-    setTimeout(() => {
-      progress.done()
-    }, 5000)
-    if (config.isStatic) {
-      return next()
-    }
-    checkPermission(to, from, next)
-  })
-
-  router.afterEach(() => {
-    progress.done();
-  });
-
-  let vue = new Vue({
-    el: '#app',
-    router,
-    store,
-    template: '<App/>',
-    components: {App}
-  })
-  vue.appConfig = config
-}
-
-// 3.应用启动主流程
-if (config.isStatic) {
-  initApp()
-} else {
-  api.getUserInfo().then(res => {
-    let accessToken = utils.getAccessToken()
-    if (accessToken && res.code === 0 && res.data) {
-      rebuildStore(accessToken, res.data)
-      initApp()
-    } else {
-      if (config.defaultAuth) {
-        console.warn('当前未登录或者登录状态已经失效，仅能访问无权限页面！')
-      }
-      initApp()
-    }
-  }).catch(() => {
-    initApp()
-  })
-}
 
 /**-------------以下为辅助函数-------------**/
 //登录超时判断
@@ -189,6 +115,87 @@ const checkPermission = (to, from, next) => {
       // 2.不是登录页直接访问
       next()
     }
+  }
+}
+
+/* 以下为主流程 */
+
+// 1.创建一个路由实例
+const router = new VueRouter({
+  mode: 'history',
+  linkActiveClass: 'is-active',
+  routes,
+  scrollBehavior(to, from, savedPosition){
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      let position = {}
+      if (to.hash) {
+        position.selector = to.hash
+      }
+      if (to.matched.some(m => m.meta.scrollToTop)) {
+        position.x = 0
+        position.y = 0
+      }
+      return position
+    }
+  }
+})
+
+// 2.应用初始化
+const initApp = () => {
+  //初始化全局指令和混入
+  directive.init()
+  mixins.init()
+
+  // 路由权限控制
+  router.beforeEach((to, from, next) => {
+    console.log('即将访问路由：' + (to.name || to.path))
+    progress.start()
+    setTimeout(() => {
+      progress.done()
+    }, 5000)
+    if (config.isStatic) {
+      return next()
+    }
+    checkPermission(to, from, next)
+  })
+
+  router.afterEach(() => {
+    progress.done();
+  });
+
+  let vue = new Vue({
+    el: '#app',
+    router,
+    store,
+    template: '<App/>',
+    components: {App}
+  })
+  vue.appConfig = config
+}
+
+// 3.应用启动主流程
+if (config.isStatic) {
+  initApp()
+} else {
+  if (config.needGetUserInfoFirst) {
+    api.getUserInfo().then(res => {
+      let accessToken = utils.getAccessToken()
+      if (accessToken && res.code === 0 && res.data) {
+        rebuildStore(accessToken, res.data)
+        initApp()
+      } else {
+        if (config.defaultAuth) {
+          console.warn('当前未登录或者登录状态已经失效，仅能访问无权限页面！')
+        }
+        initApp()
+      }
+    }).catch(() => {
+      initApp()
+    })
+  } else {
+    initApp()
   }
 }
 

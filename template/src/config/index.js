@@ -5,10 +5,12 @@
  */
 // 应用具体配置
 const APP_CONFIG = {
-  appName: 'XXXX系统',
+  appName: 'V2S系统应用',
   // 是否是静态应用，静态应用指无任何跟后端交互的功能,包括权限验证、数据请求等
   // 当此处设置位true时，后续跟后台请求、权限相关的所有配置项均失效
   isStatic: false,
+  // 是否需要一开始就获取用户信息用于校验权限，当isStatic为真时失效
+  needGetUserInfoFirst: false,
   // session有效时间 ms, 当isStatic为真时失效
   sessionDuration: 30 * 60 * 1000,
   // 请求头配置, 当isStatic为真时失效

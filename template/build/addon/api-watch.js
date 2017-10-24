@@ -26,9 +26,9 @@ var server = {
         terminal: false
       });
       rd.on('line', function (line) {
-        var matches = line.match(/fetch\((?:'|")\/api(.*)\/(.*?)(?:'|")/)
+        var matches = line.match(/fetch\((?:'|")\/(?:(.*)\/)?(.*?)(?:'|")/)
         if (!matches || !matches[2]) return;
-        var path = Path.join(__dirname, '../../src/config/mock', matches[1])
+        var path = Path.join(__dirname, '../../src/config/mock', matches[1] || '')
         var name = matches[2] + '.js'
         var apiFile = path + Path.sep + name;
         if (checkExits(path)) {

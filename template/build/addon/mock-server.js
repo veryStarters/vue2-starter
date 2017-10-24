@@ -9,9 +9,9 @@ var address = require('address')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var config = require('../config').dev
+var appConfig = require('../../src/config')
 var loadModule = require('./load-module')
-
-module.exports = function () {
+var mockServer =  function () {
   var router = express.Router()
   var app = express()
   app.use(bodyParser.json())
@@ -22,7 +22,7 @@ module.exports = function () {
     var urlInfo = req._parsedUrl
     var pathName = urlInfo.pathname
     var lastIndex = pathName.lastIndexOf('/') + 1
-    var dirPath = pathName.substring(0, lastIndex).replace('/api', '')
+    var dirPath = pathName.substring(0, lastIndex).replace(appConfig.apiPath['development'], '')
     var moduleName = pathName.substring(lastIndex).replace('&', '')
     var modules = loadModule(path.join(__dirname, '../../src/config/mock' + dirPath))
     var module = modules[moduleName]
@@ -48,3 +48,8 @@ module.exports = function () {
     }
   })
 }
+if (process.env.debugger) {
+  mockServer()
+}
+
+module.exports = mockServer

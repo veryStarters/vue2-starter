@@ -7,18 +7,18 @@ import fetch from 'utils/fetch'
 
 export default {
   async login(params) {
-    return await fetch('/api/user/login', params)
+    return await fetch('/user/login', params)
   },
   async logout(params) {
-    return await fetch('/api/user/logout', params)
+    return await fetch('/user/logout', params)
   },
   async getUserInfo(params) {
-    return await fetch('/api/user/info', params)
+    return await fetch('/user/info', params)
   },
   async getMenus(params) {
-    return await fetch('/api/menus', params)
+    return await fetch('/menus', params)
   },
   async getTest(params) {
-    return await fetch('/api/gettest', params)
+    return await fetch('/gettest', params)
   }
 }

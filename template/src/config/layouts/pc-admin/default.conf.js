@@ -16,11 +16,11 @@ export default {
     },
     {
       name: 'aboutHome',
-      label: '布局二'
+      label: '布局一主题二'
     },
     {
       name: 'mobileHome',
-      label: '布局三'
+      label: '布局二'
     }
   ],
   // 侧边树形菜单

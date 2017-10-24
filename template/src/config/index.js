@@ -32,10 +32,10 @@ const APP_CONFIG = {
   },
   // Api路径, 当isStatic为真时失效
   apiPath: {
-    development: '/',
-    test: 'http://test.my-site.com/',
-    pre: 'http://pre.my-site.com/',
-    production: 'http://prod.my-site.com/'
+    development: '/api',
+    test: 'http://test.my-site.com/api',
+    pre: 'http://pre.my-site.com/api',
+    production: 'http://prod.my-site.com/api'
   },
   // req切面配置
   requestInterceptor(req) {

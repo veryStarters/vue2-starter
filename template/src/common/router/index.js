@@ -5,7 +5,7 @@
  */
 /**
  * 路由生成，本模块处理了自动生成路由的相关逻辑，一般无需更改。
- * 如有自定义路由需求，请移步至routes.custom.js文件
+ * 如有自定义路由需求，请移步至config/routes.js文件
  * Created by Webstorm.
  * @author taoqili
  * @date 2017/4/12
@@ -42,10 +42,14 @@ Object.keys(topRouters).forEach((name) => {
     _name: name,  // 存在子路由的路由会被清空name，此处做一个备份
     path: custom.path || path,
     meta: custom.meta || {},
+    alias: custom.alias || name,
     component: custom.component || topRouters[name],
     beforeRouteEnter: custom.beforeEnter || function (to, from, next) {
       next()
     }
+  }
+  if (custom.redirect) {
+    router.redirect = custom.redirect
   }
   router.children = getChildren(name) || []
   // 若存在子路由，则父路由增加/结尾, 且清空命名路由
@@ -75,10 +79,14 @@ function getChildren(parentName) {
         _name: childName,
         path: custom.path || childPath,
         meta: custom.meta || {},
+        alias: custom.alias || name,
         component: custom.component || allChildRouters[name],
         beforeEnter: custom.beforeEnter || function (to, from, next) {
           next()
         }
+      }
+      if (custom.redirect) {
+        router.redirect = custom.redirect
       }
       router.children = getChildren(name) || []
       if (router.children.length) {

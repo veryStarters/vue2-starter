@@ -52,7 +52,6 @@
           </mt-tab-item>
         </mt-navbar>
       </div>
-
     </mobile-layout>
   </div>
 </template>

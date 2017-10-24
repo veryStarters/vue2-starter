@@ -1,5 +1,5 @@
 <script>
-  import {mapGetters, mapActions} from 'vuex'
+  import api from 'api'
   import appConfig from 'config'
   import logo from './logo.vue'
   export default {
@@ -47,7 +47,6 @@
       this.loadMenus()
     },
     methods: {
-      ...mapActions(['getMenus']),
       submenu(props) {
         return (
           <el-submenu index={props.name}>
@@ -100,10 +99,16 @@
               }
             ])
           } else {
-            this.getMenus().then((menuInfo) => {
-              let menus = menuInfo.menus
-              createMenus(menus)
-            }).catch(res => {
+            api.getMenus().then((res) => {
+              if (res.code === 0 && res.data) {
+                let menus = res.data.menus
+                createMenus(menus)
+              } else {
+                createMenus({
+                  name: 'indexHome',
+                  label: '未取到后端菜单配置数据,请配置getMenus接口!!',
+                })
+              }
             })
           }
         }

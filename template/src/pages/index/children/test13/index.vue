@@ -6,7 +6,6 @@
 </template>
 <script>
   import {mapGetters, mapActions} from 'vuex'
-  import utils from 'utils'
   import api from 'api'
   export default {
     name: 'page-index-test13',

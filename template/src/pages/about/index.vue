@@ -5,7 +5,7 @@
 </template>
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import utils from 'utils'
+  import api from 'api'
   export default {
     name: 'page-about',
     components: {},
@@ -22,6 +22,12 @@
           }
         ]
       }
+    },
+    mounted() {
+      api.getAbout().then(res => {
+        console.log('服务端返回:' + JSON.stringify(res))
+        console.log('config/index.js中定义的envs:' + process.env.SOMETHING)
+      })
     }
   }
 </script>

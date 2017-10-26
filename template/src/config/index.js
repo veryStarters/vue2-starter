@@ -9,7 +9,7 @@ const APP_CONFIG = {
   // 是否是静态应用，静态应用指无任何跟后端交互的功能,包括权限验证、数据请求等
   // 当此处设置位true时，后续跟后台请求、权限相关的所有配置项均失效
   isStatic: false,
-  // 是否需要一开始就获取用户信息用于校验权限，当isStatic为真时失效
+  // 是否需要一开始就校验权限，当isStatic为真时失效
   needGetUserInfoFirst: false,
   // session有效时间 ms, 当isStatic为真时失效
   sessionDuration: 30 * 60 * 1000,
@@ -17,25 +17,61 @@ const APP_CONFIG = {
   httpHeaders: {
     'Content-Type': 'application/json'
   },
-  // 每个路由默认的权限校验状态, 当isStatic为真时失效
+  // 每个路由默认的权限校验状态, 设置成true时，每隔10分钟自动校验登录信息；当isStatic为真时失效
   defaultAuth: false,
   // 首页路由名称, 用于处理遭遇各种异常路由时的最终跳转路由, 当isStatic为真时失效
   indexPageName: 'indexHome',
   // 登录页路由名称, 当isStatic为真时失效
   loginPageName: 'userLogin',
-  // 资源路径
-  assetsPublicPath: {
-    development: '/',
-    test: 'http://test.static.com/',
-    pre: 'http://pre.static.com/',
-    production: 'http://prod.static.com/'
-  },
-  // Api路径, 当isStatic为真时失效
+  // Api对应的服务器及前缀, 当isStatic为真时失效
   apiPath: {
-    development: '/api',
-    test: 'http://test.my-site.com/api',
-    pre: 'http://pre.my-site.com/api',
-    production: 'http://prod.my-site.com/api'
+    default: '/api',
+    easybao: {
+      development: '/jcy-api',
+      test: 'http://test.jcyapi.easybao.com/jcy-api',
+      pre: 'http://pre.jcyapi.easybao.com/jcy-api',
+      production: 'http://jcyapi.easybao.com/jcy-api'
+    }
+  },
+  //代理配置，key值同apiPath，修改后需要重启服务
+  proxyTable: {
+    '/api': {
+      // 默认使用本地mock数据，如需直连线上或者测试环境，直接修改target即可
+      target: 'http://localhost:10082',
+      // target: 'http://admintest.activity.easybao.com',
+      changeOrigin: true,
+      pathRewrite: {
+        // '^/api': '/'
+      }
+    },
+    '/jcy-api': {
+      target: 'http://localhost:10082',
+      // target: 'http://test.jcyapi.easybao.com',
+      changeOrigin: true,
+      pathRewrite: {
+        // '^/api': '/'
+      }
+    }
+  },
+  // 预渲染路由列表
+  preRenderRouters: [
+    // '/login'
+  ],
+  // 前端代码可直接访问的变量，修改后需要重启服务，e.g  console.log(process.env.SOMETHING) => 其他的值
+  envs: {
+    development: {
+      NODE_ENV: '"development"',
+      SOMETHING: '"其它的值"'
+    },
+    test: {
+      NODE_ENV: '"test"',
+    },
+    pre: {
+      NODE_ENV: '"pre"'
+    },
+    production: {
+      NODE_ENV: '"production"',
+    }
   },
   // req切面配置
   requestInterceptor(req) {
@@ -48,7 +84,7 @@ const APP_CONFIG = {
     return res.data
   },
   // 渲染错误处理
-  errorHandler(e){
+  errorHandler(e) {
     console.error('捕获到了错误：' + e)
   }
 }

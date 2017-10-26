@@ -20,5 +20,9 @@ export default {
   },
   async getTest(params) {
     return await fetch('/gettest', params)
+  },
+  // 向另外一个服务器发起的请求，在config/index.js可具体配置
+  async getAbout(params) {
+    return await fetch('/about', params, {prefixName: 'easybao'})
   }
 }

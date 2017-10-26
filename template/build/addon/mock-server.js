@@ -5,11 +5,9 @@
  */
 var path = require('path')
 var express = require('express')
-var address = require('address')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var config = require('../config').dev
-var appConfig = require('../../src/config')
 var loadModule = require('./load-module')
 var mockServer =  function () {
   var router = express.Router()
@@ -22,7 +20,7 @@ var mockServer =  function () {
     var urlInfo = req._parsedUrl
     var pathName = urlInfo.pathname
     var lastIndex = pathName.lastIndexOf('/') + 1
-    var dirPath = pathName.substring(0, lastIndex).replace(appConfig.apiPath['development'], '')
+    var dirPath = pathName.substring(0, lastIndex).replace(/\/.*api/, '')
     var moduleName = pathName.substring(lastIndex).replace('&', '')
     var modules = loadModule(path.join(__dirname, '../../src/config/mock' + dirPath))
     var module = modules[moduleName]
@@ -40,11 +38,10 @@ var mockServer =  function () {
   })
 
   app.use('/', router)
-  let ip = address.ip() || 'localhost'
   app.listen(config.mockPort, function () {
-    console.log('\n本地开发环境即将启动，请访问：http://' + ip + ':' + config.port)
+    console.log('\n本地开发环境即将启动，请访问：http://localhost' + ':' + config.port)
     if(config.httpsEnable){
-      console.log('您已开启https支持，请访问：https://' + ip + ':' + config.httpsPort)
+      console.log('您已开启https支持，请访问：https://localhost' + ':' + config.httpsPort)
     }
   })
 }

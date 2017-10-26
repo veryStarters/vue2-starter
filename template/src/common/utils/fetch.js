@@ -7,7 +7,6 @@ import axios from 'axios'
 import config from 'config'
 const env = process.env.NODE_ENV || 'development'
 let instance = axios.create({
-  baseURL: config.apiPath ? config.apiPath[env] || '/' : '/',
   method: 'post',
   withCredentials: true,
   timeout: 6000,
@@ -29,11 +28,20 @@ instance.interceptors.response.use(function (res) {
   return Promise.reject(err)
 })
 
-export default async (url = '', params = {}, method = 'post') => {
+export default async (url = '', params = {}, option = {}) => {
   if (!url) {
     return Promise.reject(`params 'url' not exist！`)
   }
-  method = method.toLowerCase()
+  let method = option.method || 'post'
+  let prefixName = option.prefixName || 'default'
+  if (url.indexOf('http') !== 0) {
+    let prefix = config.apiPath[prefixName]
+    if (typeof prefix === 'string') {
+      url = prefix + url
+    } else if (typeof prefix === 'object') {
+      url = prefix[env] + url
+    }
+  }
   switch (method) {
     case 'get':
       return instance.get(url, {

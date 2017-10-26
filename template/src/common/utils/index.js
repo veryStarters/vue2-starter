@@ -67,14 +67,27 @@ export default (() => {
      * @returns {*}
      */
     params2query(params) {
-      if (typeof params !== 'object') return '';
-      var queries = [];
+      if (typeof params !== 'object') return ''
+      var queries = []
       for (var i in params) {
         if (params.hasOwnProperty(i)) {
           params[i] && queries.push(i + '=' + params[i])
         }
       }
-      return queries.join('&');
+      return queries.join('&')
+    },
+    query2params(query) {
+      if (typeof query !== "string")return {}
+      let param = {}
+      let params
+      let kv
+      params = query.split('&')
+      for (let i = 0, len = params.length; i < len; i++) {
+        if (!params[i]) continue
+        kv = params[i].split('=')
+        if (kv[0] && kv[1]) param[kv[0]] = kv[1]
+      }
+      return param
     }
   }
 })()

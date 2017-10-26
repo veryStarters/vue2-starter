@@ -1,7 +1,7 @@
 var path = require('path')
 var utils = require('./utils')
 var webpack = require('webpack')
-var envConfig = require('./config')
+var config = require('./config')
 var appConfig = require('../src/config')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
@@ -15,13 +15,13 @@ var PrerenderSpaPlugin = require('prerender-spa-plugin')
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
-      sourceMap: envConfig.build.productionSourceMap,
+      sourceMap: config.build.productionSourceMap,
       extract: true
     })
   },
-  devtool: envConfig.build.productionSourceMap ? '#source-map' : false,
+  devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
-    path: envConfig.assetsRoot,
+    path: config.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
@@ -29,7 +29,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     new BeforeBuildPlugin(),
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      'process.env': envConfig.env
+      'process.env': config.env
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -53,7 +53,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: envConfig.build.index,
+      filename: config.build.index,
       template: 'index.html',
       inject: true,
       appName: appConfig.appName,
@@ -91,18 +91,18 @@ var webpackConfig = merge(baseWebpackConfig, {
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
-        to: envConfig.assetsRoot,
+        to: config.assetsRoot,
         ignore: ['.*']
       }
     ]),
     new PrerenderSpaPlugin(
       path.join(__dirname, '../dist'),
-      envConfig.preRenderRouters || []
+      config.preRenderRouters || []
     )
   ]
 })
 
-if (envConfig.build.productionGzip) {
+if (config.build.productionGzip) {
   var CompressionWebpackPlugin = require('compression-webpack-plugin')
 
   webpackConfig.plugins.push(
@@ -111,7 +111,7 @@ if (envConfig.build.productionGzip) {
       algorithm: 'gzip',
       test: new RegExp(
         '\\.(' +
-        envConfig.build.productionGzipExtensions.join('|') +
+        config.build.productionGzipExtensions.join('|') +
         ')$'
       ),
       threshold: 10240,
@@ -120,7 +120,7 @@ if (envConfig.build.productionGzip) {
   )
 }
 
-if (envConfig.build.bundleAnalyzerReport) {
+if (config.build.bundleAnalyzerReport) {
   var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }

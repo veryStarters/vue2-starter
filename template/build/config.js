@@ -1,21 +1,18 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-var envConfig = require('./env.config')
-var config = require('../../src/config')
-var assetsRoot = path.resolve(__dirname, '../../dist')
+var appConfig = require('../src/config')
+var assetsRoot = path.resolve(__dirname, '../dist')
 var assetsSubDirectory = 'static'
-var assetsPublicPath = config.assetsPublicPath[process.env.NODE_ENV]
+var assetsPublicPath = appConfig.assetsPublicPath ? appConfig.assetsPublicPath[process.env.NODE_ENV] || '/' : '/'
 module.exports = {
-  env: envConfig.env,
+  env: appConfig.envs[process.env.NODE_ENV || 'development'],
   assetsRoot: assetsRoot,
   assetsSubDirectory: assetsSubDirectory,
   assetsPublicPath: assetsPublicPath,
   // 预渲染路由列表
-  preRenderRouters: [
-    // '/user/login'
-  ],
+  preRenderRouters: appConfig.preRenderRouters || [],
   build: {
-    index: path.resolve(__dirname, '../../dist/index.html'),
+    index: path.resolve(__dirname, '../dist/index.html'),
     productionSourceMap: true,
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
@@ -30,18 +27,28 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report
   },
   dev: {
-    port: envConfig.port,
-    mockPort: envConfig.mockPort,
+    port: 8080,
+    mockPort: 10082,
     autoOpenBrowser: false,
     httpsEnable: false,
     httpsPort: 9527,
-    proxyTable: {
+    // 默认代理
+    proxyTable: Object.assign({
       '/api': {
-        target: ((envConfig.mockHost || 'http://localhost').indexOf('http') !== -1 ? envConfig.mockHost : ('http://' + envConfig.mockHost)) + ':' + envConfig.mockPort,
+        target: 'http://localhost:10082',
         changeOrigin: true,
-        pathRewrite: envConfig.pathRewrite
+        pathRewrite: {
+          // '^/api': '/'
+        }
+      },
+      '/jcy-api': {
+        target: 'http://localhost:10082',
+        changeOrigin: true,
+        pathRewrite: {
+          // '^/api': '/'
+        }
       }
-    },
+    }, appConfig.proxyTable || {}),
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)

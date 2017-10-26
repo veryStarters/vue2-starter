@@ -1,6 +1,6 @@
 var path = require('path')
 var utils = require('./utils')
-var envConfig = require('./config')
+var config = require('./config')
 var vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve(dir) {
@@ -12,9 +12,9 @@ module.exports = {
     app: './src/main.js'
   },
   output: {
-    path: envConfig.assetsRoot,
+    path: config.assetsRoot,
     filename: '[name].js',
-    publicPath: envConfig.assetsPublicPath
+    publicPath: config.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],

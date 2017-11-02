@@ -11,7 +11,7 @@ export default {
     return {
       bgColor: '#334257',
       textColor: '#fff',
-      activateTextColor: '#ffd04b'
+      activateTextColor: '#2ca2fc'
     }
   },
   // 顶部导航

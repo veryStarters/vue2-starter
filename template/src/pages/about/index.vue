@@ -14,7 +14,7 @@
         theme: {
           bgColor: '#e4e4e4',
           textColor: '#666',
-          activateTextColor: '#46a0fc'
+          activateTextColor: '#2ca2fc'
         },
         menus: [
           {

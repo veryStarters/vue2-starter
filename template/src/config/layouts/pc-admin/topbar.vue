@@ -66,7 +66,10 @@
       handleSelect(index){
         switch (index) {
           case 'userInfo':
-            this.$message({message: '欢迎你！' + this.userInfo.name, type: 'success' })
+            this.$message({
+              message: '欢迎你！' + this.userInfo.name,
+              type: 'success'
+            })
             break
           case 'logout':
             this.doLogout()

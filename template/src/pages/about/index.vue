@@ -12,7 +12,7 @@
     data() {
       return {
         theme: {
-          bgColor: '#e4e4e4',
+          bgColor: '#f0f0f0',
           textColor: '#666',
           activateTextColor: '#2ca2fc'
         },
@@ -31,7 +31,7 @@
   }
 </script>
 <style lang="postcss">
-  <!--全局样式覆盖-->
+  /* 全局样式覆盖 */
   .about-wrapper {
     .el-menu {
       border-right: none;
@@ -39,8 +39,8 @@
     .el-menu--horizontal {
       border-bottom: none;
     }
-    .el-menu-item:hover{
-      background: #cecece !important;
+    .el-menu-item:hover {
+      background: #e4e4e4 !important;
     }
   }
 </style>

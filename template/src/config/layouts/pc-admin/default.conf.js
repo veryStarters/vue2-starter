@@ -4,9 +4,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 // 此处返回配置项,此处配置项均为默认配置项，如在
 export default {
-  // 0 hidden; 1 show; 2 fixed
-  topbar: 2,
-  // light; dark,
+  // 0 hidden; 1 show
+  topbar: 1,
+  // 主题样式
   theme: function () {
     return {
       bgColor: '#334257',

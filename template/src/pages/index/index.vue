@@ -6,12 +6,15 @@
 <script>
   export default {
     name: 'page-index',
-
   }
 </script>
-<style>
-  <!-- 全局覆盖el-menu定义 -->
-  .el-menu {
-    border-radius: 0;
+<style lang="postcss">
+  .index-wrapper {
+    .el-menu {
+      border-right: none;
+    }
+    .el-menu--horizontal {
+      border-bottom: none;
+    }
   }
 </style>

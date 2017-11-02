@@ -1,5 +1,5 @@
 <template>
-  <div class="logo-wrapper" :class="theme" v-if="show" @click="handleGoHome">
+  <div class="logo-wrapper" :style="{background: 'transparent', color: theme.textColor}" v-if="show" @click="handleGoHome">
     <img :src="img" height="26" align="absmiddle"/>
     <span class="name">{{appName}}</span>
   </div>
@@ -39,14 +39,6 @@
     @add-mixin anim;
     .name {
       vertical-align: middle;
-    }
-    &.dark {
-      color: #bfcbd9;
-      background: transparent;
-    }
-    &.light {
-      color: #48576a;
-      background: transparent;
     }
   }
 </style>

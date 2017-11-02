@@ -1,6 +1,13 @@
 <template>
   <div class="navbar-wrapper">
-    <el-menu :theme="theme" :default-active="activeName" mode="horizontal" @select="handleSelect">
+    <el-menu
+      :default-active="activeName"
+      mode="horizontal"
+      @select="handleSelect"
+      :background-color="theme.bgColor"
+      :text-color="theme.textColor"
+      :active-text-color="theme.activateTextColor"
+    >
       <el-menu-item v-for="(nav,index) in navs" :key="index" class="item" :index="nav.name">{{nav.label}}</el-menu-item>
     </el-menu>
   </div>
@@ -30,7 +37,7 @@
     }
   }
 </script>
-<style lang="postcss">
+<style lang="postcss" scoped>
   .navbar-wrapper {
     .item {
       transition: .3s ease-out;

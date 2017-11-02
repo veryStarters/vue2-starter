@@ -1,13 +1,19 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
+import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 // 此处返回配置项,此处配置项均为默认配置项，如在
 export default {
   // 0 hidden; 1 show; 2 fixed
   topbar: 2,
   // light; dark,
-  theme: 'dark',
+  theme: function () {
+    return {
+      bgColor: '#334257',
+      textColor: '#fff',
+      activateTextColor: '#ffd04b'
+    }
+  },
   // 顶部导航
   navs: [
     {

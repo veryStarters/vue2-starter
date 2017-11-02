@@ -6,7 +6,7 @@
       </sticky>
       <topbar v-else="topbar === 1" :show="topbar === 1" :theme="theme" :navs="navs"></topbar>
     </div>
-    <div class="sidebar-container scroll-bar fixed" :class="{'top-offset':topbar, 'dark': theme === 'dark'}">
+    <div class="sidebar-container scroll-bar fixed" :class="{'top-offset':topbar, 'dark': theme === 'dark'}" :style="{background: theme.bgColor}">
       <sidebar :theme="theme" :menus="menus"></sidebar>
     </div>
     <div class="main-container ml-offset">
@@ -29,7 +29,7 @@
         default: layoutConfig.topbar
       },
       theme: {
-        type: String,
+        type: Object,
         default: layoutConfig.theme
       },
       navs: {
@@ -88,9 +88,6 @@
     }
     &.fixed{
       position: fixed;
-    }
-    &.dark {
-      background: #1f2d3d;
     }
   }
   .main-container {

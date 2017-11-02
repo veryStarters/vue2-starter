@@ -15,7 +15,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "babel-polyfill": "^6.23.0",
-    "element-ui": "^1.4.6",
+    "element-ui": "^2.0.2",
     "js-cookie": "^2.1.4",
     "mint-ui": "^2.2.9",
     "nprogress": "^0.2.0",

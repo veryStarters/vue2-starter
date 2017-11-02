@@ -13,26 +13,33 @@
     props: ['show', 'theme', 'navs'],
     data() {
       return {
-        userInfo: utils.getUserInfoFromCache(),
-        className: 'topbar-wrapper ' + this.theme
+        userInfo: utils.getUserInfoFromCache()
       }
     },
     render(h){
+      let theme = this.theme
       return (
-        <div class={this.className}>
+        <div style={{background: theme.bgColor}} class='topbar-wrapper'>
           <el-row>
-            <el-col class='logo' span={4}>
-              <logo show={this.show} theme={this.theme}></logo>
+            <el-col class='logo'>
+              <logo show={this.show} theme={theme}></logo>
             </el-col>
             <el-col span={17}>
               <div class='navbar-container'>
-                <navbar theme={this.theme} navs={this.navs}></navbar>
+                <navbar theme={theme} navs={this.navs}></navbar>
               </div>
             </el-col>
             {!appConfig.isStatic
               ? <el-col span={3}>
                   <div class='user-info-container'>
-                    <el-menu theme={this.theme} class='el-menu-demo' mode='horizontal' onSelect={this.handleSelect}>
+                    <el-menu
+                      class='el-menu-demo'
+                      mode='horizontal'
+                      onSelect={this.handleSelect}
+                      background-color={theme.bgColor}
+                      text-color={theme.textColor}
+                      active-text-color={theme.activateTextColor}
+                    >
                       <el-submenu index='home'>
                         <template slot='title'>{this.userInfo.name || '游客'}</template>
                         {this.userInfo.name ? this.userMenu() : <el-menu-item index='login'>登录</el-menu-item>}
@@ -59,7 +66,7 @@
       handleSelect(index){
         switch (index) {
           case 'userInfo':
-            this.$message('欢迎你！' + this.userInfo.name)
+            this.$message({message: '欢迎你！' + this.userInfo.name, type: 'success' })
             break
           case 'logout':
             this.doLogout()
@@ -100,13 +107,8 @@
     line-height: $topHeight;
     color: #bfcbd9;
     .logo {
+      width: 230px;
       padding-left: 20px;
-    }
-    &.dark {
-      background: #334257;
-    }
-    &.light {
-      background: #eef1f6;
     }
   }
   .user-info-container {

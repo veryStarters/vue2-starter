@@ -1,4 +1,4 @@
-require('./check-versions')()
+// require('./check-versions')()
 require('./addon/dev-server-watch')()
 require('./addon/mock-server')()
 var opn = require('opn')

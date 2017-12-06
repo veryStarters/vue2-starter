@@ -17,14 +17,12 @@
   </div>
 </template>
 <script>
-  import layoutConfig from './default.conf'
+  import Vue from 'vue'
+  import MintUI from 'mint-ui'
+  import 'mint-ui/lib/style.css'
+  Vue.use(MintUI)
   export default {
-    name: 'mobile-layout',
-    beforeMount() {
-      let meta = document.createElement('meta')
-      meta.setAttribute('content', 'width=device-width,minimum-scale=1.0,maximum-scale=1.0,shrink-to-fit=no,user-scalable=no,minimal-ui')
-      meta.setAttribute('name', 'viewport')
-      document.head.appendChild(meta)
-    }
+    name: 'mobile-layout'
   }
 </script>
+<style lang="postcss" src="./layout.pcss" scoped></style>

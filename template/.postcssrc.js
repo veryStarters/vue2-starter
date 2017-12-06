@@ -29,10 +29,10 @@ module.exports = {
         'Android >= 4.3'
       ]
     },
-    //自动精灵
-    'postcss-sprites': {
-      stylesheetPath: './src/common/assets/styles',
-      spritePath: './src/common/assets/images/sprites'
+    // px2rem
+    'postcss-px2rem-exclude': {
+      remUnit: 100,
+      exclude: /(pages\/index)|(config\/layouts\/pc-admin)|(pages\/about)/
     },
     // 样式优化
     'cssnano': {}

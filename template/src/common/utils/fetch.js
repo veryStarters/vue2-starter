@@ -50,7 +50,7 @@ export default async (url = '', params = {}, option = {}) => {
     case 'post':
     case 'put':
     case 'patch':
-      return instance.post(url, params)
+      return instance.post(url, params, option)
     default:
       return Promise.reject(`unknown request method '${method}'`)
   }

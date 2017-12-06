@@ -1,0 +1,36 @@
+$height: 60px;  /*topbar height*/
+$width: 230px;   /*sidebar width*/
+
+.layout-wrapper {
+  position: relative;
+
+  .topbar-container {
+    position: relative;
+    height: $height;
+    width: 100%;
+  }
+  .sidebar-container {
+    width: $width;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    overflow-x: hidden;
+    transition: all .28s ease-out;
+    background: #e4e8f1;
+    &.top-offset {
+      top: $height;
+    }
+    &.fixed {
+      position: fixed;
+    }
+  }
+  .main-container {
+    min-height: 100%;
+    transition: all .28s ease-out;
+    &.ml-offset {
+      margin-left: $width;
+    }
+  }
+}

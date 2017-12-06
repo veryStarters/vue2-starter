@@ -15,33 +15,80 @@
   </div>
 </template>
 <script>
+  import Vue from 'vue'
+  import ElementUI from 'element-ui'
+  import 'element-ui/lib/theme-chalk/index.css'
   import appConfig from 'config'
-  import layoutConfig from './default.conf'
   import appMain from './main.vue'
   import topbar from './topbar.vue'
   import sidebar from './sidebar.vue'
   import sticky from 'components/sticky'
+  Vue.use(ElementUI)
   export default {
     name: 'pc-admin-layout',
     props: {
       topbar: {
         type: Number,
-        default: layoutConfig.topbar
+        'default': 2  // 0 hidden; 1 show; 2 fixed
       },
       theme: {
         type: Object,
-        default: layoutConfig.theme
+        'default': function () {
+          return {
+            bgColor: '#334257',
+            textColor: '#fff',
+            activateTextColor: '#2ca2fc'
+          }
+        }
       },
       navs: {
         type: Array,
-        default: function() {
-          return layoutConfig.navs
+        'default': function() {
+          return [
+            {
+              name: 'indexHome',
+              label: '布局一'
+            },
+            {
+              name: 'aboutHome',
+              label: '布局一主题二'
+            },
+            {
+              name: 'mobileHome',
+              label: '布局二'
+            }
+          ]
         }
       },
       menus: {
         type: Array,
-        default: function () {
-          return layoutConfig.menus
+        'default': function () {
+          return [
+            // {
+            //   name: 'name1',
+            //   label: '菜单一',
+            //   icon: 'el-icon-menu',
+            //   children: [
+            //     {
+            //       name: 'indexHome',
+            //       label: '首页',
+            //       icon: 'el-icon-star-on'
+            //     },
+            //     {
+            //       name: 'submenu1',
+            //       label: '子菜单1',
+            //       icon: 'el-icon-menu',
+            //       children: [
+            //         {
+            //           name: 'indexTest14',
+            //           label: '测试4',
+            //           icon: 'el-icon-edit'
+            //         }
+            //       ]
+            //     }
+            //   ]
+            // }
+          ]
         }
       }
     },
@@ -58,43 +105,4 @@
     }
   }
 </script>
-<style lang="postcss" scoped>
-
-  /*布局相关特性定义*/
-  $height: 60px;  /*topbar height*/
-  $width: 230px;   /*sidebar width*/
-
-  .layout-wrapper{
-    position: relative;
-  }
-
-  .topbar-container {
-    position: relative;
-    height: $height;
-    width: 100%;
-  }
-  .sidebar-container {
-    width: $width;
-    position: absolute;
-    bottom: 0;
-    top:0;
-    left: 0;
-    z-index: 1001;
-    overflow-x: hidden;
-    transition: all .28s ease-out;
-    background: #e4e8f1;
-    &.top-offset{
-      top: $height;
-    }
-    &.fixed{
-      position: fixed;
-    }
-  }
-  .main-container {
-    min-height: 100%;
-    transition: all .28s ease-out;
-    &.ml-offset {
-      margin-left: $width;
-    }
-  }
-</style>
+<style lang="postcss" src="./layout.pcss" scoped></style>

@@ -7,7 +7,6 @@
           <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
       </div>
-
       <div slot="body">
         <mt-tab-container v-model="tabSelected">
           <mt-tab-container-item id="tabA">
@@ -40,6 +39,9 @@
       </div>
 
       <div slot="subHeader">
+        <div class="comment">
+          nihao
+        </div>
         <mt-navbar v-model="tabSelected">
           <mt-tab-item id="tabA">
             菜单A
@@ -76,5 +78,9 @@
   .mobile-home-wrapper {
     text-align: center;
     line-height: 5;
+    .comment {
+      width: 256px;
+      height: 256px;
+    }
   }
 </style>

@@ -3,8 +3,8 @@
     <h1>4 0 4</h1>
     <p>如果你来到这里，说明页面已经丢失！</p>
     <p style="margin-top: 20px">
-      <el-button type="primary" @click="goBack">返回上一页</el-button>
-      <el-button type="primary" @click="goHome">返回首页</el-button>
+      <button @click="goBack">返回上一页</button>
+      <button @click="goHome">返回首页</button>
     </p>
   </div>
 </template>

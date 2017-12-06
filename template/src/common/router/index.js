@@ -119,7 +119,7 @@ routers.push({
     auth: false,
     title: '您暂无访问权限！'
   },
-  component: r => require(['pages/common/errors/401.vue'], r)
+  component: r => require(['../errors/401.vue'], r)
 })
 // 404
 routers.push({
@@ -129,7 +129,7 @@ routers.push({
     auth: false,
     title: '您访问的页面丢了！'
   },
-  component: r => require(['pages/common/errors/404.vue'], r)
+  component: r => require(['../errors/404.vue'], r)
 })
 
 function hasChildren(fullName, parentName) {

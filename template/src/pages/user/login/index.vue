@@ -57,7 +57,7 @@
     position: relative;
     width: 100%;
     height: 700px;
-    background: url(~images/bg.png) no-repeat;
+    background: url(../images/bg.png) no-repeat;
     background-size: 100%;
   }
   .tips {

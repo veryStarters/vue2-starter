@@ -1,52 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title><%=htmlWebpackPlugin.options.appName %></title>
-    <script>
-      let win = window
-      let doc = document
-      let docEle = doc.documentElement
-      let metaEle = doc.createElement('meta')
-      let setRemUnit = function() {
-        let rootValue = docEle.clientWidth / 3.75
-        docEle.style.fontSize = (rootValue > 100 ? 100 : rootValue)  + 'px'
-      }
-      setRemUnit()
-      if (/AppleWebKit.*Mobile.*/.test(navigator.userAgent)) {
-        win.addEventListener('resize', setRemUnit)
-        win.addEventListener('pageshow', function (e) {
-          e.persisted && setRemUnit()
-        })
-
-        let hairLines = function () {
-          let dpr = win.devicePixelRatio || 1
-          // detect 0.5px supports
-          if (dpr >= 2) {
-            let fakeBody = doc.createElement('body')
-            let ele = doc.createElement('div')
-            ele.style.border = '.5px solid transparent'
-            fakeBody.appendChild(ele)
-            docEle.appendChild(fakeBody)
-            if (ele.offsetHeight === 1) {
-              docEle.classList.add('hairlines')
-            }
-            docEle.removeChild(fakeBody)
+<head>
+  <meta charset="utf-8">
+  <title><%=htmlWebpackPlugin.options.appName %></title>
+  <script>
+    var win = window;
+    var doc = document;
+    var docEle = doc.documentElement;
+    var metaEle = doc.createElement('meta');
+    var isMobile = /AppleWebKit.*Mobile.*/.test(navigator.userAgent)
+    var setRemUnit = function () {
+      var rootValue = docEle.clientWidth / 3.75;
+      docEle.style.fontSize = (rootValue > 100 && !isMobile ? 100 : rootValue) + 'px';
+    };
+    if (!isMobile) {
+      setRemUnit();
+    } else {
+      win.addEventListener('resize', setRemUnit);
+      win.addEventListener('pageshow', function (e) {
+        e.persisted && setRemUnit();
+      });
+      var hairLines = function () {
+        var dpr = win.devicePixelRatio || 1;
+        if (dpr >= 2) {
+          var fakeBody = doc.createElement('body');
+          var ele = doc.createElement('div');
+          ele.style.border = '.5px solid transparent';
+          fakeBody.appendChild(ele);
+          docEle.appendChild(fakeBody);
+          if (ele.offsetHeight === 1) {
+            docEle.classList.add('hairlines');
           }
+          docEle.removeChild(fakeBody);
         }
-        let setMeta = function() {
-          metaEle.setAttribute('content', 'width=device-width,minimum-scale=1.0,maximum-scale=1.0,shrink-to-fit=no,user-scalable=no,viewport-fit=cover')
-          metaEle.setAttribute('name', 'viewport')
-          doc.head.appendChild(metaEle)
-        }
-        hairLines()
-        setMeta()
-      }
-
-    </script>
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+      };
+      var setMeta = function () {
+        metaEle.setAttribute('content', 'width=device-width,minimum-scale=1.0,maximum-scale=1.0,shrink-to-fit=no,user-scalable=no,viewport-fit=cover');
+        metaEle.setAttribute('name', 'viewport');
+        doc.head.appendChild(metaEle);
+      };
+      hairLines();
+      setMeta();
+    }
+  </script>
+</head>
+<body>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+</body>
 </html>

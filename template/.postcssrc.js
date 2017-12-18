@@ -32,7 +32,12 @@ module.exports = {
     // px2rem
     'postcss-px2rem-exclude': {
       remUnit: 100,
-      exclude: /(pages\/index)|(config\/layouts\/pc-admin)|(pages\/about)/
+      exclude: new RegExp(`(${[
+        'pages/index',
+        'pages/user',
+        'pages/about',
+        'config/layouts/pc-admin'
+      ].join(')|(')})`, 'i')
     },
     // 样式优化
     'cssnano': {}

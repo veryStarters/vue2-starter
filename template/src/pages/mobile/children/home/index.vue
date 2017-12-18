@@ -24,24 +24,21 @@
       <div slot="footer">
         <mt-tabbar v-model="tabSelected">
           <mt-tab-item id="tabA">
-            <img slot="icon" src="~images/icons/1.png">
+            <img slot="icon" src="../../images/icons/1.png">
             tab1
           </mt-tab-item>
           <mt-tab-item id="tabB">
-            <img slot="icon" src="~images/icons/2.png">
+            <img slot="icon" src="../../images/icons/2.png">
             tab2
           </mt-tab-item>
           <mt-tab-item id="tabC">
-            <img slot="icon" src="~images/icons/3.png">
+            <img slot="icon" src="../../images/icons/3.png">
             tab3
           </mt-tab-item>
         </mt-tabbar>
       </div>
 
       <div slot="subHeader">
-        <div class="comment">
-          nihao
-        </div>
         <mt-navbar v-model="tabSelected">
           <mt-tab-item id="tabA">
             菜单A
@@ -78,9 +75,5 @@
   .mobile-home-wrapper {
     text-align: center;
     line-height: 5;
-    .comment {
-      width: 256px;
-      height: 256px;
-    }
   }
 </style>

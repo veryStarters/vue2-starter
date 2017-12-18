@@ -6,7 +6,7 @@
 </template>
 <script>
   import appConfig from 'config'
-  import img from 'images/logo.png'
+  import img from './images/logo.png'
   export default {
     name: 'logo',
     props: ['show', 'theme'],

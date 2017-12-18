@@ -88,11 +88,18 @@ devMiddleware.waitUntilValid(() => {
   _resolve()
 })
 
-var server = app.listen(port)
+var server = app.listen(port, function () {
+  server.keepAliveTimeout = 0;
+  console.log('\n本地开发环境即将启动，请访问：http://localhost' + ':' + port)
+})
 
 if (config.dev.httpsEnable) {
   var httpsServer = https.createServer(credentials, app);
-  httpsServer.listen(config.dev.httpsPort || 8443)
+  var httpsPort = config.dev.httpsPort || 8443
+  httpsServer.listen(httpsPort, function() {
+    httpsServer.keepAliveTimeout = 0;
+    console.log('您已开启https支持，请访问：https://localhost' + ':' + httpsPort)
+  })
 }
 
 module.exports = {

@@ -17,7 +17,6 @@ import directive from 'directives'
 import mixins from 'mixins'
 import progress from 'nprogress'
 import 'nprogress/nprogress.css'
-import 'config/layout'
 
 // 初始化系统模块配置信息
 Vue.config.productionTip = false

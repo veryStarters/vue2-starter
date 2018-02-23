@@ -19,7 +19,7 @@
         return this.$route.name || 'indexHome'
       }
     },
-    render(h) {
+    render() {
       let theme = this.theme
       return (
         <div class='menubar-wrapper'>

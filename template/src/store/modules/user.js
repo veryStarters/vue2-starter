@@ -28,20 +28,20 @@ const mutations = {
 }
 
 const actions = {
-  login({commit}, params) {
+  login(store = {}, params) {
     return doAction({
       api: api.login,
       params,
       mutationName: LOGIN
     })
   },
-  logout({commit}) {
+  logout() {
     return doAction({
       api: api.logout,
       mutationName: LOGOUT
     })
   },
-  getUserInfo({commit}) {
+  getUserInfo() {
     return doAction({
       api: api.getUserInfo,
       mutationName: GET_USER_INFO

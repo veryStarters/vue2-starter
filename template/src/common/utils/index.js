@@ -77,7 +77,7 @@ export default (() => {
       return queries.join('&')
     },
     query2params(query) {
-      if (typeof query !== "string")return {}
+      if (typeof query !== "string") return {}
       let param = {}
       let params
       let kv

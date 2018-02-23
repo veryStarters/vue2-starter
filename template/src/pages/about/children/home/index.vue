@@ -6,7 +6,6 @@
   </div>
 </template>
 <script>
-  import { mapGetters, mapActions } from 'vuex'
   import api from 'api'
   export default {
     name: 'page-test-home',

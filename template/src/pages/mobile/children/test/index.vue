@@ -7,7 +7,6 @@
 </template>
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import utils from 'utils'
   export default {
     name: 'page-mobile-test',
     data() {

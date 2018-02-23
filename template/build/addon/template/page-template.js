@@ -7,7 +7,6 @@ module.exports = {
       '  </div>',
       '</template>',
       '<script>',
-      '  import utils from \'utils\'',
       '  export default {',
       '    name: \'page-<%name%>\',',
       '    data() {',

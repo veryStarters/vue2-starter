@@ -14,9 +14,10 @@
 <script>
   import {mapActions} from 'vuex'
   import utils from 'utils'
+
   export default {
     name: 'userLogin',
-    data(){
+    data() {
       return {
         user: {
           name: '',
@@ -28,8 +29,8 @@
     computed: {},
     methods: {
       ...mapActions(['login']),
-      doLogin (){
-        if(!this.user.name){
+      doLogin() {
+        if (!this.user.name) {
           this.$message({
             type: 'error',
             message: '敢问英雄尊姓大名？'
@@ -60,10 +61,12 @@
     background: url(../images/bg.png) no-repeat;
     background-size: 100%;
   }
+
   .tips {
     color: #ddd;
     font-size: 10px;
   }
+
   .login-box {
     position: relative;
     width: 400px;
@@ -73,8 +76,9 @@
     left: calc(50% - 200px);
     /*border: 1px solid;*/
     border-radius: 4px;
-    background: rgba(0,0,0,.2);
+    background: rgba(0, 0, 0, .2);
   }
+
   .title {
     height: 76px;
     line-height: 76px;
@@ -82,6 +86,7 @@
     color: #fff;
     text-shadow: 2px 2px 2px #333;
   }
+
   input {
     width: 300px;
     height: 36px;
@@ -91,6 +96,7 @@
     color: #1f2d3d;
     padding: 3px 10px;
   }
+
   button {
     margin-top: 18px;
     width: 100px;

@@ -10,7 +10,6 @@
 </template>
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import utils from 'utils'
   export default {
     name: 'page-test-test1',
     components: {},

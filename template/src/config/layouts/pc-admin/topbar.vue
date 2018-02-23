@@ -1,5 +1,5 @@
 <script>
-  import {mapGetters, mapActions} from 'vuex'
+  import {mapActions} from 'vuex'
   import utils from 'utils'
   import navbar from './navs.vue'
   import logo from './logo.vue'
@@ -16,7 +16,7 @@
         userInfo: utils.getUserInfoFromCache()
       }
     },
-    render(h){
+    render() {
       let theme = this.theme
       return (
         <div style={{background: theme.bgColor}} class='topbar-wrapper'>

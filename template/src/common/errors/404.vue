@@ -11,7 +11,7 @@
 <script>
   export default {
     name: 'lost',
-    methods:{
+    methods: {
       goHome() {
         this.$router.push({name: 'indexHome'})
       },

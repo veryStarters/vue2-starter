@@ -155,7 +155,7 @@ function getCustomRoutes(name) {
   let parentConfig = customRoutes
   for (let i = 0; i < keys.length; i++) {
     config = parentConfig[keys[i]]
-    if(config && config.children) {
+    if (config && config.children) {
       parentConfig = config.children
     }
   }

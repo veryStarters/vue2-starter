@@ -7,8 +7,7 @@ import store from './index'
 export const doAction = (options) => {
   options = Object.assign({
     api: function () {
-      return new Promise(function (resolev, reject) {
-      })
+      return new Promise(() => {})
     },
     params: {},
     mutationName: ''

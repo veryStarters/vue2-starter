@@ -44,15 +44,15 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 
 0. 目录结构介绍
 
-	```
+  ```
 	.
 	├── build
 	│   ├── addon            // 新增的编译插件目录，所有自动化功能均位于此处
 	│   │   └── template     // 自动化生成的相关文件的模板
-  │   ├── config
-  │   └── dll
-  ├── static
-  └── src
+	│   ├── config
+	│   └── dll
+	├── static
+	└── src
       ├── common           // 系统通用模块，业务层面的所有东西都不要放在这里
       │   ├── assets
       │   │   ├── fonts
@@ -87,7 +87,6 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
       │   └── comment
       └── store          // store数据模块
           └── modules
-
   ```
 
 1. 自动路由
@@ -224,7 +223,6 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
     }).catch(() => {
       // 如果出现获取用户信息异常，那就当作未登录处理，直接初始化应用
     })
-
   ```
 6. PC端、移动端多种布局支持，且支持自定义扩展，仅需在config/layouts下增加对应的布局文件即可。
 
@@ -245,6 +243,7 @@ Vue2-Starter(以下简称V2S)是基于vue-cli webpack模板项目扩展出来的
 ### 开发规范
 
 1、API接口返回数据格式约定：
+	
 	```
 		{
 			ret: Boolean,
@@ -270,5 +269,10 @@ A: 一般情况下删除sass-loader并重装即可，
 
 Q: yarn install的时候老是失败怎么办？
 A: 换个时间重试或者更换npm源（直接使用npm config set registry = "https://registry.npm.taobao.org/" , 不要使用cnmp）
-
+PS: 直接在~/.npmrc中加入如下代码，可以解决大部分上述问题
+```
+  sass_binary_site = https://npm.taobao.org/mirrors/node-sass/
+  phantomjs_cdnurl = https://npm.taobao.org/mirrors/phantomjs/
+  registry = https://registry.npm.taobao.org
+```  
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

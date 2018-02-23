@@ -29,8 +29,9 @@
                 <navbar theme={theme} navs={this.navs}></navbar>
               </div>
             </el-col>
-            {!appConfig.isStatic
-              ? <el-col span={3}>
+            {
+              !appConfig.isStatic ? (
+                <el-col span={3}>
                   <div class='user-info-container'>
                     <el-menu
                       class='el-menu-demo'
@@ -46,7 +47,9 @@
                       </el-submenu>
                     </el-menu>
                   </div>
-                </el-col> : ''
+                </el-col>
+              )
+              : ''
             }
           </el-row>
         </div>
@@ -54,7 +57,7 @@
     },
     methods: {
       ...mapActions(['logout']),
-      userMenu(){
+      userMenu() {
         return (
           <div>
             <el-menu-item index='userInfo'>个人信息</el-menu-item>

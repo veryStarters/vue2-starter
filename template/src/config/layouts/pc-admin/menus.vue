@@ -23,19 +23,24 @@
       let theme = this.theme
       return (
         <div class='menubar-wrapper'>
-          {this.topbar === 0
-            ? (
+          {
+            this.topbar === 0 ? (
               <div style={{ padding: '15px', background: theme.bgColor }}>
                 <logo show={this.topbar === 0}></logo>
               </div>
             )
             : ''
           }
-          <el-menu ref='menu' default-active={this.activeName} default-openeds={this.openedNames} unique-opened={true}
-                   class='el-menu-vertical-demo' onSelect={this.handleSelect}
-                   background-color={theme.bgColor}
-                   text-color={theme.textColor}
-                   active-text-color={theme.activateTextColor}
+          <el-menu
+            ref='menu'
+            default-active={this.activeName}
+            default-openeds={this.openedNames}
+            unique-opened={true}
+            class='el-menu-vertical-demo'
+            onSelect={this.handleSelect}
+            background-color={theme.bgColor}
+            text-color={theme.textColor}
+            active-text-color={theme.activateTextColor}
           >
             {
               this.localMenus.map(menu => {

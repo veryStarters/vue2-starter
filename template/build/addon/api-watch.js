@@ -16,7 +16,7 @@ var shell = require('shelljs')
 var apiTemplate = require('./template/api-template')
 var server = {
   start() {
-    var apiPath = Path.join(__dirname, '../../src/config/api.js')
+    var apiPath = Path.join(__dirname, '../../src/api.js')
     fs.watchFile(apiPath, {
       persistent: true,
       interval: 2
@@ -28,7 +28,7 @@ var server = {
       rd.on('line', function (line) {
         var matches = line.match(/fetch\((?:'|")\/(?:(.*)\/)?(.*?)(?:'|")/)
         if (!matches || !matches[2]) return;
-        var path = Path.join(__dirname, '../../src/config/mock', matches[1] || '')
+        var path = Path.join(__dirname, '../../src/api', matches[1] || '')
         var name = matches[2] + '.js'
         var apiFile = path + Path.sep + name;
         if (checkExits(path)) {

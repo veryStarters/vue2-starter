@@ -8,10 +8,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import utils from 'utils'
 import api from 'api'
-import store from './store'
 import config from 'config'
 import App from './App'
-import routes from './common/router'
+import store from 'common/store'
+import routes from 'common/router'
 import components from 'config/global'
 import directive from 'directives'
 import mixins from 'mixins'
@@ -26,6 +26,7 @@ progress.configure({
   showSpinner: false
 })
 Vue.use(VueRouter)
+
 
 components.forEach(component => {
   Vue.component(component.name, component)

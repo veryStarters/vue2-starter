@@ -12,7 +12,7 @@ import config from 'config'
 import App from './App'
 import store from 'common/store'
 import routes from 'common/router'
-import components from 'config/global'
+import components from 'constants/global'
 import directive from 'directives'
 import mixins from 'mixins'
 import progress from 'nprogress'
@@ -27,9 +27,10 @@ progress.configure({
 })
 Vue.use(VueRouter)
 
-
-components.forEach(component => {
-  Vue.component(component.name, component)
+Object.keys(components).forEach(key => {
+  let comp = components[key]
+  comp = comp.default ? comp.default : comp
+  Vue.component(comp.name, comp)
 })
 
 

@@ -7,7 +7,7 @@
  */
 import * as routes from './routes-page'
 import * as componentRoutes from './routes-component'
-import * as customRoutes from 'config/routes'
+import * as customRoutes from 'constants/routes'
 
 // 顶级路由
 let topRouters = {}

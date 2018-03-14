@@ -21,7 +21,7 @@ export default {
   getTest(params) {
     return fetch('/gettest', params)
   },
-  // 向另外一个服务器发起的请求，在config/index.js可具体配置
+  // 向另外一个服务器发起的请求，在src/config.js可具体配置
   getAbout(params) {
     return fetch('/about', params, {prefixName: 'easybao'})
   }

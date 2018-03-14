@@ -26,7 +26,9 @@
         loading: false
       }
     },
-    computed: {},
+    computed: {
+
+    },
     methods: {
       ...mapActions(['login']),
       doLogin() {

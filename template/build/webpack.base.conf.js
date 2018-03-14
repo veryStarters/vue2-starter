@@ -1,7 +1,7 @@
-var path = require('path')
-var utils = require('./utils')
-var config = require('./config')
-var vueLoaderConfig = require('./vue-loader.conf')
+import path from 'path'
+import utils from './utils'
+import config from './config'
+import vueLoaderConfig from './vue-loader.conf'
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -23,10 +23,9 @@ module.exports = {
       src:    resolve('src'),
       api:    resolve('src/api.js'),
       pages:  resolve('src/pages'),
-      store:  resolve('src/common/store'),
+      common: resolve('src/common'),
       fonts:  resolve('src/common/assets/fonts'),
       utils:  resolve('src/common/utils'),
-      common: resolve('src/common'),
       mixins: resolve('src/common/mixins'),
       images: resolve('src/common/assets/images'),
       styles: resolve('src/common/assets/styles'),

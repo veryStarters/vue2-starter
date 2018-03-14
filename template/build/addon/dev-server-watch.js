@@ -3,9 +3,11 @@
  * @author taoqili
  * @date 2017/4/11
  */
-var routeWatch = require('./route-watch')
-var apiWatch = require('./api-watch')
-module.exports = function () {
+import routeWatch from './route-watch'
+import apiWatch from './api-watch'
+import storeWatch from './store-watch'
+export default () => {
   routeWatch.start()
   apiWatch.start()
+  storeWatch.start()
 }

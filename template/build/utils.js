@@ -1,7 +1,7 @@
-var path = require('path')
-var config = require('./config')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var env = process.env.NODE_ENV
+import path from 'path'
+import config from './config'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+const env = process.env.NODE_ENV
 
 exports.assetsPath = function (_path) {
   return path.posix.join(config.assetsSubDirectory, _path)
@@ -10,7 +10,7 @@ exports.assetsPath = function (_path) {
 exports.cssLoaders = function (options) {
   options = options || {}
 
-  var cssLoader = {
+  let cssLoader = {
     loader: 'css-loader',
     options: {
       minimize: env === 'production',
@@ -20,7 +20,7 @@ exports.cssLoaders = function (options) {
 
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
-    var loaders = [cssLoader]
+    let loaders = [cssLoader]
     if (loader) {
       loaders.push({
         loader: loader + '-loader',

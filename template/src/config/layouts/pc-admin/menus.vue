@@ -114,10 +114,10 @@
                 let menus = res.data.menus
                 createMenus(menus)
               } else {
-                createMenus({
+                createMenus([{
                   name: 'indexHome',
                   label: '未取到后端菜单配置数据,请配置getMenus接口!!',
-                })
+                }])
               }
             })
           }

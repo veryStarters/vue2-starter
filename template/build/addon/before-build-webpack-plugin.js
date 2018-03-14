@@ -3,67 +3,49 @@
  * @author taoqili
  * @date 2017/6/5
  */
-var fs = require('fs')
-var path = require('path')
+import fs from 'fs'
+import path from 'path'
+import * as util from './util'
 function BeforeBuildPlugin() {
 }
 BeforeBuildPlugin.prototype.apply = function (compiler) {
-  var pageDirPath = path.join(__dirname, '../../src/pages/')
-  var componentDirPath = path.join(__dirname, '../../src/common/components/')
-  var routePath = path.join(pageDirPath, 'routes.js');
-  var comRoutePath = path.join(componentDirPath, 'routes.js');
+  let pagesDir = path.join(__dirname, '../../src/pages/')
+  let componentsDir = path.join(__dirname, '../../src/common/components/')
+  let routeDir = path.join(__dirname, '../../src/common/router/')
+  let routePath = path.join(routeDir, 'routes-page.js')
+  let comRoutePath = path.join(routeDir, 'routes-component.js')
   compiler.plugin("compile", function () {
-    clearFileContent(routePath)
-    clearFileContent(comRoutePath)
-    walk(pageDirPath, routePath, 'pages')
-    walk(componentDirPath, comRoutePath, 'components')
-    console.log('\nroute create done')
-  });
+    util.clearFileContent(routePath)
+    util.clearFileContent(comRoutePath)
+    walk(pagesDir, routePath, 'pages')
+    walk(componentsDir, comRoutePath, 'components')
+    console.log('\nAll routes create done!')
+  })
 
-  function walk(filePath, routePath, type) {
-    var fileList = fs.readdirSync(filePath);
-    fileList.forEach(function (file) {
-      var fileName = path.join(filePath, file)
-      if (fs.statSync(fileName).isFile()) {
-        if (/index\.vue$/.test(fileName)) {
-          var tmpPath = formatPath(fileName, type);
-          var name = path2name(tmpPath);
+  function walk(dir, routePath, type) {
+    let fileList = fs.readdirSync(dir)
+    fileList.forEach(file => {
+      let filePath = path.join(dir, file)
+      if (fs.statSync(filePath).isFile()) {
+        if (/index\.vue$/.test(filePath)) {
+          let path = util.formatPath(filePath, [
+            type === 'pages' ? /.*\/src\/pages/i : /.*\/src\/common\/components/i,
+            'index.vue'
+          ])
+          let name = util.path2name(path, 'index')
           fs.appendFile(
             routePath,
-            `export const ${name} = r => require(['../${type}${tmpPath}'], r)\n`,
+            `export const ${name} = r => require(['${type}${path}'], r)\n`,
             function (err) {
-              if (err) throw err;
+              if (err) throw err
             }
-          );
+          )
         }
-      } else if (fs.statSync(fileName).isDirectory()) {
-        walk(fileName,routePath,type)
+      } else if (fs.statSync(filePath).isDirectory()) {
+        walk(filePath, routePath, type)
       }
-    });
-  }
-};
-function formatPath(path, type) {
-  path = path.replace(/\\/gi, '/')
-  var reg = new RegExp('^.*src\\/' + (type === 'pages' ? '' : 'common' + '\\/') + type, 'gi')
-  return path.replace(reg, '').replace('index.vue', '');
-}
-
-function path2name(path) {
-  if (path === '/') {
-    return 'index';
-  }
-  return path.toLowerCase().replace(/^\/|\/$/g, '').replace(/-|_/g,'').replace(/\/(.{1})/g, function (a, b) {
-    return b.toUpperCase();
-  })
-}
-function clearFileContent(path) {
-  fs.writeFile(
-    path,
-    '',
-    function (err) {
-      if (err) throw err;
     })
+  }
 }
 
-
-module.exports = BeforeBuildPlugin;
+export default BeforeBuildPlugin

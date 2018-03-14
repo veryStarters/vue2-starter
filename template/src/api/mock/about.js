@@ -3,12 +3,12 @@
 * http://mockjs.com/examples.html#DPD
 * @author taoqili
 */
-var sleep = require('system-sleep')
-var Mock = require('mockjs')
-var data = Mock.mock({
+import sleep from 'system-sleep'
+import Mock from 'mockjs'
+const data = Mock.mock({
   test: 'about'
 })
-module.exports = function (req, res, next) {
+export default (req, res, next) => {
   // 模拟网络环境，延迟100ms返回
   sleep(100)
   return {

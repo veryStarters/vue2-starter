@@ -6,3 +6,4 @@
 export const isLogin = state => state.user.isLogin
 export const userInfo = state => state.user.userInfo
 export const hasPermission = state => state.common.hasPermission
+export const testKey = state => state.dddEee.testKey

@@ -8,72 +8,49 @@
  * @author taoqili
  * @date 2017/4/26
  */
-var fs = require('fs')
-var Path = require('path')
-var readLine = require('readline')
-var mkdirp = require('mkdirp')
-var shell = require('shelljs')
-var apiTemplate = require('./template/api-template')
-var server = {
+import fs from 'fs'
+import path from 'path'
+import readLine from 'readline'
+import mkdirp from 'mkdirp'
+import * as util from './util'
+import apiTemplate from './template/api-template'
+const Watcher = {
   start() {
-    var apiPath = Path.join(__dirname, '../../src/api.js')
+    let apiPath = path.join(__dirname, '../../src/api/index.js')
     fs.watchFile(apiPath, {
       persistent: true,
       interval: 2
     }, () => {
-      var rd = readLine.createInterface({
+      let rd = readLine.createInterface({
         input: fs.createReadStream(apiPath),
         terminal: false
-      });
-      rd.on('line', function (line) {
-        var matches = line.match(/fetch\((?:'|")\/(?:(.*)\/)?(.*?)(?:'|")/)
-        if (!matches || !matches[2]) return;
-        var path = Path.join(__dirname, '../../src/api', matches[1] || '')
-        var name = matches[2] + '.js'
-        var apiFile = path + Path.sep + name;
-        if (checkExits(path)) {
-          if (!checkExits(apiFile)) {
-            mkfile(apiFile)
+      })
+      rd.on('line', (line) => {
+        let matches = line.match(/fetch\((?:'|")\/(?:(.*)\/)?(.*?)(?:'|")/)
+        if (!matches || !matches[2]) return
+        let name = matches[2] + '.js'
+        let mockDir = path.join(__dirname, '../../src/api/mock', matches[1] || '')
+        let mockFile = path.join(mockDir, name)
+        if (util.checkExits(mockDir)) {
+          if (!util.checkExits(mockFile)) {
+            util.mkFile(mockFile, apiTemplate)
           }
         } else {
-          mkdirp(path, function (err) {
+          mkdirp(mockDir, (err) => {
             if (!err) {
-              mkfile(apiFile)
+              util.mkFile(mockFile, apiTemplate)
             }
           })
         }
       })
-    });
-
-    function mkfile(path) {
-      fs.open(path, 'w+', function (err, fd) {
-        if (err) {
-          return;
-        }
-        shell.exec('git add ' + path)
-        fs.write(fd, apiTemplate.tpl,
-          function (err) {
-            if (err) throw err;
-            fs.closeSync(fd);
-          })
-      })
-    }
-
-    function checkExits(file) {
-      var stat = null;
-      try {
-        stat = fs.statSync(file);
-      } catch (e) {
-        return false;
-      }
-      return stat.isFile() || stat.isDirectory();
-    }
+    })
   }
 }
-
-module.exports = server
 // 本地调试
 if (process.env.debugger) {
-  server.start()
+  Watcher.start()
 }
+
+export default Watcher
+
 

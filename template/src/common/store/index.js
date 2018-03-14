@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 import * as modules from 'common/store/modules'
-import * as getters from 'store/getters'
+import * as getters from 'src/store/getters'
 
 export default new Vuex.Store({
   getters,

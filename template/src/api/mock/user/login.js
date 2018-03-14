@@ -1,5 +1,5 @@
-var sleep = require('system-sleep')
-module.exports = function (req, res, next) {
+import sleep from 'system-sleep'
+export default (req, res, next) => {
   sleep(200)
   return {
     ret: 'success',

@@ -3,27 +3,27 @@
  * @author taoqili
  * @date 2017/4/24
  */
-var path = require('path')
-var express = require('express')
-var cookieParser = require('cookie-parser')
-var bodyParser = require('body-parser')
-var config = require('../config').dev
-var loadModule = require('./load-module')
-var mockServer =  function () {
-  var router = express.Router()
-  var app = express()
+import path from 'path'
+import express from 'express'
+import cookieParser from 'cookie-parser'
+import bodyParser from 'body-parser'
+import config from '../config'
+import loadModule from './load-module'
+const mockServer =  function () {
+  let router = express.Router()
+  let app = express()
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({extended: false}))
   app.use(cookieParser())
 
   router.all('*', function (req, res, next) {
-    var urlInfo = req._parsedUrl
-    var pathName = urlInfo.pathname
-    var lastIndex = pathName.lastIndexOf('/') + 1
-    var dirPath = pathName.substring(0, lastIndex).replace(/\/.*api/, '')
-    var moduleName = pathName.substring(lastIndex).replace('&', '')
-    var modules = loadModule(path.join(__dirname, '../../src/api' + dirPath))
-    var module = modules[moduleName]
+    let urlInfo = req._parsedUrl
+    let pathName = urlInfo.pathname
+    let lastIndex = pathName.lastIndexOf('/') + 1
+    let dirPath = pathName.substring(0, lastIndex).replace(/\/.*api/, '')
+    let moduleName = pathName.substring(lastIndex).replace('&', '')
+    let modules = loadModule(path.join(__dirname, '../../src/api/mock' + dirPath))
+    let module = modules[moduleName]
     res.header("Content-Type", "application/json; charset=utf-8");
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Credentials", "true");
@@ -38,7 +38,7 @@ var mockServer =  function () {
   })
 
   app.use('/', router)
-  app.listen(config.mockPort, function () {
+  app.listen(config.dev.mockPort, function () {
     console.log('Mock服务启动成功...')
   })
 }

@@ -3,8 +3,8 @@
  * http://mockjs.com/examples.html#DPD
  * @author taoqili
  */
-var Mock = require('mockjs')
-var data = Mock.mock({
+import Mock from 'mockjs'
+const data = Mock.mock({
   activeName: 'test1',
   menus: [
     {
@@ -57,7 +57,7 @@ var data = Mock.mock({
     }
   ]
 })
-module.exports = function (req, res, next) {
+export default (req, res, next) => {
   return {
     ret: 'success',
     code: 0,

@@ -1,14 +1,14 @@
-var path = require('path')
-var utils = require('./utils')
-var webpack = require('webpack')
-var config = require('./config')
-var appConfig = require('../src/config')
-var merge = require('webpack-merge')
-var baseWebpackConfig = require('./webpack.base.conf')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-var manifestJSON = require('./dll/manifest.json')
-var AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
+import path from 'path'
+import utils from './utils'
+import webpack from 'webpack'
+import config from './config'
+import appConfig from '../src/config'
+import merge from 'webpack-merge'
+import baseWebpackConfig from './webpack.base.conf'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
+import manifestJSON from './dll/manifest.json'
+import AddAssetHtmlPlugin from 'add-asset-html-webpack-plugin'
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {

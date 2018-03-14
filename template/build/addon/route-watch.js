@@ -3,207 +3,103 @@
  * @author taoqili
  * @date 2017/4/26
  */
-var fs = require('fs')
-var Path = require('path')
-var readLine = require('readline')
-var shell = require('shelljs')
-var mkdirp = require('mkdirp')
-var chokidar = require('chokidar')
-var pagesTemplate = require('./template/page-template')
-var componentsTemplate = require('./template/component-template')
-var componentsTestTemplate = require('./template/component-test-template')
-var templates = {
+import fs from 'fs'
+import Path from 'path'
+import shell from 'shelljs'
+import chokidar from 'chokidar'
+import * as util from './util'
+import pagesTemplate from './template/page-template'
+import componentsTemplate from './template/component-template'
+import componentsTestTemplate from './template/component-test-template'
+
+const templates = {
   pages: pagesTemplate,
   components: componentsTemplate,
   test: componentsTestTemplate
 }
-var server = {
-  start(){
-    var startTime = Date.now();
-    var blocks = {};
-    var routesPath = Path.join(__dirname, '../../src/pages/routes.js'),
-      pagesPath = Path.join(__dirname, '../../src/pages'),
-      componentsRoutePath = Path.join(__dirname, '../../src/common/components/routes.js'),
-      componentsPath = Path.join(__dirname, '../../src/common/components');
-
-    routes2template(routesPath, pagesPath, 'pages');
-    template2routes(pagesPath, routesPath, 'pages');
-
-    routes2template(componentsRoutePath, componentsPath, 'components', true);
-    template2routes(componentsPath, componentsRoutePath, 'components', true);
-
-    /**
-     * 通过路由文件生成文件模板
-     * @param routesPath
-     * @param pagesPath
-     * @param type
-     */
-    function routes2template(routesPath, pagesPath, type, needTest) {
-      fs.watchFile(routesPath, {
-        persistent: true,
-        interval: 2
-      }, () => {
-        var time = Date.now();
-        if (time - startTime < 5000) {
-          return;
-        }
-        var rd = readLine.createInterface({
-          input: fs.createReadStream(routesPath),
-          terminal: false
-        });
-        rd.on('line', function (line) {
-          var reg = new RegExp(`\\[(?:'|")(\\.\\.\\/${type}\\/.*)(?:'|")\\]`)
-          var matches = line.match(reg)
-          if (!matches || !matches[1]) return;
-          var path = Path.join(__dirname, '../', matches[1].replace(`${type}/`, `src/${type === 'pages' ? type : 'common/' + type}/`))
-          var name = ''
-          matches = line.match(/^export const\s*(\w*)\s*/)
-          if (matches && matches[1]) {
-            name = matches[1]
-          }
-
-          var testFileName;
-          if (/\.vue$/.test(path)) {
-            testFileName = path;
-            path = path.substring(0, path.lastIndexOf(Path.sep) + 1)
-          }
-          var indexFileName = path + 'index.vue'
-          if (checkExitsAndEmpty(path)) {
-            if (!checkExitsAndEmpty(indexFileName)) {
-              blocks[indexFileName] = true;
-              mkfile(indexFileName, name, type)
-              if (needTest && !checkExitsAndEmpty(testFileName)) {
-                mkfile(testFileName, name, 'test')
-              }
-            }
-          } else {
-            mkdirp(path, function (err) {
-              if (!err) {
-                blocks[indexFileName] = true;
-                mkfile(indexFileName, name, type)
-                if (needTest && !checkExitsAndEmpty(testFileName)) {
-                  mkfile(testFileName, name, 'test')
-                }
-              }
-            })
-          }
-        })
-      });
-
-      var watcher = chokidar.watch(pagesPath, {
-        ignored: /(^|[\/\\])\../
-      })
-      watcher.on('unlink', function (fileName) {
-        if (/index\.vue$/.test(fileName)) {
-          var path = formatPath(fileName, type),
-            name = path2name(path);
-          var reg = new RegExp(`^export const ${name}.*$`, 'gi')
-          shell.sed('-i', reg, '', routesPath);
-        }
-      })
-    }
+const Watcher = {
+  start() {
+    let blocks = {}
+    let routesPath = Path.join(__dirname, '../../src/common/router/routes-page.js')
+    let pagesDir = Path.join(__dirname, '../../src/pages')
+    let componentsRoutePath = Path.join(__dirname, '../../src/common/router/routes-component.js')
+    let componentsDir = Path.join(__dirname, '../../src/common/components')
+    template2routes(pagesDir, routesPath, 'pages')
+    template2routes(componentsDir, componentsRoutePath, 'components', true)
 
     /**
      * 通过模板生成路由
      * @param pagesPath
      * @param routesPath
      * @param type
+     * @param needTest
      */
     function template2routes(pagesPath, routesPath, type, needTest) {
-      clearFileContent(routesPath);
-      var watcher = chokidar.watch(pagesPath, {
+      util.clearFileContent(routesPath, [
+        '本文件由系统自动生成，请勿更改',
+        '变量名代表route的name，变量名请按照驼峰格式书写，每个驼峰单词将被切分成route的path  userLogin => /user/login',
+        '所有components的路由自动增加/components前缀'
+      ])
+      const fixTpl = (tpl, name) => {
+        return tpl
+          .replace(/<%name%>/gi, name)
+          .replace(/<%humpName%>/gi, function () {
+            return name.replace(/-([a-z])/g, function (a, b) {
+              return b.toUpperCase()
+            })
+          })
+          .replace(/<%wrapper%>/gi, `${name}-wrapper`)
+      }
+      let watcher = chokidar.watch(pagesPath, {
         ignored: /(^|[\/\\])\../
       })
-      watcher.on('add', function (fileName) {
-        if (/index\.vue$/.test(fileName)) {
-          if (blocks[fileName]) {
-            delete blocks[fileName]
-            return;
+      watcher.on('add', function (filePath) {
+        if (/index\.vue$/.test(filePath)) {
+          if (blocks[filePath]) {
+            delete blocks[filePath]
+            return
           }
-          var path = formatPath(fileName, type);
-          var name = path2name(path);
-          var testFile = fileName.replace('index.vue', '_test.vue')
-          if (needTest && !checkExitsAndEmpty(testFile)) {
-            mkfile(testFile, name, 'test')
+          let path = util.formatPath(filePath, [
+            type === 'pages' ? /.*\/src\/pages/i : /.*\/src\/common\/components/i,
+            'index.vue'
+          ])
+          let name = util.path2name(path, 'index')
+          let testFile = filePath.replace('index.vue', '_test.vue')
+          if (needTest && !util.checkExitsAndEmpty(testFile)) {
+            util.mkFile(testFile, fixTpl(templates.test, name))
           }
           path = path + (needTest ? '_test.vue' : 'index.vue')
           fs.appendFile(
             routesPath,
-            `export const ${name} = r => require(['../${type}${path}'], r)\n`,
+            `export const ${name} = r => require(['${type}${path}'], r)\n`,
             function (err) {
-              if (err) throw err;
+              if (err) throw err
             }
           )
+          if (!util.checkExitsAndEmpty(filePath)) {
+            util.mkFile(filePath, fixTpl(templates[type], name)
+            )
+          }
+        }
+      })
+      watcher.on('unlink', (filePath) => {
+        if (/index\.vue$/.test(filePath)) {
+          let path = util.formatPath(filePath, [
+            type === 'pages' ? /.*\/src\/pages/i : /.*\/src\/common\/components/i,
+            'index.vue'
+          ])
+          let name = util.path2name(path, 'index')
+          let reg = new RegExp(`^export const ${name}.*$`, 'gi')
+          shell.sed('-i', reg, '', routesPath)
         }
       })
     }
-
-    function formatPath(path, type) {
-      path = path.replace(/\\/gi, '/')
-      var reg = new RegExp('^.*src\\/' + (type === 'pages' ? type : 'common\\/' + type ), 'gi')
-      return path.replace(reg, '').replace('index.vue', '').replace('_test.vue', '');
-    }
-
-    function path2name(path) {
-      if (path === '/') {
-        return 'index';
-      }
-      return path.toLowerCase().replace(/^\/|\/$/g, '').replace(/-|_/g, '').replace(/\/(.{1})/g, function (a, b) {
-        return b.toUpperCase();
-      })
-    }
-
-    function clearFileContent(path) {
-      fs.writeFile(
-        path,
-        '/**\n' +
-        ' * 新增路由请严格按照如下格式书写, 系统将自动在pages|components目录下生成对应模板文件\n' +
-        ' * 变量名代表route的name，变量名请按照驼峰格式书写，每个驼峰单词将被切分成route的path  userLogin => /user/login\n' +
-        ' * 所有components的路由自动增加/components前缀\n' +
-        ' **/\n',
-        function (err) {
-          if (err) throw err;
-        })
-    }
-
-    function mkfile(path, name, type) {
-      name = name.replace(/([A-Z])/g, "-$1").toLowerCase().replace('children-', '')
-      fs.open(path, 'w+', function (err, fd) {
-        if (err) {
-          return;
-        }
-        shell.exec('git add ' + path)
-        fs.write(fd,
-          templates[type]['tpl']
-            .replace(/<%name%>/gi, name)
-            .replace(/<%humpName%>/gi, function () {
-              return name.replace(/-([a-z])/g, function (a, b) {
-                return b.toUpperCase()
-              })
-            })
-            .replace(/<%wrapper%>/gi, `${name}-wrapper`),
-          function (err) {
-            if (err) throw err;
-            fs.closeSync(fd);
-          })
-      })
-    }
-
-    function checkExitsAndEmpty(file) {
-      var stat = null;
-      try {
-        stat = fs.statSync(file);
-      } catch (e) {
-        return false;
-      }
-      return stat.isFile() && stat.size || stat.isDirectory();
-    }
-
   }
 }
 
-module.exports = server
 // 本地调试
 if (process.env.debugger) {
-  server.start()
+  Watcher.start()
 }
+
+export default Watcher

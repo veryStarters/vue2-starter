@@ -1,15 +1,15 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
-var path = require('path')
-var appConfig = require('../src/config')
-var assetsRoot = path.resolve(__dirname, '../dist')
-var assetsSubDirectory = 'static'
-var assetsPublicPath = appConfig.assetsPublicPath ? appConfig.assetsPublicPath[process.env.NODE_ENV] || '/' : '/'
-module.exports = {
+import path from 'path'
+import appConfig from '../src/config'
+const assetsRoot = path.resolve(__dirname, '../dist')
+const assetsSubDirectory = 'static'
+const assetsPublicPath = appConfig.assetsPublicPath ? appConfig.assetsPublicPath[process.env.NODE_ENV] || '/' : '/'
+export default {
   env: appConfig.envs[process.env.NODE_ENV || 'development'],
   assetsRoot: assetsRoot,
   assetsSubDirectory: assetsSubDirectory,
   assetsPublicPath: assetsPublicPath,
-  // 预渲染路由列表
+  // 预渲染路由列表d
   preRenderRouters: appConfig.preRenderRouters || [],
   build: {
     index: path.resolve(__dirname, '../dist/index.html'),

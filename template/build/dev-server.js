@@ -1,42 +1,43 @@
-// require('./check-versions')()
-require('./addon/dev-server-watch')()
-require('./addon/mock-server')()
-var opn = require('opn')
-var path = require('path')
-var express = require('express')
-var webpack = require('webpack')
-var proxyMiddleware = require('http-proxy-middleware')
-var webpackConfig = require('./webpack.dev.conf')
-var config = require('./config')
+import serverWatcher from './addon/dev-server-watch'
+import mockServer from './addon/mock-server'
+serverWatcher()
+mockServer()
+import fs from 'fs'
+import https from 'https'
+import opn from 'opn'
+import path from 'path'
+import express from 'express'
+import webpack from 'webpack'
+import proxyMiddleware from 'http-proxy-middleware'
+import webpackConfig from './webpack.dev.conf'
+import config from './config'
 
-var fs = require('fs');
-var https = require('https');
-var privateKey = fs.readFileSync('./build/addon/localhost.key');
-var certificate = fs.readFileSync('./build/addon/localhost.crt');
-var credentials = {key: privateKey, cert: certificate};
+const privateKey = fs.readFileSync('./build/addon/localhost.key')
+const certificate = fs.readFileSync('./build/addon/localhost.crt')
+const credentials = {key: privateKey, cert: certificate}
 
 // default port where dev server listens for incoming traffic
-var port = process.env.PORT || config.dev.port
+let port = process.env.PORT || config.dev.port
 // automatically open browser, if not set will be false
-var autoOpenBrowser = !!config.dev.autoOpenBrowser
+let autoOpenBrowser = !!config.dev.autoOpenBrowser
 // Define HTTP proxies to your custom API backend
 // https://github.com/chimurai/http-proxy-middleware
-var proxyTable = config.dev.proxyTable
+let proxyTable = config.dev.proxyTable
 
-var app = express()
-var compiler = webpack(webpackConfig)
+let app = express()
+let compiler = webpack(webpackConfig)
 
-var devMiddleware = require('webpack-dev-middleware')(compiler, {
+let devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true
 })
 
-var hotMiddleware = require('webpack-hot-middleware')(compiler, {
+let hotMiddleware = require('webpack-hot-middleware')(compiler, {
   log: () => {
   }
 })
 
-var hasCompilation = false
+let hasCompilation = false
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', function (compilation) {
   if (hasCompilation) {
@@ -51,7 +52,7 @@ compiler.plugin('compilation', function (compilation) {
 
 // proxy api requests
 Object.keys(proxyTable).forEach(function (context) {
-  var options = proxyTable[context]
+  let options = proxyTable[context]
   if (typeof options === 'string') {
     options = {target: options}
   }
@@ -69,13 +70,13 @@ app.use(devMiddleware)
 app.use(hotMiddleware)
 
 // serve pure static assets
-var staticPath = path.posix.join(config.assetsPublicPath, config.assetsSubDirectory)
+let staticPath = path.posix.join(config.assetsPublicPath, config.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
-var uri = 'http://localhost:' + port
+let uri = 'http://localhost:' + port
 
-var _resolve
-var readyPromise = new Promise(resolve => {
+let _resolve
+let readyPromise = new Promise(resolve => {
   _resolve = resolve
 })
 
@@ -88,16 +89,16 @@ devMiddleware.waitUntilValid(() => {
   _resolve()
 })
 
-var server = app.listen(port, function () {
-  server.keepAliveTimeout = 0;
+let server = app.listen(port, function () {
+  server.keepAliveTimeout = 0
   console.log('\n本地开发环境即将启动，请访问：http://localhost' + ':' + port)
 })
 
 if (config.dev.httpsEnable) {
-  var httpsServer = https.createServer(credentials, app);
-  var httpsPort = config.dev.httpsPort || 8443
+  let httpsServer = https.createServer(credentials, app)
+  let httpsPort = config.dev.httpsPort || 8443
   httpsServer.listen(httpsPort, function() {
-    httpsServer.keepAliveTimeout = 0;
+    httpsServer.keepAliveTimeout = 0
     console.log('您已开启https支持，请访问：https://localhost' + ':' + httpsPort)
   })
 }

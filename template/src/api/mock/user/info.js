@@ -5,9 +5,9 @@
  * @author taoqili
  * @date 2017/6/23
  */
-var char = 'abcdefghijklmnopqrstuvwxyz';
-var Mock = require('mockjs')
-var userInfo = Mock.mock({
+import Mock from 'mockjs'
+const char = 'abcdefghijklmnopqrstuvwxyz'
+const userInfo = Mock.mock({
   'name': '@cname',
   'accessToken': '@string(char,32)',
   'menus|3': [{
@@ -27,7 +27,7 @@ var userInfo = Mock.mock({
     'anotherTest1'
   ]
 })
-module.exports = function (req, res, next) {
+export default (req, res, next) => {
   return {
     ret: 'success',
     code: 0,

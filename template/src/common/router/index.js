@@ -1,17 +1,12 @@
 /**
- * Created by Webstorm.
- * @author taoqili
- * @date 2017/8/14
- */
-/**
  * 路由生成，本模块处理了自动生成路由的相关逻辑，一般无需更改。
  * 如有自定义路由需求，请移步至config/routes.js文件
  * Created by Webstorm.
  * @author taoqili
  * @date 2017/4/12
  */
-import * as routes from 'pages/routes'
-import * as componentRoutes from 'components/routes'
+import * as routes from './routes-page'
+import * as componentRoutes from './routes-component'
 import * as customRoutes from 'config/routes'
 
 // 顶级路由

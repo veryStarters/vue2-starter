@@ -1,7 +1,7 @@
-import webpack from 'webpack'
-import path from 'path'
+var webpack = require('webpack')
+var path = require('path')
 
-export default {
+module.exports = {
   entry: {
     dll: [
       'vue',

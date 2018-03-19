@@ -3,11 +3,6 @@
  * @author taoqili
  * @date 2017/4/26
  */
-/**
- * Created by Webstorm.
- * @author taoqili
- * @date 2017/4/26
- */
 import fs from 'fs'
 import path from 'path'
 import chokidar from 'chokidar'

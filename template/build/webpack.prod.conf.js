@@ -9,7 +9,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
-import BeforeBuildPlugin from './addon/before-build-webpack-plugin'
+import AsyncRoutePlugin from './addon/async-route-webpack-plugin'
 import PrerenderSpaPlugin from 'prerender-spa-plugin'
 
 let webpackConfig = merge(baseWebpackConfig, {
@@ -26,7 +26,7 @@ let webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
-    new BeforeBuildPlugin(),
+    new AsyncRoutePlugin(),
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': config.env

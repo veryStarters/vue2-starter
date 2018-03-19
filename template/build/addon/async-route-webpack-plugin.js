@@ -6,9 +6,9 @@
 import fs from 'fs'
 import path from 'path'
 import * as util from './util'
-function BeforeBuildPlugin() {
+function AsyncRoutePlugin() {
 }
-BeforeBuildPlugin.prototype.apply = function (compiler) {
+AsyncRoutePlugin.prototype.apply = function (compiler) {
   let pagesDir = path.join(__dirname, '../../src/pages/')
   let componentsDir = path.join(__dirname, '../../src/common/components/')
   let routeDir = path.join(__dirname, '../../src/common/router/')
@@ -48,4 +48,4 @@ BeforeBuildPlugin.prototype.apply = function (compiler) {
   }
 }
 
-export default BeforeBuildPlugin
+export default AsyncRoutePlugin

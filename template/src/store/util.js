@@ -3,7 +3,7 @@
  * @author taoqili
  * @date 2017/6/23
  */
-import store from 'common/store'
+import store from 'common/core/store'
 export const doAction = options => {
   options = Object.assign({
     api: function () {

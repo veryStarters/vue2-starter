@@ -20,10 +20,10 @@ const templates = {
 const Watcher = {
   start() {
     let blocks = {}
-    let routesPath = Path.join(__dirname, '../../src/common/router/routes-page.js')
+    let routesPath = Path.join(__dirname, '../../src/common/core/router/routes-page.js')
     let pagesDir = Path.join(__dirname, '../../src/pages')
-    let componentsRoutePath = Path.join(__dirname, '../../src/common/router/routes-component.js')
-    let componentsDir = Path.join(__dirname, '../../src/common/components')
+    let componentsRoutePath = Path.join(__dirname, '../../src/common/core/router/routes-component.js')
+    let componentsDir = Path.join(__dirname, '../../src/components')
     template2routes(pagesDir, routesPath, 'pages')
     template2routes(componentsDir, componentsRoutePath, 'components', true)
 
@@ -60,7 +60,7 @@ const Watcher = {
             return
           }
           let path = util.formatPath(filePath, [
-            type === 'pages' ? /.*\/src\/pages/i : /.*\/src\/common\/components/i,
+            type === 'pages' ? /.*\/src\/pages/i : /.*\/src\/components/i,
             'index.vue'
           ])
           let name = util.path2name(path, 'index')
@@ -85,7 +85,7 @@ const Watcher = {
       watcher.on('unlink', (filePath) => {
         if (/index\.vue$/.test(filePath)) {
           let path = util.formatPath(filePath, [
-            type === 'pages' ? /.*\/src\/pages/i : /.*\/src\/common\/components/i,
+            type === 'pages' ? /.*\/src\/pages/i : /.*\/src\/components/i,
             'index.vue'
           ])
           let name = util.path2name(path, 'index')

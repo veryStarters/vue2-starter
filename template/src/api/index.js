@@ -19,7 +19,7 @@ export default {
     return fetch('/menus', params)
   },
   getTest(params) {
-    return fetch('/gettest', params)
+    return fetch('http://website.easybao.com/api/wx/config', params)
   },
   // 向另外一个服务器发起的请求，在src/config.js可具体配置
   getAbout(params) {

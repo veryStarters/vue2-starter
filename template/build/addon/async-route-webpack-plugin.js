@@ -10,8 +10,8 @@ function AsyncRoutePlugin() {
 }
 AsyncRoutePlugin.prototype.apply = function (compiler) {
   let pagesDir = path.join(__dirname, '../../src/pages/')
-  let componentsDir = path.join(__dirname, '../../src/common/components/')
-  let routeDir = path.join(__dirname, '../../src/common/router/')
+  let componentsDir = path.join(__dirname, '../../src/components/')
+  let routeDir = path.join(__dirname, '../../src/common/core/router/')
   let routePath = path.join(routeDir, 'routes-page.js')
   let comRoutePath = path.join(routeDir, 'routes-component.js')
   compiler.plugin("compile", function () {
@@ -29,7 +29,7 @@ AsyncRoutePlugin.prototype.apply = function (compiler) {
       if (fs.statSync(filePath).isFile()) {
         if (/index\.vue$/.test(filePath)) {
           let path = util.formatPath(filePath, [
-            type === 'pages' ? /.*\/src\/pages/i : /.*\/src\/common\/components/i,
+            type === 'pages' ? /.*\/src\/pages/i : /.*\/src\/components/i,
             'index.vue'
           ])
           let name = util.path2name(path, 'index')

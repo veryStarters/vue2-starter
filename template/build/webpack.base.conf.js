@@ -24,16 +24,16 @@ module.exports = {
       api:    resolve('src/api/'),
       pages:  resolve('src/pages'),
       common: resolve('src/common'),
-      fonts:  resolve('src/common/assets/fonts'),
+      fonts:  resolve('src/common/fonts'),
       utils:  resolve('src/common/utils'),
       mixins: resolve('src/common/mixins'),
-      images: resolve('src/common/assets/images'),
-      styles: resolve('src/common/assets/styles'),
+      images: resolve('src/common/images'),
+      styles: resolve('src/common/styles'),
       config:   resolve('src/config.js'),
-      layouts:  resolve('src/config/layouts'),
+      layouts:  resolve('src/common/layouts'),
       constants: resolve('src/constants'),
       directives: resolve('src/common/directives'),
-      components: resolve('src/common/components')
+      components: resolve('src/components')
     }
   },
   module: {

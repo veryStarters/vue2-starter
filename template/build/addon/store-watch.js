@@ -10,7 +10,7 @@ import shell from 'shelljs'
 import storeTpl from './template/store-template'
 import * as util from './util'
 
-let modulesPath = path.join(__dirname, '../../src/common/store/modules.js')
+let modulesPath = path.join(__dirname, '../../src/common/core/store/modules.js')
 let modulesDir = path.join(__dirname, '../../src/store/modules/')
 let blocks = []
 const Watcher = {

@@ -37,7 +37,7 @@ const APP_CONFIG = {
   proxyTable: {
     '/api': {
       // 默认使用本地mock数据，如需直连线上或者测试环境，直接修改target即可
-      target: 'http://localhost:10082',
+      target: 'http://localhost:10083',
       // target: 'http://admintest.activity.easybao.com',
       changeOrigin: true,
       pathRewrite: {
@@ -45,7 +45,7 @@ const APP_CONFIG = {
       }
     },
     '/jcy-api': {
-      target: 'http://localhost:10082',
+      target: 'http://localhost:10083',
       // target: 'http://test.jcyapi.easybao.com',
       changeOrigin: true,
       pathRewrite: {

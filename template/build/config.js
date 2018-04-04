@@ -28,21 +28,21 @@ export default {
   },
   dev: {
     port: 8080,
-    mockPort: 10082,
+    mockPort: 10083,
     autoOpenBrowser: false,
     httpsEnable: false,
     httpsPort: 9527,
     // 默认代理
     proxyTable: Object.assign({
       '/api': {
-        target: 'http://localhost:10082',
+        target: 'http://localhost:10083',
         changeOrigin: true,
         pathRewrite: {
           // '^/api': '/'
         }
       },
       '/jcy-api': {
-        target: 'http://localhost:10082',
+        target: 'http://localhost:10083',
         changeOrigin: true,
         pathRewrite: {
           // '^/api': '/'

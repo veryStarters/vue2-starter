@@ -10,6 +10,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
 import AsyncRoutePlugin from './addon/async-route-webpack-plugin'
+import StoreModulePlugin from './addon/store-module-webpack-plugin'
 import PrerenderSpaPlugin from 'prerender-spa-plugin'
 
 let webpackConfig = merge(baseWebpackConfig, {
@@ -27,6 +28,7 @@ let webpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new AsyncRoutePlugin(),
+    new StoreModulePlugin(),
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': config.env
